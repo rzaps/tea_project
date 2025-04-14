@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}Диаграмма — Tea Project{% endblock %}
+
+{% block content %}
+  <h2>Диаграмма</h2>
+  <div id="root" class="border rounded p-3 bg-light" style="min-height: 400px;"></div>
+{% endblock %}
+
+{% block extra_js %}
+  <script type="module" src="{% static 'assets/index.js' %}"></script>
+{% endblock %}

@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
-def index(request):
+def home(request):
     return render(request, 'index.html')
+
+def diagram(request):
+    return render(request, 'diagram.html')
