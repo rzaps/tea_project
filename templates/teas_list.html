@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Список чаёв</h1>
+
+<form method="get">
+  <label for="type">Сорт:</label>
+  <select name="type" id="type">
+    <option value="">Все</option>
+    {% for t in types %}
+      <option value="{{ t }}" {% if t == request.GET.type %}selected{% endif %}>{{ t }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="region">Регион:</label>
+  <select name="region" id="region">
+    <option value="">Все</option>
+    {% for r in regions %}
+      <option value="{{ r }}" {% if r == request.GET.region %}selected{% endif %}>{{ r }}</option>
+    {% endfor %}
+  </select>
+
+  <button type="submit">Фильтровать</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Сорт</th>
+      <th>Регион</th>
+      <th>Вкус</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tea in teas %}
+    <tr>
+      <td>{{ tea.name }}</td>
+      <td>{{ tea.type }}</td>
+      <td>{{ tea.region }}</td>
+      <td>{{ tea.taste }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
