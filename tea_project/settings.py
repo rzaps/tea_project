@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'diagram.apps.DiagramConfig',
+    'tea.apps.TeaConfig',
 ]
 
 MIDDLEWARE = [

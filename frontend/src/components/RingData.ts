@@ -60,12 +60,12 @@ export const outerRing: RingData[] = [
   { label: "-", value: 1, colors: ["#ffffff", "#CFD8DC"] }
 ];
 
-export const defaultPoints: PointData[] = [
-  { angle: 45, radius: 0.6, label: "Бай Хао", color: "#D4AF37", info: "Элитный белый чай с цветочным ароматом" },
-  { angle: 120, radius: 0.4, label: "Лун Цзин", color: "#2E7D32", info: "Знаменитый зеленый чай из Ханчжоу" },
-  { angle: 210, radius: 0.7, label: "Да Хун Пао", color: "#4E342E", info: "Легендарный улун с Уишаньских гор" },
-  { angle: 300, radius: 0.5, label: "Шу Пуэр", color: "#5D4037", info: "Выдержанный пуэр с землистым вкусом" }
-];
+// export const defaultPoints: PointData[] = [
+//   { angle: 45, radius: 0.6, label: "Бай Хао", color: "#D4AF37", info: "Элитный белый чай с цветочным ароматом" },
+//   { angle: 120, radius: 0.4, label: "Лун Цзин", color: "#2E7D32", info: "Знаменитый зеленый чай из Ханчжоу" },
+//   { angle: 210, radius: 0.7, label: "Да Хун Пао", color: "#4E342E", info: "Легендарный улун с Уишаньских гор" },
+//   { angle: 300, radius: 0.5, label: "Шу Пуэр", color: "#5D4037", info: "Выдержанный пуэр с землистым вкусом" }
+// ];
 
 export const axisLabels: AxisLabel[] = [
   { angle: 0, text: "Север", color: "#5D4037" },

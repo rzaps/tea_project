@@ -1,6 +1,8 @@
+import os
 from supabase import create_client, Client
+from dotenv import load_dotenv
+load_dotenv()
 
-SUPABASE_URL = "https://cvpvqxxbthdwyyxjbcqd.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2cHZxeHhidGhkd3l5eGpiY3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ5NTMyMTEsImV4cCI6MjA2MDUyOTIxMX0.yJoGeK7WdoDvUdCx6TSq6upu5dhAOq5aP8bfVmyXAco"
-
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)

@@ -22,6 +22,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('diagram.urls')),
+
+    # Подключаем маршруты приложения tea
+    path('teas/', include('tea.urls')),
 ]
 
 if settings.DEBUG:
