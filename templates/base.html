@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Tea Project{% endblock %}</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
   {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <!-- Навбар -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
     <a class="navbar-brand" href="{% url 'home' %}">Tea Project</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
@@ -29,18 +29,23 @@
         <li class="nav-item">
           <a class="nav-link {% if request.path == '/diagram/' %}active{% endif %}" href="{% url 'diagram' %}">Диаграмма</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/teas/' %}active{% endif %}" href="{% url 'tea_list' %}">Список чаёв</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Контент -->
-<div class="container mt-4">
-  {% block content %}{% endblock %}
-</div>
+<!-- Основной контент -->
+<main class="flex-grow-1">
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</main>
 
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 {% block extra_js %}{% endblock %}
 </body>
 </html>

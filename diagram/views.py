@@ -1,7 +1,12 @@
 from django.shortcuts import render
+from django.conf import settings
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {
+        'debug': settings.DEBUG
+    })
 
 def diagram(request):
-    return render(request, 'diagram.html')
+    return render(request, 'diagram.html', {
+        'debug': settings.DEBUG
+    })

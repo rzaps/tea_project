@@ -32,6 +32,8 @@ const DiagramCanvas: React.FC<{
     createRing(g, rings.middle, radius * 0.5, radius * 0.75, "middle", onSectorClick);
     createRing(g, rings.outer, radius * 0.75, radius, "outer", onSectorClick);
 
+    console.log("Рисуем точки:", points); // ← для отладки
+
     points.forEach(point => {
       const angleRad = (point.angle - 90) * (Math.PI / 180);
       const x = point.radius * radius * Math.cos(angleRad);

@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
+{% block title %}Чайная диаграмма — Tea Project{% endblock %}
 
-{% block title %}Диаграмма — Tea Project{% endblock %}
-
-{% block content %}
-  <h2>Диаграмма</h2>
-  <div id="root" class="border rounded p-3 bg-light" style="min-height: 400px;"></div>
+{% block extra_head %}
+  {% if debug %}
+    <!-- Vite HMR -->
+    <script type="module" src="http://localhost:5173/@vite/client"></script>
+    <script type="module">
+      import RefreshRuntime from "http://localhost:5173/@react-refresh";
+      RefreshRuntime.injectIntoGlobalHook(window);
+      window.$RefreshReg$ = () => {};
+      window.$RefreshSig$ = () => (type) => type;
+      import("http://localhost:5173/src/main.tsx");
+    </script>
+  {% else %}
+    <script type="module" src="{% static 'assets/main.js' %}"></script>
+  {% endif %}
 {% endblock %}
 
-{% block extra_js %}
-  <script type="module" src="{% static 'assets/index.js' %}"></script>
+{% block content %}
+  <div class="px-3 py-4">
+    <h1 class="mb-4">Чайная диаграмма</h1>
+    <div id="root" class="w-100"></div>
+  </div>
 {% endblock %}

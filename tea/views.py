@@ -1,12 +1,20 @@
 from django.shortcuts import render
-from supabase_client import supabase  # импорт клиента Supabase
-from django.http import HttpRequest
 from django.http import JsonResponse
+from django.http import HttpRequest
+from supabase_client import supabase
+from django.views.decorators.http import require_http_methods
+from django.conf import settings
 
+
+
+
+@require_http_methods(["GET"])
 def teas_api(request):
-    response = supabase.table('teas').select('*').execute()
-    teas = response.data
-    return JsonResponse(teas, safe=False)
+    try:
+        response = supabase.table('teas').select('*').execute()
+        return JsonResponse(response.data, safe=False)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
 
 def tea_list(request: HttpRequest):
     type_filter = request.GET.get('type')
