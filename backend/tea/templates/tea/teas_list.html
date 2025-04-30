@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">Каталог чаёв</h1>
+
+<div class="tea-filters-scroll mb-4">
+  <a href="?type=" class="tea-filter-card {% if not request.GET.type %}active{% endif %}">Все</a>
+  {% for t in types %}
+    <a href="?type={{ t }}" class="tea-filter-card {% if request.GET.type == t %}active{% endif %}">
+      {{ t }}
+    </a>
+  {% endfor %}
+</div>
+
+
+  <form method="get" class="mb-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Сорт:</label>
+        <select name="type" class="form-select">
+          <option value="">Все</option>
+          {% for t in types %}
+          <option value="{{ t }}" {% if t == request.GET.type %}selected{% endif %}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Регион:</label>
+        <select name="region" class="form-select">
+          <option value="">Все</option>
+          {% for r in regions %}
+          <option value="{{ r }}" {% if r == request.GET.region %}selected{% endif %}>{{ r }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-4 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row g-4">
+    {% for tea in teas %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title">{{ tea.name }}</h5>
+          <p class="card-text">
+            <strong>Сорт:</strong> {{ tea.type }}<br>
+            <strong>Регион:</strong> {{ tea.region }}<br>
+            <strong>Вкус:</strong> {{ tea.taste }}
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-end">
+          <a href="#" class="btn btn-outline-secondary btn-sm">Подробнее</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

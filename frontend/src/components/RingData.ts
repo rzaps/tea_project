@@ -27,14 +27,22 @@ export const innerRing: RingData[] = [
   { label: "Белый", value: 1, colors: ["#f9f9f9", "#e0e0e0"] },
   { label: "Зеленый", value: 1, colors: ["#c8e6c9", "#81c784"] },
   { label: "Улун", value: 1, colors: ["#d7ccc8", "#a1887f"] },
+  { label: "Черный", value: 1, colors: ["#cfd8dc", "#90a4ae"] },
+  { label: "Белый", value: 1, colors: ["#f9f9f9", "#e0e0e0"] },
+  { label: "Зеленый", value: 1, colors: ["#c8e6c9", "#81c784"] },
+  { label: "Улун", value: 1, colors: ["#d7ccc8", "#a1887f"] },
+  { label: "Черный", value: 1, colors: ["#cfd8dc", "#90a4ae"] },
+  { label: "Белый", value: 1, colors: ["#f9f9f9", "#e0e0e0"] },
+  { label: "Зеленый", value: 1, colors: ["#c8e6c9", "#81c784"] },
+  { label: "Улун", value: 1, colors: ["#d7ccc8", "#a1887f"] },
   { label: "Черный", value: 1, colors: ["#cfd8dc", "#90a4ae"] }
 ];
 
 export const middleRing: RingData[] = [
   { label: "Орехи", value: 1, colors: ["#ffffff", "#f3d36a"] },
-  { label: "Фруктовый", value: 1, colors: ["#ffffff", "#f4ca43"] },
-  { label: "Травяной", value: 1, colors: ["#fdfdfd", "#f8b84b"] },
-  { label: "Дымный", value: 1, colors: ["#ffffff", "rgba(98,129,244,0.7)"] },
+  { label: "Фруктовый", value: 1, colors: ["#ffffff", "#efc54b"] },
+  { label: "Травяной", value: 1, colors: ["#fdfdfd", "#d8f84b"] },
+  { label: "Дымный", value: 1, colors: ["#ffffff", "#d8f84b"] },
   { label: "Древесный", value: 1, colors: ["#ffffff", "#918076"] },
   { label: "Землистый", value: 1, colors: ["#ffffff", "#625038"] },
   { label: "Цветочный", value: 1, colors: ["#ffffff", "#AB8B5A"] },
