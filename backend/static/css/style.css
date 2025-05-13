@@ -1,150 +1,294 @@
+/* === CSS переменные (цвета, размеры) === */
+:root {
+  --color-bg: #f8f9fa;
+  --color-text: #212529;
+  --color-muted: #6c757d;
+
+  --color-brown: #6B4226;
+  --color-brown-dark: #4a2d1a;
+  --color-brown-darker: #3a1f12;
+
+  --color-card-bg: #ffffff;
+  --color-card-shadow: rgba(0, 0, 0, 0.075);
+  --color-box-bg: #f1f3f5;
+
+  --sidebar-width: 220px;
+}
+
+/* === Глобальные стили === */
 body {
-  font-family: 'Georgia', serif;
-  background: #f4f1e8 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-  color: #3e3a34;
-  margin: 0;
-  line-height: 1.6;
+  background-color: var(--color-bg);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--color-text);
 }
 
-/* --- ГЛАВНЫЙ ЛЕЙАУТ --- */
-.main-layout {
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-/* --- ЛЕВЫЙ САЙДБАР --- */
-.sidebar-left {
-  width: 350px;
-  background: #fdfaf4;
-  border-right: 1px solid #e5dac3;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.04);
-  min-height: 100vh;
-}
-
-.sidebar-inner {
-  padding: 2.5rem 1rem 1rem;
-}
-
-.sidebar-inner h4 {
-  font-size: 1.5rem;
-  text-align: center;
-  color: #5b4531;
-}
-
-.sidebar-left .nav-link {
-  color: #6b4f3b;
+/* === Ссылки в сайдбарах === */
+.sidebar-left .nav-link,
+.mobile-sidebar .nav-link,
+.sidebar-right a {
+  color: var(--color-brown) !important;
+  text-decoration: none !important;
   font-weight: 500;
-  font-size: 1.05rem;
+}
+
+.sidebar-left .nav-link:hover,
+.mobile-sidebar .nav-link:hover,
+.sidebar-right a:hover {
+  color: var(--color-brown-dark) !important;
+  text-decoration: underline !important;
 }
 
 .sidebar-left .nav-link.active,
-.sidebar-left .nav-link:hover {
-  background-color: #eaddca;
-  border-radius: 6px;
-  color: #3b2b1f;
+.mobile-sidebar .nav-link.active,
+.sidebar-right a.active {
+  color: var(--color-brown-darker) !important;
+  font-weight: 600;
+  text-decoration: underline !important;
 }
 
-/* --- ПРАВЫЙ САЙДБАР --- */
-.sidebar-right {
-  width: 350px;
-  padding: 2.5rem 1rem 2rem;
-  background-color: #faf9f6;
-  border-left: 1px solid #e5dac3;
-  font-size: 0.92rem;
-  line-height: 1.5;
+/* === Кнопки === */
+.btn,
+.btn-primary {
+  background-color: var(--color-brown);
+  border-color: var(--color-brown);
+  color: #fff;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: var(--color-brown-dark);
+  border-color: var(--color-brown-dark);
+  color: #fff;
+}
+
+/* === Альтернативная кнопка === */
+.btn-outline-secondary {
+  color: var(--color-brown);
+  background-color: transparent;
+  border-color: var(--color-brown);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary.active {
+  background-color: var(--color-brown);
+  color: white !important;
+}
+
+/* === Карточки === */
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem var(--color-card-shadow);
+  transition: transform 0.2s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 250px; /* Добавлено фиксированное значение для высоты изображения */
+  object-fit: cover; /* Для сохранения пропорций изображений */
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.tea-feature {
+  background-color: var(--color-card-bg);
+  border-radius: 0.5rem;
+}
+
+.tea-feature-icon {
+  font-size: 2.5rem;
+  color: #5c4033;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tea-feature .card-title {
+  color: var(--color-brown-darker);
+  font-weight: 600;
+}
+
+.tea-feature .card-text {
+  color: var(--color-brown);
+}
+
+/* === Сайдбары === */
+.sidebar-left,
+.sidebar-right,
+.mobile-sidebar {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  padding: 1rem;
+  min-width: var(--sidebar-width);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-right .box {
-  background: #fffdf8;
-  border: 1px solid #e6ddcc;
-  border-radius: 12px;
-  padding: 1.2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  background-color: var(--color-box-bg);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
-.sidebar-right .box a {
-  color: #5b4531;
-  text-decoration: none;
-}
-.sidebar-right .box a:hover {
-  color: #a67c52;
-  text-decoration: underline;
+.sidebar-right h5 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-/* --- ОСНОВНОЙ КОНТЕНТ --- */
-.content-area {
-  display: flex;
-  flex: 1 1 auto;
-  min-width: 0;
+.sidebar-right p,
+.sidebar-right li {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #333;
 }
 
+/* === Мобильное меню === */
+.mobile-sidebar {
+  display: none;
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  z-index: 1000;
+  background-color: var(--color-card-bg);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-sidebar.show {
+  display: block;
+}
+
+/* === Верхняя панель === */
+.topbar {
+  background-color: var(--color-card-bg);
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* === Контент === */
 .content-block {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 2.5rem;
-  margin: 2.5rem;
-  flex: 1 1 auto;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  max-width: 960px;
+  width: 100%;
 }
 
-/* --- ФУТЕР --- */
+/* === Footer === */
 .footer {
-  font-family: 'Georgia', serif;
-  background: #fdfaf4;
-  color: #6b4f3b;
-  border-top: 1px solid #e0d6c8;
-  padding: 1rem 0;
+  background-color: var(--color-bg);
+  border-top: 1px solid #dee2e6;
+  color: var(--color-muted);
 }
 
-/* --- КАРТОЧКИ --- */
-.card {
-  background-color: #fffefb;
-  border-radius: 12px;
+/* === Адаптивность === */
+@media (max-width: 1180px) {
+  .sidebar-left {
+    display: none;
+  }
+  .topbar .burger-menu-btn {
+    display: inline-block;
+  }
+  .mobile-sidebar.show {
+    display: block;
+  }
+  .sidebar-right {
+    display: none;
+  }
 }
 
-.card-title {
-  color: #5b4531;
-  font-family: 'Georgia', serif;
+@media (min-width: 1180px) {
+  .sidebar-left {
+    display: block;
+  }
+  .topbar .burger-menu-btn {
+    display: none;
+  }
+  .mobile-sidebar.show {
+    display: none;
+  }
 }
 
-.card-text {
-  font-size: 0.95rem;
-  color: #4d4134;
+/* === Бургер кнопка === */
+.burger-menu-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1050;
+  position: relative;
 }
 
-.tea-filters-scroll {
-  display: flex;
-  overflow-x: auto;
-  padding: 0.5rem 0.5rem 1rem;
-  gap: 0.75rem;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+.burger-menu-btn .burger-icon {
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  display: block;
+  position: relative;
 }
 
-.tea-filter-card {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-  background: #f7f4ed;
-  border: 1px solid #d6c5a7;
-  border-radius: 12px;
-  padding: 0.6rem 1rem;
-  font-size: 0.95rem;
-  color: #5b4531;
-  font-weight: 500;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 0.3s, border 0.3s;
+.burger-menu-btn .burger-icon:before,
+.burger-menu-btn .burger-icon:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  display: block;
 }
 
-.tea-filter-card:hover {
-  background: #eaddca;
-  border-color: #bfa77b;
+.burger-menu-btn .burger-icon:before {
+  top: -8px;
 }
 
-.tea-filter-card.active {
-  background: #d9c3a0;
-  border-color: #b5976d;
-  font-weight: 600;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+.burger-menu-btn .burger-icon:after {
+  top: 8px;
+}
+
+/* === Верхний блок === */
+.hero-banner {
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  padding: 2rem;
+  border-radius: 0.25rem;  /* Уменьшено скругление */
+  position: relative;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Анимации появления */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1s ease-out;
+}
+
+.animate-fade-in-delay {
+  animation: fadeInUp 1s ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fadeInUp 1s ease-out;
+  animation-delay: 1s;
+  animation-fill-mode: both;
 }

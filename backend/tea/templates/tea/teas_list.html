@@ -1,62 +1,133 @@
 {% extends 'base.html' %}
+
+{% block title %}Каталог чаёв — Tea Atlas{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-  <h1 class="mb-4">Каталог чаёв</h1>
-
-<div class="tea-filters-scroll mb-4">
-  <a href="?type=" class="tea-filter-card {% if not request.GET.type %}active{% endif %}">Все</a>
-  {% for t in types %}
-    <a href="?type={{ t }}" class="tea-filter-card {% if request.GET.type == t %}active{% endif %}">
-      {{ t }}
-    </a>
-  {% endfor %}
-</div>
+<h1 class="mb-4">Каталог чаёв</h1>
 
 
-  <form method="get" class="mb-4">
+<form method="get" class="row g-3 mb-4">
+  <!-- Кнопка для открытия/закрытия фильтров -->
+  <div class="col-12 d-md-none">
+    <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+      Фильтры
+    </button>
+  </div>
+
+  <!-- Блок фильтров (по умолчанию скрыт на мобильных экранах) -->
+  <div class="col-12 collapse d-md-block" id="filterCollapse">
     <div class="row g-3">
-      <div class="col-md-4">
-        <label class="form-label">Сорт:</label>
-        <select name="type" class="form-select">
+      <div class="col-md-3">
+        <label for="type" class="form-label">Тип</label>
+        <select id="type" name="type" class="form-select">
           <option value="">Все</option>
           {% for t in types %}
-          <option value="{{ t }}" {% if t == request.GET.type %}selected{% endif %}>{{ t }}</option>
+            <option value="{{ t }}" {% if type == t %}selected{% endif %}>{{ t }}</option>
           {% endfor %}
         </select>
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Регион:</label>
-        <select name="region" class="form-select">
+
+      <div class="col-md-3">
+        <label for="region" class="form-label">Регион</label>
+        <select id="region" name="region" class="form-select">
           <option value="">Все</option>
           {% for r in regions %}
-          <option value="{{ r }}" {% if r == request.GET.region %}selected{% endif %}>{{ r }}</option>
+            <option value="{{ r }}" {% if region == r %}selected{% endif %}>{{ r }}</option>
           {% endfor %}
         </select>
       </div>
-      <div class="col-md-4 d-flex align-items-end">
-        <button type="submit" class="btn btn-primary">Фильтровать</button>
+
+      <div class="col-md-3">
+        <label for="taste" class="form-label">Вкус</label>
+        <select id="taste" name="taste" class="form-select">
+          <option value="">Все</option>
+          {% for t in tastes %}
+            <option value="{{ t }}" {% if taste == t %}selected{% endif %}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="intensity" class="form-label">Интенсивность</label>
+        <select id="intensity" name="intensity" class="form-select">
+          <option value="">Все</option>
+          {% for i in intensities %}
+            <option value="{{ i }}" {% if intensity == i %}selected{% endif %}>{{ i }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="color" class="form-label">Цвет</label>
+        <select id="color" name="color" class="form-select">
+          <option value="">Все</option>
+          {% for c in colors %}
+            <option value="{{ c }}" {% if color == c %}selected{% endif %}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="producer" class="form-label">Производитель</label>
+        <select id="producer" name="producer" class="form-select">
+          <option value="">Все</option>
+          {% for p in producers %}
+            <option value="{{ p }}" {% if producer == p %}selected{% endif %}>{{ p }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="vendor" class="form-label">Поставщик</label>
+        <select id="vendor" name="vendor" class="form-select">
+          <option value="">Все</option>
+          {% for v in vendors %}
+            <option value="{{ v }}" {% if vendor == v %}selected{% endif %}>{{ v }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="brewing_method" class="form-label">Метод заварки</label>
+        <select id="brewing_method" name="brewing_method" class="form-select">
+          <option value="">Все</option>
+          {% for b in brewing_methods %}
+            <option value="{{ b }}" {% if brewing_method == b %}selected{% endif %}>{{ b }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Блок с кнопками "Применить" и "Сбросить" -->
+      <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Применить</button>
+        <a href="{% url 'tea_list' %}" class="btn btn-outline-secondary">Сбросить</a>
       </div>
     </div>
-  </form>
+  </div>
+</form>
 
-  <div class="row g-4">
-    {% for tea in teas %}
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm border-0">
+
+
+<!-- Карточки чаёв -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for tea in teas %}
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm tea-feature">
         <div class="card-body">
           <h5 class="card-title">{{ tea.name }}</h5>
           <p class="card-text">
-            <strong>Сорт:</strong> {{ tea.type }}<br>
-            <strong>Регион:</strong> {{ tea.region }}<br>
-            <strong>Вкус:</strong> {{ tea.taste }}
+            <strong>Регион:</strong> {{ tea.region.name|default_if_none:"Не указан" }}<br>
+            <strong>Вкус:</strong> {{ tea.taste.name|default_if_none:"Не указан" }}<br>
+            <strong>Интенсивность:</strong> {{ tea.intensity.name|default_if_none:"Не указана" }}<br>
+            <strong>Цвет:</strong> {{ tea.color.name|default_if_none:"Не указан" }}<br>
+            <strong>Производитель:</strong> {{ tea.producer.name|default_if_none:"Не указан" }}<br>
+            <strong>Поставщик:</strong> {{ tea.vendor.name|default_if_none:"Не указан" }}<br>
+            <strong>Метод заварки:</strong> {{ tea.brewing_method.name|default_if_none:"Не указан" }}<br>
           </p>
-        </div>
-        <div class="card-footer bg-transparent border-0 text-end">
-          <a href="#" class="btn btn-outline-secondary btn-sm">Подробнее</a>
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div>
+  {% endfor %}
 </div>
+
 {% endblock %}

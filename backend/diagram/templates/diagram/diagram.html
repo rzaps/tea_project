@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Чайная диаграмма — Tea Project{% endblock %}
+{% block title %}Колесо вкусов — Tea Atlas{% endblock %}
 
 {% block extra_head %}
   {% if debug %}
@@ -20,8 +20,11 @@
 {% endblock %}
 
 {% block content %}
-  <div class="px-3 py-4">
-    <h1 class="mb-4">Чайная диаграмма</h1>
-    <div id="root" class="w-100"></div>
+  <h1 class="mb-4">Колесо вкусов</h1>
+
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <div id="root" class="w-100"></div>
+    </div>
   </div>
 {% endblock %}

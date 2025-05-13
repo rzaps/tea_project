@@ -115,7 +115,7 @@ const PolarDiagram: React.FC = () => {
       <div className="row flex-column flex-md-row g-4">
         <div className="col-12 col-md-7 order-2 order-md-1">
           <div className="polar-card">
-            <h2 className="polar-title d-none d-md-block mb-4">Чайная карта</h2>
+            {/*<h2 className="polar-title d-none d-md-block mb-4">Чайная карта</h2>*/}
             <div className="polar-svg-container">
               <DiagramCanvas
                 rings={{ inner: innerRing, middle: middleRing, outer: outerRing }}
