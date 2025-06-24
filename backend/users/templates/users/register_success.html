@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4">{% trans "Регистрация успешна!" %}</h2>
+                    <p class="card-text">
+                        {% trans "Спасибо за регистрацию! Мы отправили письмо с подтверждением на" %} {{ email }}.
+                    </p>
+                    <p class="card-text">
+                        {% trans "Пожалуйста, проверьте вашу почту и перейдите по ссылке для подтверждения email." %}
+                    </p>
+                    <div class="mt-4">
+                        <a href="{% url 'users:login' %}" class="btn btn-primary">
+                            {% trans "Перейти на страницу входа" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

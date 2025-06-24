@@ -1,0 +1,103 @@
+{% load i18n %}
+
+<style>
+.language-option {
+  display: flex;
+  align-items: center;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.language-option:hover {
+  background: #f3f3f3;
+}
+.language-option img {
+  width: 22px;
+  height: 15px;
+  margin-right: 10px;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  border: 1px solid #e0e0e0;
+}
+.btn.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.btn.language-btn img {
+  width: 22px;
+  height: 15px;
+  border-radius: 3px;
+  margin-right: 6px;
+  border: 1px solid #e0e0e0;
+}
+</style>
+
+<div class="dropdown w-100">
+  <button class="btn language-btn dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == 'ru' %}
+      <img src="https://flagcdn.com/w20/ru.png" alt="Русский">
+      Русский
+    {% elif LANGUAGE_CODE == 'en' %}
+      <img src="https://flagcdn.com/w20/gb.png" alt="English">
+      English
+    {% elif LANGUAGE_CODE == 'fr' %}
+      <img src="https://flagcdn.com/w20/fr.png" alt="Français">
+      Français
+    {% elif LANGUAGE_CODE == 'de' %}
+      <img src="https://flagcdn.com/w20/de.png" alt="Deutsch">
+      Deutsch
+    {% elif LANGUAGE_CODE == 'es' %}
+      <img src="https://flagcdn.com/w20/es.png" alt="Español">
+      Español
+    {% elif LANGUAGE_CODE == 'it' %}
+      <img src="https://flagcdn.com/w20/it.png" alt="Italiano">
+      Italiano
+    {% elif LANGUAGE_CODE == 'pt' %}
+      <img src="https://flagcdn.com/w20/pt.png" alt="Português">
+      Português
+    {% elif LANGUAGE_CODE == 'zh-hans' %}
+      <img src="https://flagcdn.com/w20/cn.png" alt="简体中文">
+      简体中文
+    {% elif LANGUAGE_CODE == 'zh-hant' %}
+      <img src="https://flagcdn.com/w20/tw.png" alt="繁體中文">
+      繁體中文
+    {% elif LANGUAGE_CODE == 'ja' %}
+      <img src="https://flagcdn.com/w20/jp.png" alt="日本語">
+      日本語
+    {% elif LANGUAGE_CODE == 'ko' %}
+      <img src="https://flagcdn.com/w20/kr.png" alt="한국어">
+      한국어
+    {% elif LANGUAGE_CODE == 'ar' %}
+      <img src="https://flagcdn.com/w20/sa.png" alt="العربية">
+      العربية
+    {% elif LANGUAGE_CODE == 'tr' %}
+      <img src="https://flagcdn.com/w20/tr.png" alt="Türkçe">
+      Türkçe
+    {% endif %}
+  </button>
+  <ul class="dropdown-menu w-100" style="min-width: 180px;">
+    <li><div class="language-option" onclick="changeLanguage('ru')"><img src="https://flagcdn.com/w20/ru.png" alt="Русский">Русский</div></li>
+    <li><div class="language-option" onclick="changeLanguage('en')"><img src="https://flagcdn.com/w20/gb.png" alt="English">English</div></li>
+    <li><div class="language-option" onclick="changeLanguage('fr')"><img src="https://flagcdn.com/w20/fr.png" alt="Français">Français</div></li>
+    <li><div class="language-option" onclick="changeLanguage('de')"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch">Deutsch</div></li>
+    <li><div class="language-option" onclick="changeLanguage('es')"><img src="https://flagcdn.com/w20/es.png" alt="Español">Español</div></li>
+    <li><div class="language-option" onclick="changeLanguage('it')"><img src="https://flagcdn.com/w20/it.png" alt="Italiano">Italiano</div></li>
+    <li><div class="language-option" onclick="changeLanguage('pt')"><img src="https://flagcdn.com/w20/pt.png" alt="Português">Português</div></li>
+    <li><div class="language-option" onclick="changeLanguage('zh-hans')"><img src="https://flagcdn.com/w20/cn.png" alt="简体中文">简体中文</div></li>
+    <li><div class="language-option" onclick="changeLanguage('zh-hant')"><img src="https://flagcdn.com/w20/tw.png" alt="繁體中文">繁體中文</div></li>
+    <li><div class="language-option" onclick="changeLanguage('ja')"><img src="https://flagcdn.com/w20/jp.png" alt="日本語">日本語</div></li>
+    <li><div class="language-option" onclick="changeLanguage('ko')"><img src="https://flagcdn.com/w20/kr.png" alt="한국어">한국어</div></li>
+    <li><div class="language-option" onclick="changeLanguage('ar')"><img src="https://flagcdn.com/w20/sa.png" alt="العربية">العربية</div></li>
+    <li><div class="language-option" onclick="changeLanguage('tr')"><img src="https://flagcdn.com/w20/tr.png" alt="Türkçe">Türkçe</div></li>
+  </ul>
+</div> 

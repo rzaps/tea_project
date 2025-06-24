@@ -1,0 +1,223 @@
+{% load i18n %}
+
+<!-- Модальное окно: Тип чая -->
+<div class="modal fade" id="addTypeModal" tabindex="-1" aria-labelledby="addTypeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-type-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addTypeModalLabel">
+            <span class="bi bi-tag"></span> {% trans "Добавить тип чая" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="type_name" placeholder="{% trans 'Название типа' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Вкус -->
+<div class="modal fade" id="addTasteModal" tabindex="-1" aria-labelledby="addTasteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-taste-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addTasteModalLabel">
+            <span class="bi bi-emoji-smile"></span> {% trans "Добавить вкус" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="taste_name" placeholder="{% trans 'Название вкуса' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Регион -->
+<div class="modal fade" id="addRegionModal" tabindex="-1" aria-labelledby="addRegionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-region-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addRegionModalLabel">
+            <span class="bi bi-geo-alt"></span> {% trans "Добавить регион" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="region_name" placeholder="{% trans 'Название региона' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Цвет -->
+<div class="modal fade" id="addColorModal" tabindex="-1" aria-labelledby="addColorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-color-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addColorModalLabel">
+            <span class="bi bi-palette"></span> {% trans "Добавить цвет" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="color_name" placeholder="{% trans 'Название цвета' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Интенсивность -->
+<div class="modal fade" id="addIntensityModal" tabindex="-1" aria-labelledby="addIntensityModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-intensity-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addIntensityModalLabel">
+            <span class="bi bi-lightning"></span> {% trans "Добавить интенсивность" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="intensity_name" placeholder="{% trans 'Название интенсивности' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Производитель -->
+<div class="modal fade" id="addProducerModal" tabindex="-1" aria-labelledby="addProducerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-producer-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addProducerModalLabel">
+            <span class="bi bi-building"></span> {% trans "Добавить производителя" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="producer_name" placeholder="{% trans 'Название производителя' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Поставщик -->
+<div class="modal fade" id="addVendorModal" tabindex="-1" aria-labelledby="addVendorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-vendor-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addVendorModalLabel">
+            <span class="bi bi-truck"></span> {% trans "Добавить поставщика" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="vendor_name" placeholder="{% trans 'Название поставщика' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Метод заварки -->
+<div class="modal fade" id="addBrewingMethodModal" tabindex="-1" aria-labelledby="addBrewingMethodModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-brewing-method-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addBrewingMethodModalLabel">
+            <span class="bi bi-cup-hot"></span> {% trans "Добавить метод заварки" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="brewing_method_name" placeholder="{% trans 'Название метода' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно: Нота -->
+<div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <form id="add-note-form" autocomplete="off">
+        {% csrf_token %}
+        <div class="modal-header py-2">
+          <h6 class="modal-title d-flex align-items-center gap-2" id="addNoteModalLabel">
+            <span class="bi bi-music-note"></span> {% trans "Добавить ноту" %}
+          </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-2">
+          <input type="text" class="form-control text-center" name="note_name" placeholder="{% trans 'Название ноты' %}" required autofocus>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Автофокус и автоочистка поля при открытии модалки
+['addTypeModal','addTasteModal','addRegionModal','addColorModal','addIntensityModal','addProducerModal','addVendorModal','addBrewingMethodModal', 'addNoteModal'].forEach(function(modalId) {
+  const modalEl = document.getElementById(modalId);
+  if (!modalEl) return;
+  modalEl.addEventListener('shown.bs.modal', function () {
+    const input = modalEl.querySelector('input[type=text]');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+  });
+});
+</script> 

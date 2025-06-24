@@ -1,0 +1,23 @@
+{% load static %}
+{% load i18n %}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{% trans "Tea Atlas" %}{% endblock %}</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/club.css' %}">
+
+{% if request.resolver_match.url_name != 'tea_manage' %}
+<script type="module" src="http://localhost:5173/@vite/client"></script>
+<script type="module">
+  import RefreshRuntime from "http://localhost:5173/@react-refresh";
+  RefreshRuntime.injectIntoGlobalHook(window);
+  window.$RefreshReg$ = () => {};
+  window.$RefreshSig$ = () => (type) => type;
+  import("http://localhost:5173/src/main.tsx");
+</script>
+{% endif %}
+
+{% block extra_head %}{% endblock %} 

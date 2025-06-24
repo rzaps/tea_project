@@ -1,0 +1,102 @@
+{% load i18n %}
+
+<style>
+  .sidebar-left {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .sidebar-bottom-block {
+    background: #f9f6f1;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px #bfa16c22;
+    padding: 1em 1.2em;
+    margin: 0 auto 1em auto;
+    max-width: 220px;
+    width: 100%;
+    margin-top: auto;
+  }
+  .sidebar-similar-title {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    text-align: center;
+    word-break: break-word;
+    font-size: 1.08em;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sidebar-bottom-block .nav-link {
+    font-size: 1.08em;
+    color: #6b3e26;
+    padding-left: 0;
+  }
+</style>
+
+<aside class="sidebar-left d-none d-xl-flex flex-column">
+  <div class="sidebar-inner">
+    <h4 class="text-center">🍵 {% trans "Tea Atlas" %}</h4>
+    <ul class="nav flex-column mt-4">
+      <li class="nav-item mb-2">
+        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">🏠 {% trans "Главная" %}</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link {% if request.path == '/diagram/' %}active{% endif %}" href="{% url 'diagram' %}">📊 {% trans "Диаграмма" %}</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link {% if request.path == '/teas/' %}active{% endif %}" href="{% url 'tea_list' %}">📋 {% trans "Каталог" %}</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link {% if request.path == '/manage/' %}active{% endif %}" href="{% url 'tea_manage' %}">🛠️ {% trans "Управление чаями" %}</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link {% if request.path == '/articles/' %}active{% endif %}" href="{% url 'articles:article_list' %}">📝 {% trans "Статьи" %}</a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="sidebar-inner">
+    {% if request.session.supabase_user_id %}
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+          <a class="nav-link" href="{% url 'users:profile' %}">👤 {% trans "Личный кабинет" %}</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" href="{% url 'users:logout' %}">🚪 {% trans "Выход" %}</a>
+        </li>
+      </ul>
+    {% else %}
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+          <a class="nav-link" href="{% url 'users:login' %}">🚪 {% trans "Вход / Регистрация" %}</a>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+
+  <div class="language-selector mt-3">
+    <form action="{% url 'set_language' %}" method="post" class="d-none" id="language-form">
+      {% csrf_token %}
+      <input type="hidden" name="language" id="language-input">
+    </form>
+    
+    {% include "components/language_selector.html" %}
+  </div>
+
+  <div class="sidebar-bottom-block">
+    <div class="sidebar-similar-title">
+      {% trans "Платформу можно использовать для других напитков:" %}
+    </div>
+    <ul class="nav flex-column mb-0">
+      <li class="nav-item mb-1">
+        <a class="nav-link {% if request.path == '/coffee/' %}active{% endif %}" href="/coffee/">☕ {% trans "Кофе" %}</a>
+      </li>
+      <li class="nav-item mb-1">
+        <a class="nav-link {% if request.path == '/wine/' %}active{% endif %}" href="/wine/">🍷 {% trans "Вино" %}</a>
+      </li>
+      <li class="nav-item mb-1">
+        <a class="nav-link {% if request.path == '/beer/' %}active{% endif %}" href="/beer/">🍺 {% trans "Пиво" %}</a>
+      </li>
+    </ul>
+  </div>
+</aside> 

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Каталог пива — Beer Atlas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'beer/beer.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Каталог пива</h1>
+
+<form method="get" class="row g-3 mb-4">
+  <div class="col-12 d-md-none">
+    <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+      Фильтры
+    </button>
+  </div>
+  <div class="col-12 collapse d-md-block" id="filterCollapse">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label for="type" class="form-label">Тип</label>
+        <select id="type" name="type" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="region" class="form-label">Регион</label>
+        <select id="region" name="region" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="style" class="form-label">Стиль</label>
+        <select id="style" name="style" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="producer" class="form-label">Производитель</label>
+        <select id="producer" name="producer" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="abv" class="form-label">Крепость (ABV)</label>
+        <select id="abv" name="abv" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="ibu" class="form-label">Горечь (IBU)</label>
+        <select id="ibu" name="ibu" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-success">Применить</button>
+        <a href="#" class="btn btn-outline-secondary">Сбросить</a>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for card in beer_cards %}
+    <div class="col">
+      <div class="card h-100 beer-feature">
+        <div class="card-body">
+          <h5 class="card-title">{{ card.name }}</h5>
+          <p class="card-text">{{ card.desc }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %} 

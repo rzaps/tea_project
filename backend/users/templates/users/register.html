@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Регистрация — Tea Atlas" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">{% trans "Регистрация" %}</h2>
+                    
+                    {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="email" class="form-label">{% trans "Email" %}</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ email|default:'' }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">{% trans "Пароль" %}</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="form-text">{% trans "Минимум 6 символов" %}</div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">{% trans "Зарегистрироваться" %}</button>
+                        </div>
+                    </form>
+
+                    <div class="mt-3 text-center">
+                        <a href="{% url 'users:login' %}" class="text-decoration-none">
+                            {% trans "Уже есть аккаунт? Войти" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

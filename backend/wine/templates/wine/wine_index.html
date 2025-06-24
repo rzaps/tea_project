@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Каталог вин — Wine Atlas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'wine/wine.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Каталог вин</h1>
+
+<form method="get" class="row g-3 mb-4">
+  <div class="col-12 d-md-none">
+    <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+      Фильтры
+    </button>
+  </div>
+  <div class="col-12 collapse d-md-block" id="filterCollapse">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label for="type" class="form-label">Тип</label>
+        <select id="type" name="type" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="region" class="form-label">Регион</label>
+        <select id="region" name="region" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="grape" class="form-label">Сорт винограда</label>
+        <select id="grape" name="grape" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="producer" class="form-label">Производитель</label>
+        <select id="producer" name="producer" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="year" class="form-label">Год урожая</label>
+        <select id="year" name="year" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="style" class="form-label">Стиль</label>
+        <select id="style" name="style" class="form-select">
+          <option value="">Все</option>
+        </select>
+      </div>
+      <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-success">Применить</button>
+        <a href="#" class="btn btn-outline-secondary">Сбросить</a>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for card in wine_cards %}
+    <div class="col">
+      <div class="card h-100 wine-feature">
+        <div class="card-body">
+          <h5 class="card-title">{{ card.name }}</h5>
+          <p class="card-text">{{ card.desc }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %} 

@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Добавить статью" %}{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link href="{% static 'tinymce/skins/ui/oxide/skin.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'articles:article_list' %}">{% trans "Статьи" %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Добавить статью" %}</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-body">
+            <h1 class="info-title">{% trans "Добавить статью" %}</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="slug" id="id_slug">
+                
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">{% trans "Заголовок" %} *</label>
+                    <input type="text" class="form-control" id="id_title" name="title" required
+                           oninput="generateSlug(this.value)">
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_excerpt" class="form-label">{% trans "Краткое описание" %} *</label>
+                    <textarea class="form-control" id="id_excerpt" name="excerpt" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_content" class="form-label">{% trans "Содержание" %} *</label>
+                    <textarea class="form-control" id="id_content" name="content" rows="10" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_image_url" class="form-label">{% trans "Обложка статьи" %}</label>
+                    <input type="file" class="form-control" id="id_image_url" name="image_url" accept="image/*">
+                    <div class="form-text">{% trans "Загрузите изображение для обложки статьи. Рекомендуемый размер: 1200x630 пикселей." %}</div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label for="id_category_id" class="form-label mb-0">{% trans "Категория" %} *</label>
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                            <i class="fas fa-plus"></i> {% trans "Добавить категорию" %}
+                        </button>
+                    </div>
+                    <select class="form-select" id="id_category_id" name="category_id" required>
+                        <option value="">{% trans "Выберите категорию" %}</option>
+                        {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label class="form-label mb-0">{% trans "Теги" %}</label>
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addTagModal">
+                            <i class="fas fa-plus"></i> {% trans "Добавить тег" %}
+                        </button>
+                    </div>
+                    <div class="row">
+                        {% for tag in tags %}
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="tag_ids" value="{{ tag.id }}" id="tag_{{ tag.id }}">
+                                <label class="form-check-label" for="tag_{{ tag.id }}">
+                                    {{ tag.name }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{% trans "Связанные чаи" %}</label>
+                    <div class="row">
+                        {% for tea in teas %}
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="tea_ids" value="{{ tea.id }}" id="tea_{{ tea.id }}">
+                                <label class="form-check-label" for="tea_{{ tea.id }}">
+                                    {{ tea.name }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'articles:article_list' %}" class="btn btn-outline-secondary">{% trans "Отмена" %}</a>
+                    <button type="submit" class="btn btn-success">{% trans "Сохранить" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для добавления категории -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">{% trans "Добавить категорию" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoryForm">
+                    <div class="mb-3">
+                        <label for="categoryName" class="form-label">{% trans "Название" %} *</label>
+                        <input type="text" class="form-control" id="categoryName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoryDescription" class="form-label">{% trans "Описание" %}</label>
+                        <textarea class="form-control" id="categoryDescription" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Отмена" %}</button>
+                <button type="button" class="btn btn-success" onclick="addCategory()">{% trans "Добавить" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для добавления тега -->
+<div class="modal fade" id="addTagModal" tabindex="-1" aria-labelledby="addTagModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTagModalLabel">{% trans "Добавить тег" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addTagForm">
+                    <div class="mb-3">
+                        <label for="tagName" class="form-label">{% trans "Название" %} *</label>
+                        <input type="text" class="form-control" id="tagName" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Отмена" %}</button>
+                <button type="button" class="btn btn-success" onclick="addTag()">{% trans "Добавить" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script>
+function generateSlug(title) {
+    // Транслитерация русских букв
+    const translit = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch', 'ъ': '',
+        'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+    };
+
+    // Преобразуем в нижний регистр и транслитерируем
+    let slug = title.toLowerCase();
+    for (let i = 0; i < slug.length; i++) {
+        if (translit[slug[i]]) {
+            slug = slug.replace(slug[i], translit[slug[i]]);
+        }
+    }
+
+    // Заменяем все символы, кроме букв и цифр, на дефис
+    slug = slug.replace(/[^a-z0-9]+/g, '-');
+    
+    // Убираем начальные и конечные дефисы
+    slug = slug.replace(/^-+|-+$/g, '');
+    
+    // Ограничиваем длину
+    slug = slug.substring(0, 100);
+
+    document.getElementById('id_slug').value = slug;
+}
+
+function generateTagSlug(name) {
+    return generateSlug(name);
+}
+
+function addCategory() {
+    const name = document.getElementById('categoryName').value;
+    const description = document.getElementById('categoryDescription').value;
+    const slug = generateSlug(name);
+
+    fetch('/api/articles/categories/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify({
+            name: name,
+            slug: slug,
+            description: description
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Добавляем новую категорию в select
+        const select = document.getElementById('id_category_id');
+        const option = new Option(name, data.id);
+        select.add(option);
+        select.value = data.id;
+
+        // Закрываем модальное окно
+        const modal = bootstrap.Modal.getInstance(document.getElementById('addCategoryModal'));
+        modal.hide();
+
+        // Очищаем форму
+        document.getElementById('addCategoryForm').reset();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('{% trans "Ошибка при добавлении категории" %}');
+    });
+}
+
+function addTag() {
+    const name = document.getElementById('tagName').value;
+    const slug = generateTagSlug(name);
+
+    fetch('/api/articles/tags/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify({
+            name: name,
+            slug: slug
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Добавляем новый тег в список
+        const tagsContainer = document.querySelector('.row:has(#tag_{{ tag.id }})');
+        const col = document.createElement('div');
+        col.className = 'col-md-4';
+        col.innerHTML = `
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tag_ids" value="${data.id}" id="tag_${data.id}" checked>
+                <label class="form-check-label" for="tag_${data.id}">
+                    ${name}
+                </label>
+            </div>
+        `;
+        tagsContainer.appendChild(col);
+
+        // Закрываем модальное окно
+        const modal = bootstrap.Modal.getInstance(document.getElementById('addTagModal'));
+        modal.hide();
+
+        // Очищаем форму
+        document.getElementById('addTagForm').reset();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('{% trans "Ошибка при добавлении тега" %}');
+    });
+}
+
+// Инициализация TinyMCE
+tinymce.init({
+    selector: '#id_content',
+    height: 500,
+    plugins: [
+        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+        'insertdatetime', 'media', 'table', 'help', 'wordcount'
+    ],
+    toolbar: 'undo redo | blocks | ' +
+        'bold italic backcolor | alignleft aligncenter ' +
+        'alignright alignjustify | bullist numlist outdent indent | ' +
+        'removeformat | image | help',
+    content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 16px; }',
+    images_upload_url: '{% url "articles:upload_image" %}',
+    automatic_uploads: true,
+    file_picker_types: 'image',
+    images_reuse_filename: true,
+    relative_urls: false,
+    remove_script_host: false,
+    convert_urls: true,
+});
+</script>
+{% endblock %} 

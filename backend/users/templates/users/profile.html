@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Личный кабинет — Tea Atlas" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card tea-feature mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="card-title mb-0">👤 {% trans "Личный кабинет" %}</h4>
+                        <a href="{% url 'users:profile_edit' %}" class="btn btn-outline-secondary btn-sm">✏️ {% trans "Редактировать" %}</a>
+                    </div>
+                    {% if is_authenticated_user %}
+                        <div class="mb-3">
+                            <span class="fw-bold">📧 {% trans "Email:" %}</span> {{ user_data.email }}
+                        </div>
+                        {# TODO: Отобразить другие данные пользователя из user_data #}
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <h6 class="card-title mb-3">🌱 {% trans 'Хочу попробовать' %}</h6>
+                                        {% if want_teas %}
+                                            <ul class="list-group list-group-flush">
+                                                {% for tea in want_teas %}
+                                                    <li class="list-group-item d-flex align-items-center">
+                                                        <span class="me-2">🫖</span>
+                                                        <a href="{% url 'tea_detail' tea.id %}">{{ tea.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            <div class="text-muted">{% trans 'Нет чаёв' %}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <h6 class="card-title mb-3">✅ {% trans 'Пробовал' %}</h6>
+                                        {% if tried_teas %}
+                                            <ul class="list-group list-group-flush">
+                                                {% for tea in tried_teas %}
+                                                    <li class="list-group-item d-flex align-items-center">
+                                                        <span class="me-2">🫖</span>
+                                                        <a href="{% url 'tea_detail' tea.id %}">{{ tea.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            <div class="text-muted">{% trans 'Нет чаёв' %}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex gap-2">
+                            <a href="{% url 'users:logout' %}" class="btn btn-danger flex-fill">🚪 {% trans "Выйти" %}</a>
+                        </div>
+                    {% else %}
+                        <p class="text-center">{% trans "Данные пользователя не найдены или вы не авторизованы." %}</p>
+                        <p class="text-center"><a href="{% url 'users:login' %}">{% trans "Войти" %}</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

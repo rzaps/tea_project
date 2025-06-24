@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'articles:article_list' %}">{% trans "Статьи" %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ article.title }}</li>
+        </ol>
+    </nav>
+
+    <article class="card mb-4">
+        {% if article.image_url %}
+        <img src="{{ article.image_url }}" class="card-img-top" alt="{{ article.title }}">
+        {% endif %}
+        <div class="card-body">
+            <h1 class="info-title">{{ article.title }}</h1>
+            
+            <div class="mb-3">
+                {% if article.category %}
+                <span class="badge bg-secondary">{{ article.category.name }}</span>
+                {% endif %}
+                {% for tag in article.tags %}
+                <span class="badge bg-light text-dark">{{ tag.tag_id.name }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="article-content">
+                {{ article.content|safe }}
+            </div>
+
+            {% if article.teas %}
+            <div class="related-teas mt-4">
+                <h3>{% trans "Упоминаемые чаи" %}</h3>
+                <div class="row">
+                    {% for tea in article.teas %}
+                    <div class="col-md-4 mb-3">
+                        <a href="{% url 'tea:tea_detail' tea.tea_id.id %}" class="text-decoration-none">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ tea.tea_id.name }}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </article>
+</div>
+{% endblock %} 

@@ -1,0 +1,989 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Управление чаями — Tea Atlas" %}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{% trans "Управление чаями" %}</h1>
+
+{# Форма добавления чая — только для авторизованных #}
+
+<form id="add-tea-form" method="post" class="mb-4">
+  {% csrf_token %}
+  <input type="hidden" id="x_coord" name="x_coord" value="0">
+  <input type="hidden" id="y_coord" name="y_coord" value="0">
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0" style="background: #f7fafd;">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-2">{% trans "Позиция на диаграмме" %}</h5>
+          <p class="text-center text-muted mb-3" style="font-size: 0.95em;">{% trans "Выберите угол и радиус — чай появится в соответствующем секторе" %}</p>
+          <div class="row g-3 justify-content-center mb-2">
+            <div class="col-6">
+              <label for="angle" class="form-label">{% trans "Угол" %} (0-360°)</label>
+              <div class="input-group">
+                <button type="button" class="btn btn-outline-secondary" onclick="adjustAngle(-1)">-</button>
+                <input type="number" class="form-control text-center" id="angle" name="angle" 
+                       min="0" max="360" value="0" onchange="updateCoordinates()">
+                <button type="button" class="btn btn-outline-secondary" onclick="adjustAngle(1)">+</button>
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="radius" class="form-label">{% trans "Радиус" %} (0-1)</label>
+              <div class="input-group">
+                <button type="button" class="btn btn-outline-secondary" onclick="adjustRadius(-0.01)">-</button>
+                <input type="number" class="form-control text-center" id="radius" name="radius" 
+                       min="0" max="1" step="0.01" value="0.5" onchange="updateCoordinates()">
+                <button type="button" class="btn btn-outline-secondary" onclick="adjustRadius(0.01)">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 d-flex justify-content-center">
+            <div id="diagram-preview" class="border rounded p-2 bg-white shadow-sm" style="height: 320px; width: 320px;">
+              <!-- SVG диаграмма -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row g-3">
+        <div class="col-md-12">
+          <label for="name" class="form-label">{% trans "Название чая" %}</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="col-md-12">
+          <label for="description" class="form-label">{% trans "Описание" %}</label>
+          <input type="text" class="form-control" id="description" name="description">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Тип" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="type_id" id="type_id">
+              {% for t in types %}
+                <option value="{{ t.id }}">{{ t.translated_name|default:t.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addTypeModal">+</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Вкус" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="taste_id" id="taste_id">
+              {% for t in tastes %}
+                <option value="{{ t.id }}">{{ t.translated_name|default:t.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addTasteModal">+</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Регион" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="region_id" id="region_id">
+              {% for r in regions %}
+                <option value="{{ r.id }}">{{ r.translated_name|default:r.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addRegionModal">+</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Цвет" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="color_id" id="color_id">
+              {% for c in colors %}
+                <option value="{{ c.id }}">{{ c.translated_name|default:c.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addColorModal">+</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Интенсивность" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="intensity_id" id="intensity_id">
+              {% for i in intensities %}
+                <option value="{{ i.id }}">{{ i.translated_name|default:i.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addIntensityModal">+</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Производитель" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="producer_id" id="producer_id">
+              {% for p in producers %}
+                <option value="{{ p.id }}">{{ p.translated_name|default:p.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addProducerModal">+</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Поставщик" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="vendor_id" id="vendor_id">
+              {% for v in vendors %}
+                <option value="{{ v.id }}">{{ v.translated_name|default:v.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addVendorModal">+</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{% trans "Метод заварки" %}</label>
+          <div class="input-group">
+            <select class="form-select" name="brewing_method_id" id="brewing_method_id">
+              {% for b in brewing_methods %}
+                <option value="{{ b.id }}">{{ b.translated_name|default:b.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addBrewingMethodModal">+</button>
+          </div>
+        </div>
+        {# Секция для нот #}
+        <div class="col-12">
+          <label class="form-label">{% trans "Ноты" %}</label>
+          <div class="input-group mb-2">
+            <select class="form-select" id="add-note-select">
+              <option value="">{% trans "Выберите ноту" %}</option>
+              {% for note in notes %}
+                <option value="{{ note.id }}">{{ note.translated_name|default:note.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addNoteModal">+</button>
+            <button type="button" class="btn btn-outline-primary" id="add-note-button">{% trans "Добавить ноту" %}</button>
+          </div>
+          <ul id="notes-list" class="list-group">
+            {# Добавленные ноты будут здесь #}
+          </ul>
+        </div>
+        <div class="col-12 mt-2">
+          <button type="submit" class="btn btn-success w-100">{% trans "Добавить чай" %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<hr>
+
+<!-- Toast уведомления -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+  <div id="toast-container"></div>
+</div>
+
+<h2 class="mb-3">{% trans "Список чаёв" %}</h2>
+<div id="teas-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for tea in teas %}
+    <div class="col">
+      <div class="card h-100 tea-feature">
+        <div class="card-body">
+          <h5 class="card-title">{{ tea.name }}</h5>
+          <p class="card-text">
+            <strong>{% trans "Регион:" %}</strong> 
+            {% if tea.region %}
+              {{ tea.region.translated_name|default:tea.region.name }}
+            {% else %}
+              {% trans "Не указан" %}
+            {% endif %}
+            <br>
+            <strong>{% trans "Вкус:" %}</strong> 
+            {% if tea.taste %}
+              {{ tea.taste.translated_name|default:tea.taste.name }}
+            {% else %}
+              {% trans "Не указан" %}
+            {% endif %}
+            <br>
+            <strong>{% trans "Интенсивность:" %}</strong> 
+            {% if tea.intensity %}
+              {{ tea.intensity.translated_name|default:tea.intensity.name }}
+            {% else %}
+              {% trans "Не указана" %}
+            {% endif %}
+            <br>
+            <strong>{% trans "Цвет:" %}</strong> 
+            {% if tea.color %}
+              {{ tea.color.translated_name|default:tea.color.name }}
+            {% else %}
+              {% trans "Не указан" %}
+            {% endif %}
+            <br>
+            <strong>{% trans "Производитель:" %}</strong> 
+            {% if tea.producer %}
+              {{ tea.producer.translated_name|default:tea.producer.name }}
+            {% else %}
+              {% trans "Не указан" %}
+            {% endif %}
+            <br>
+            <strong>{% trans "Поставщик:" %}</strong> 
+            {% if tea.vendor %}
+              {{ tea.vendor.translated_name|default:tea.vendor.name }}
+            {% else %}
+              {% trans "Не указан" %}
+            {% endif %}
+            <br>
+            <strong>{% trans "Метод заварки:" %}</strong> 
+            {% if tea.brewing_method %}
+              {{ tea.brewing_method.translated_name|default:tea.brewing_method.name }}
+            {% else %}
+              {% trans "Не указан" %}
+            {% endif %}
+            <br>
+          </p>
+          <a href="#" class="btn btn-outline-primary btn-sm edit-tea-btn"
+             data-bs-toggle="modal" data-bs-target="#editTeaModal"
+             data-id="{{ tea.id }}"
+             data-name="{{ tea.name }}"
+             data-description="{{ tea.description }}"
+             data-type="{{ tea.type.id }}"
+             data-taste="{{ tea.taste.id }}"
+             data-region="{{ tea.region.id }}"
+             data-color="{{ tea.color.id }}"
+             data-intensity="{{ tea.intensity.id }}"
+             data-producer="{{ tea.producer.id }}"
+             data-vendor="{{ tea.vendor.id }}"
+             data-brewing_method="{{ tea.brewing_method.id }}"
+             data-x-coord="{{ tea.x_coord }}"
+             data-y-coord="{{ tea.y_coord }}"
+          >{% trans "Редактировать" %}</a>
+          <button type="button" class="btn btn-danger btn-sm ms-2 delete-tea-btn" data-tea-id="{{ tea.id }}">{% trans "Удалить" %}</button>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Модальное окно для редактирования чая -->
+<div class="modal fade" id="editTeaModal" tabindex="-1" aria-labelledby="editTeaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="edit-tea-form">
+        {% csrf_token %}
+        <input type="hidden" name="tea_id" id="edit_tea_id">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editTeaModalLabel">{% trans "Редактировать чай" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="edit_name" class="form-label">{% trans "Название чая" %}</label>
+            <input type="text" class="form-control" id="edit_name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_description" class="form-label">{% trans "Описание" %}</label>
+            <input type="text" class="form-control" id="edit_description" name="description">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Позиция на диаграмме" %}</label>
+            <div class="row g-3">
+              <div class="col-6">
+                <label for="edit_angle" class="form-label">{% trans "Угол" %} (0-360°)</label>
+                <div class="input-group">
+                  <button type="button" class="btn btn-outline-secondary" onclick="adjustEditAngle(-1)">-</button>
+                  <input type="number" class="form-control text-center" id="edit_angle" name="angle" 
+                         min="0" max="360" value="0" onchange="updateEditCoordinates()">
+                  <button type="button" class="btn btn-outline-secondary" onclick="adjustEditAngle(1)">+</button>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="edit_radius" class="form-label">{% trans "Радиус" %} (0-1)</label>
+                <div class="input-group">
+                  <button type="button" class="btn btn-outline-secondary" onclick="adjustEditRadius(-0.01)">-</button>
+                  <input type="number" class="form-control text-center" id="edit_radius" name="radius" 
+                         min="0" max="1" step="0.01" value="0.5" onchange="updateEditCoordinates()">
+                  <button type="button" class="btn btn-outline-secondary" onclick="adjustEditRadius(0.01)">+</button>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" id="edit_x_coord" name="x_coord" value="0">
+            <input type="hidden" id="edit_y_coord" name="y_coord" value="0">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Тип" %}</label>
+            <select class="form-select" name="type_id" id="edit_type_id">
+              {% for t in types %}
+                <option value="{{ t.id }}">{{ t.translated_name|default:t.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Вкус" %}</label>
+            <select class="form-select" name="taste_id" id="edit_taste_id">
+              {% for t in tastes %}
+                <option value="{{ t.id }}">{{ t.translated_name|default:t.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Регион" %}</label>
+            <select class="form-select" name="region_id" id="edit_region_id">
+              {% for r in regions %}
+                <option value="{{ r.id }}">{{ r.translated_name|default:r.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Цвет" %}</label>
+            <select class="form-select" name="color_id" id="edit_color_id">
+              {% for c in colors %}
+                <option value="{{ c.id }}">{{ c.translated_name|default:c.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Интенсивность" %}</label>
+            <select class="form-select" name="intensity_id" id="edit_intensity_id">
+              {% for i in intensities %}
+                <option value="{{ i.id }}">{{ i.translated_name|default:i.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Производитель" %}</label>
+            <select class="form-select" name="producer_id" id="edit_producer_id">
+              {% for p in producers %}
+                <option value="{{ p.id }}">{{ p.translated_name|default:p.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Поставщик" %}</label>
+            <select class="form-select" name="vendor_id" id="edit_vendor_id">
+              {% for v in vendors %}
+                <option value="{{ v.id }}">{{ v.translated_name|default:v.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Метод заварки" %}</label>
+            <select class="form-select" name="brewing_method_id" id="edit_brewing_method_id">
+              {% for b in brewing_methods %}
+                <option value="{{ b.id }}">{{ b.translated_name|default:b.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{% trans "Ноты" %}</label>
+            <div class="input-group mb-2">
+              <select class="form-select" id="edit-note-select">
+                <option value="">{% trans "Выберите ноту" %}</option>
+                 {% for note in notes %}
+                  <option value="{{ note.id }}">{{ note.translated_name|default:note.name }}</option>
+                {% endfor %}
+              </select>
+              <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addNoteModal">+</button>
+              <button type="button" class="btn btn-outline-primary" id="edit-add-note-button">{% trans "Добавить ноту" %}</button>
+            </div>
+            <ul id="edit-notes-list" class="list-group">
+              {# Добавленные ноты для редактируемого чая будут здесь #}
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">{% trans "Сохранить изменения" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% include "tea/components/tea_modals.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+console.log('Проверка из extra_js');
+// Toast уведомление
+function showToast(message, isSuccess = true) {
+    const toastId = 'toast-' + Date.now();
+    const toastHtml = `
+      <div id="${toastId}" class="toast align-items-center text-bg-${isSuccess ? 'success' : 'danger'} border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">${message}</div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>`;
+    const container = document.getElementById('toast-container');
+    container.insertAdjacentHTML('beforeend', toastHtml);
+    const toastEl = document.getElementById(toastId);
+    const toast = new bootstrap.Toast(toastEl, {delay: 3000});
+    toast.show();
+    toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+}
+
+// Автозаполнение модалки редактирования чая
+const editTeaModal = document.getElementById('editTeaModal');
+editTeaModal && editTeaModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    console.log('DEBUG: data-type:', button.getAttribute('data-type'));
+    console.log('DEBUG: type options:', Array.from(document.getElementById('edit_type_id').options).map(o => o.value));
+    console.log('DEBUG: data-taste:', button.getAttribute('data-taste'));
+    console.log('DEBUG: taste options:', Array.from(document.getElementById('edit_taste_id').options).map(o => o.value));
+    console.log('DEBUG: data-region:', button.getAttribute('data-region'));
+    console.log('DEBUG: region options:', Array.from(document.getElementById('edit_region_id').options).map(o => o.value));
+    console.log('DEBUG: data-color:', button.getAttribute('data-color'));
+    console.log('DEBUG: color options:', Array.from(document.getElementById('edit_color_id').options).map(o => o.value));
+    console.log('DEBUG: data-intensity:', button.getAttribute('data-intensity'));
+    console.log('DEBUG: intensity options:', Array.from(document.getElementById('edit_intensity_id').options).map(o => o.value));
+    console.log('DEBUG: data-producer:', button.getAttribute('data-producer'));
+    console.log('DEBUG: producer options:', Array.from(document.getElementById('edit_producer_id').options).map(o => o.value));
+    console.log('DEBUG: data-vendor:', button.getAttribute('data-vendor'));
+    console.log('DEBUG: vendor options:', Array.from(document.getElementById('edit_vendor_id').options).map(o => o.value));
+    console.log('DEBUG: data-brewing_method:', button.getAttribute('data-brewing_method'));
+    console.log('DEBUG: brewing_method options:', Array.from(document.getElementById('edit_brewing_method_id').options).map(o => o.value));
+    if (!button) return;
+    document.getElementById('edit_tea_id').value = button.getAttribute('data-id');
+    document.getElementById('edit_name').value = button.getAttribute('data-name');
+    document.getElementById('edit_description').value = button.getAttribute('data-description') || '';
+    document.getElementById('edit_type_id').value = button.getAttribute('data-type');
+    document.getElementById('edit_taste_id').value = button.getAttribute('data-taste');
+    document.getElementById('edit_region_id').value = button.getAttribute('data-region');
+    document.getElementById('edit_color_id').value = button.getAttribute('data-color');
+    document.getElementById('edit_intensity_id').value = button.getAttribute('data-intensity');
+    document.getElementById('edit_producer_id').value = button.getAttribute('data-producer');
+    document.getElementById('edit_vendor_id').value = button.getAttribute('data-vendor');
+    document.getElementById('edit_brewing_method_id').value = button.getAttribute('data-brewing_method');
+    
+    // Устанавливаем начальные значения координат (устойчиво к запятым и лишним точкам)
+    const x = parseCoord(button.getAttribute('data-x-coord'));
+    const y = parseCoord(button.getAttribute('data-y-coord'));
+    console.log('DEBUG: x, y:', x, y);
+    document.getElementById('edit_x_coord').value = x;
+    document.getElementById('edit_y_coord').value = y;
+    
+    // Вычисляем и устанавливаем угол и радиус
+    const angle = ((Math.atan2(y, x) * 180) / Math.PI + 450) % 360;
+    const radius = Math.min(Math.sqrt(x * x + y * y), 1);
+    document.getElementById('edit_angle').value = angle.toFixed(0);
+    document.getElementById('edit_radius').value = radius.toFixed(2);
+});
+
+// Функции для редактирования координат
+function adjustEditAngle(delta) {
+    const input = document.getElementById('edit_angle');
+    let value = parseFloat(input.value) + delta;
+    if (value < 0) value += 360;
+    if (value >= 360) value -= 360;
+    input.value = value;
+    updateEditCoordinates();
+}
+
+function adjustEditRadius(delta) {
+    const input = document.getElementById('edit_radius');
+    let value = parseFloat(input.value) + delta;
+    if (value < 0) value = 0;
+    if (value > 1) value = 1;
+    input.value = value.toFixed(2);
+    updateEditCoordinates();
+}
+
+function updateEditCoordinates() {
+    const angle = parseFloat(document.getElementById('edit_angle').value);
+    const radius = parseFloat(document.getElementById('edit_radius').value);
+    
+    // Преобразуем полярные координаты в декартовы
+    const x = radius * Math.cos((angle - 90) * Math.PI / 180);
+    const y = radius * Math.sin((angle - 90) * Math.PI / 180);
+    
+    // Обновляем скрытые поля для отправки на сервер
+    document.getElementById('edit_x_coord').value = x.toFixed(3);
+    document.getElementById('edit_y_coord').value = y.toFixed(3);
+}
+
+// Отправка формы редактирования чая через AJAX
+const editTeaForm = document.getElementById('edit-tea-form');
+if (editTeaForm) {
+    editTeaForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // СНАЧАЛА добавить скрытые поля!
+        editTeaForm.querySelectorAll('input[name^="notes["]').forEach(el => el.remove());
+        editAddedNotes.forEach((note, idx) => {
+            const idInput = document.createElement('input');
+            idInput.type = 'hidden';
+            idInput.name = `notes[${idx}][id]`;
+            idInput.value = note.id;
+            editTeaForm.appendChild(idInput);
+            const intInput = document.createElement('input');
+            intInput.type = 'hidden';
+            intInput.name = `notes[${idx}][intensity]`;
+            intInput.value = note.intensity;
+            editTeaForm.appendChild(intInput);
+        });
+        // ТОЛЬКО ПОСЛЕ ЭТОГО создаём FormData!
+        const formData = new FormData(editTeaForm);
+        formData.append('edit_tea', '1'); // маркер для вьюхи
+        // Убедимся, что координаты передаются как числа
+        const x = parseFloat(formData.get('x_coord'));
+        const y = parseFloat(formData.get('y_coord'));
+        formData.set('x_coord', x);
+        formData.set('y_coord', y);
+        fetch(window.location.pathname, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast('Изменения сохранены!', true);
+                const modal = bootstrap.Modal.getInstance(editTeaModal);
+                modal && modal.hide();
+                editTeaForm.reset();
+                updateTeasList();
+            } else {
+                showToast(data.error || 'Ошибка!', false);
+            }
+        })
+        .catch(() => showToast('Ошибка сети!', false));
+    });
+}
+
+// Универсальная функция для отправки формы через fetch
+function postForm(form, callback) {
+    const formData = new FormData(form);
+    fetch(window.location.pathname, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            callback && callback();
+            showToast('Успешно!', true);
+        } else {
+            showToast(data.error || 'Ошибка!', false);
+        }
+    })
+    .catch(() => showToast('Ошибка сети!', false));
+}
+
+// Обновление списка чаёв без перезагрузки
+function updateTeasList() {
+    fetch(window.location.pathname)
+      .then(r => r.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newList = doc.getElementById('teas-list');
+        if (newList) {
+            document.getElementById('teas-list').innerHTML = newList.innerHTML;
+        }
+      });
+}
+
+// Добавление чая
+const addTeaForm = document.getElementById('add-tea-form');
+if (addTeaForm) {
+    addTeaForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        postForm(addTeaForm, () => {
+            addTeaForm.reset();
+            updateTeasList();
+        });
+    });
+}
+
+// Универсальный обработчик для справочников
+const dictForms = [
+    {form: 'add-type-form', select: 'type_id'},
+    {form: 'add-taste-form', select: 'taste_id'},
+    {form: 'add-region-form', select: 'region_id'},
+    {form: 'add-color-form', select: 'color_id'},
+    {form: 'add-intensity-form', select: 'intensity_id'},
+    {form: 'add-producer-form', select: 'producer_id'},
+    {form: 'add-vendor-form', select: 'vendor_id'},
+    {form: 'add-brewing-method-form', select: 'brewing_method_id'},
+];
+
+dictForms.forEach(({form, select}) => {
+    const f = document.getElementById(form);
+    if (f) {
+        f.addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('submit', form);
+            postForm(f, () => {
+                // После добавления — обновить выпадающий список
+                fetch(window.location.pathname)
+                  .then(r => r.text())
+                  .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const newSelect = doc.getElementById(select);
+                    if (newSelect) {
+                        document.getElementById(select).innerHTML = newSelect.innerHTML;
+                    }
+                  });
+                // Закрыть модалку
+                const modal = bootstrap.Modal.getInstance(f.closest('.modal'));
+                modal && modal.hide();
+                f.reset();
+            });
+        }, false);
+    } else {
+        console.warn('Форма не найдена:', form);
+    }
+});
+
+let currentPoint = null;
+
+function updateCoordinates() {
+  const angle = parseFloat(document.getElementById('angle').value);
+  const radius = parseFloat(document.getElementById('radius').value);
+  
+  // Преобразуем полярные координаты в декартовы
+  const x = radius * Math.cos((angle - 90) * Math.PI / 180);
+  const y = radius * Math.sin((angle - 90) * Math.PI / 180);
+  
+  // Обновляем скрытые поля для отправки на сервер
+  document.getElementById('x_coord').value = x;
+  document.getElementById('y_coord').value = y;
+  
+  // Обновляем визуализацию
+  updateDiagramPreview(x, y);
+}
+
+function adjustAngle(delta) {
+  const input = document.getElementById('angle');
+  let value = parseFloat(input.value) + delta;
+  if (value < 0) value += 360;
+  if (value >= 360) value -= 360;
+  input.value = value;
+  updateCoordinates();
+}
+
+function adjustRadius(delta) {
+  const input = document.getElementById('radius');
+  let value = parseFloat(input.value) + delta;
+  if (value < 0) value = 0;
+  if (value > 1) value = 1;
+  input.value = value.toFixed(2);
+  updateCoordinates();
+}
+
+function updateDiagramPreview(x, y) {
+  const svg = document.getElementById('diagram-svg');
+  if (!svg) return;
+  
+  // Обновляем позицию точки на диаграмме
+  const point = svg.querySelector('.preview-point');
+  if (point) {
+    point.setAttribute('cx', x * 100 + 150);
+    point.setAttribute('cy', y * 100 + 150);
+  }
+}
+
+// Инициализация диаграммы при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+  const preview = document.getElementById('diagram-preview');
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute('id', 'diagram-svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
+  svg.setAttribute('viewBox', '0 0 300 300');
+  
+  // Добавляем круги для визуализации
+  const circles = [
+    { r: 100, fill: '#f8f9fa' },
+    { r: 75, fill: '#e9ecef' },
+    { r: 50, fill: '#dee2e6' }
+  ];
+  
+  circles.forEach(circle => {
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute('cx', '150');
+    c.setAttribute('cy', '150');
+    c.setAttribute('r', circle.r);
+    c.setAttribute('fill', circle.fill);
+    c.setAttribute('stroke', '#adb5bd');
+    c.setAttribute('stroke-width', '1');
+    svg.appendChild(c);
+  });
+  
+  // Добавляем 12 радиальных линий для секторов
+  for (let i = 0; i < 12; i++) {
+    const angle = (i * 30 - 90) * Math.PI / 180; // -90 чтобы 0° был вверх
+    const x2 = 150 + 100 * Math.cos(angle);
+    const y2 = 150 + 100 * Math.sin(angle);
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute('x1', '150');
+    line.setAttribute('y1', '150');
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2);
+    line.setAttribute('stroke', '#b0b6c1');
+    line.setAttribute('stroke-width', '1');
+    line.setAttribute('stroke-dasharray', '3,2');
+    svg.appendChild(line);
+  }
+  
+  // Добавляем точку для предпросмотра
+  const point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  point.setAttribute('class', 'preview-point');
+  point.setAttribute('r', '5');
+  point.setAttribute('fill', '#dc3545');
+  svg.appendChild(point);
+  
+  preview.appendChild(svg);
+  updateCoordinates(); // Инициализируем позицию точки
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  function attachDeleteHandlers() {
+    document.querySelectorAll('.delete-tea-btn').forEach(function(btn) {
+      btn.onclick = function() {
+        if (!confirm('Удалить этот чай?')) return;
+        const teaId = btn.getAttribute('data-tea-id');
+        fetch(window.location.pathname, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `delete_tea=1&tea_id=${teaId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            btn.closest('.col').remove();
+            showToast('Чай удалён!', true);
+          } else {
+            showToast('Ошибка: ' + (data.error || 'Не удалось удалить чай'), false);
+          }
+        })
+        .catch(() => showToast('Ошибка при удалении', false));
+      };
+    });
+  }
+  attachDeleteHandlers();
+  // Повторно навешивать обработчики после обновления списка
+  window.updateTeasList = (function(orig){
+    return function() {
+      orig && orig();
+      setTimeout(attachDeleteHandlers, 100);
+    }
+  })(window.updateTeasList);
+});
+
+function parseCoord(val) {
+    if (!val) return 0;
+    let s = val.trim().replace(/,/g, '.');
+    const parts = s.split('.');
+    if (parts.length > 2) {
+        s = parts.shift() + '.' + parts.join('');
+    }
+    return parseFloat(s) || 0;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // --- Управление нотами для добавления чая ---
+  const notesSelect = document.getElementById('add-note-select');
+  const notesList = document.getElementById('notes-list');
+  const addNoteBtn = document.getElementById('add-note-button');
+  let addedNotes = [];
+
+  function renderNotesList() {
+    notesList.innerHTML = '';
+    addedNotes.forEach((note, idx) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item d-flex align-items-center justify-content-between';
+      li.innerHTML = `
+        <span>${note.name}</span>
+        <input type="number" min="0" max="100" step="1" value="${note.intensity}" class="form-control form-control-sm mx-2" style="width:80px; display:inline-block;" data-note-id="${note.id}" placeholder="Интенсивность">
+        <button type="button" class="btn btn-danger btn-sm ms-2 remove-note-btn" data-idx="${idx}">&times;</button>
+      `;
+      notesList.appendChild(li);
+    });
+    // Навесить обработчики на кнопки удаления
+    notesList.querySelectorAll('.remove-note-btn').forEach(btn => {
+      btn.onclick = function() {
+        const idx = parseInt(btn.getAttribute('data-idx'));
+        addedNotes.splice(idx, 1);
+        renderNotesList();
+      };
+    });
+    // Навесить обработчики на поля интенсивности
+    notesList.querySelectorAll('input[type=number]').forEach(input => {
+      input.oninput = function() {
+        const noteId = input.getAttribute('data-note-id');
+        const note = addedNotes.find(n => n.id === noteId);
+        if (note) note.intensity = parseFloat(input.value) || 0;
+      };
+    });
+  }
+
+  addNoteBtn && addNoteBtn.addEventListener('click', function() {
+    const selectedId = notesSelect.value;
+    if (!selectedId) return;
+    if (addedNotes.some(n => n.id === selectedId)) return;
+    const selectedName = notesSelect.options[notesSelect.selectedIndex].text;
+    addedNotes.push({id: selectedId, name: selectedName, intensity: 50});
+    renderNotesList();
+  });
+
+  // При отправке формы добавления чая — добавить данные о нотах
+  const addTeaForm = document.getElementById('add-tea-form');
+  if (addTeaForm) {
+    addTeaForm.addEventListener('submit', function(e) {
+      // Удалить старые скрытые поля нот
+      addTeaForm.querySelectorAll('input[name^="notes["]').forEach(el => el.remove());
+      // Добавить новые скрытые поля
+      addedNotes.forEach((note, idx) => {
+        const idInput = document.createElement('input');
+        idInput.type = 'hidden';
+        idInput.name = `notes[${idx}][id]`;
+        idInput.value = note.id;
+        addTeaForm.appendChild(idInput);
+        const intInput = document.createElement('input');
+        intInput.type = 'hidden';
+        intInput.name = `notes[${idx}][intensity]`;
+        intInput.value = note.intensity;
+        addTeaForm.appendChild(intInput);
+      });
+    });
+  }
+
+  // --- Управление нотами для редактирования чая ---
+  const editNotesSelect = document.getElementById('edit-note-select');
+  const editNotesList = document.getElementById('edit-notes-list');
+  const editAddNoteBtn = document.getElementById('edit-add-note-button');
+
+  function renderEditNotesList() {
+    editNotesList.innerHTML = '';
+    editAddedNotes.forEach((note, idx) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item d-flex align-items-center justify-content-between';
+      li.innerHTML = `
+        <span>${note.name}</span>
+        <input type="number" min="0" max="100" step="1" value="${note.intensity}" class="form-control form-control-sm mx-2" style="width:80px; display:inline-block;" data-note-id="${note.id}" placeholder="Интенсивность">
+        <button type="button" class="btn btn-danger btn-sm ms-2 remove-edit-note-btn" data-idx="${idx}">&times;</button>
+      `;
+      editNotesList.appendChild(li);
+    });
+    // Навесить обработчики на кнопки удаления
+    editNotesList.querySelectorAll('.remove-edit-note-btn').forEach(btn => {
+      btn.onclick = function() {
+        const idx = parseInt(btn.getAttribute('data-idx'));
+        editAddedNotes.splice(idx, 1);
+        renderEditNotesList();
+      };
+    });
+    // Навесить обработчики на поля интенсивности
+    editNotesList.querySelectorAll('input[type=number]').forEach(input => {
+      input.oninput = function() {
+        const noteId = input.getAttribute('data-note-id');
+        const note = editAddedNotes.find(n => n.id === noteId);
+        if (note) note.intensity = parseFloat(input.value) || 0;
+      };
+    });
+  }
+
+  editAddNoteBtn && editAddNoteBtn.addEventListener('click', function() {
+    const selectedId = editNotesSelect.value;
+    if (!selectedId) return;
+    if (editAddedNotes.some(n => n.id === selectedId)) return;
+    const selectedName = editNotesSelect.options[editNotesSelect.selectedIndex].text;
+    editAddedNotes.push({id: selectedId, name: selectedName, intensity: 50});
+    renderEditNotesList();
+  });
+
+  // При открытии модального окна редактирования — заполнять список нот
+  const editTeaModal = document.getElementById('editTeaModal');
+  if (editTeaModal) {
+    editTeaModal.addEventListener('show.bs.modal', function (event) {
+      // Получить id чая
+      const button = event.relatedTarget;
+      const teaId = button.getAttribute('data-id');
+      // Получить ноты для этого чая через API
+      fetch(`/teas/api/teas/`)
+        .then(r => r.json())
+        .then(teas => {
+          const tea = teas.find(t => t.id === teaId);
+          editAddedNotes = [];
+          if (tea && tea.notes) {
+            tea.notes.forEach(note => {
+              editAddedNotes.push({id: note.id, name: note.name, intensity: note.intensity});
+            });
+          }
+          renderEditNotesList();
+        });
+    });
+  }
+
+  // При отправке формы редактирования чая — добавить данные о нотах
+  const editTeaForm = document.getElementById('edit-tea-form');
+  if (editTeaForm) {
+    editTeaForm.addEventListener('submit', function(e) {
+      // Удалить старые скрытые поля нот
+      editTeaForm.querySelectorAll('input[name^="notes["]').forEach(el => el.remove());
+      // Добавить новые скрытые поля
+      editAddedNotes.forEach((note, idx) => {
+        const idInput = document.createElement('input');
+        idInput.type = 'hidden';
+        idInput.name = `notes[${idx}][id]`;
+        idInput.value = note.id;
+        editTeaForm.appendChild(idInput);
+        const intInput = document.createElement('input');
+        intInput.type = 'hidden';
+        intInput.name = `notes[${idx}][intensity]`;
+        intInput.value = note.intensity;
+        editTeaForm.appendChild(intInput);
+      });
+    });
+  }
+
+  // --- Добавление новой ноты через модалку ---
+  const addNoteForm = document.getElementById('add-note-form');
+  if (addNoteForm) {
+    addNoteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = addNoteForm.querySelector('input[name="note_name"]');
+      const noteName = input.value.trim();
+      if (!noteName) return;
+      // Получаем языковой префикс из URL
+      const langMatch = window.location.pathname.match(/^\/([a-z]{2})\//);
+      const apiPrefix = langMatch ? `/${langMatch[1]}/teas/api/notes/add/` : '/teas/api/notes/add/';
+      fetch(apiPrefix, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify({name: noteName})
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.id) {
+          // Добавить новую ноту в оба выпадающих списка
+          const option1 = document.createElement('option');
+          option1.value = data.id;
+          option1.text = data.name || data.translated_name || noteName;
+          notesSelect.appendChild(option1);
+          const option2 = document.createElement('option');
+          option2.value = data.id;
+          option2.text = data.name || data.translated_name || noteName;
+          editNotesSelect.appendChild(option2);
+          showToast('Нота добавлена!', true);
+          // Закрыть модалку
+          const modal = bootstrap.Modal.getInstance(addNoteForm.closest('.modal'));
+          modal && modal.hide();
+          addNoteForm.reset();
+        } else {
+          showToast(data.error || 'Ошибка при добавлении ноты', false);
+        }
+      })
+      .catch(() => showToast('Ошибка сети!', false));
+    });
+  }
+});
+</script>
+{% endblock %} 

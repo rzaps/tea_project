@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Редактирование профиля — Tea Atlas" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card tea-feature">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{% trans "Редактирование профиля" %}</h5>
+
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {# TODO: Добавить поля для редактирования профиля (например, email, name) #}
+                        {# Данные текущего пользователя, если они загружены во view, будут доступны в контексте шаблона #}
+                        <div class="mb-3">
+                            <label for="email" class="form-label">{% trans "Email адрес" %}</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ user_data.email|default:'' }}" required>
+                        </div>
+                        {# TODO: Добавить другие поля, если они есть в вашей модели пользователя в Supabase #}
+
+                        <button type="submit" class="btn btn-success w-100">{% trans "Сохранить изменения" %}</button>
+                    </form>
+                    
+                    <h6 class="mt-4">{% trans "Смена пароля:" %}</h6>
+                    <p>{% trans "Чтобы сменить пароль, воспользуйтесь функцией сброса пароля." %}</p>
+                    {# TODO: Возможно, добавить форму для смены пароля прямо здесь, если Supabase Auth это позволяет без сброса #}
+                    {# Сейчас предполагаем, что для смены пароля используется процесс сброса #}
+
+                    <p class="text-center mt-3"><a href="{% url 'users:profile' %}">{% trans "Вернуться в личный кабинет" %}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,405 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ tea.name }} — Tea Atlas{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'tea_list' %}">{% trans "Каталог чаёв" %}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ tea.name }}</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card tea-feature mb-4">
+        <div class="card-body">
+          <h1 class="card-title mb-4">{{ tea.name }}</h1>
+          
+          {% if tea.description %}
+            <div class="mb-4">
+              <h5 class="info-title">{% trans "Описание" %}</h5>
+              <p class="card-text">{{ tea.description }}</p>
+            </div>
+          {% endif %}
+
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card tea-feature h-100">
+                <div class="card-body">
+                  <h5 class="info-title">{% trans "Основные характеристики" %}</h5>
+                  <div class="info-body">
+                    <p class="card-text">
+                      <strong>{% trans "Тип:" %}</strong> {{ tea.type.translated_name|default:tea.type.name|default:_("Не указан") }}<br>
+                      <strong>{% trans "Регион:" %}</strong> {{ tea.region.translated_name|default:tea.region.name|default:_("Не указан") }}<br>
+                      <strong>{% trans "Вкус:" %}</strong> {{ tea.taste.translated_name|default:tea.taste.name|default:_("Не указан") }}<br>
+                      <strong>{% trans "Интенсивность:" %}</strong> {{ tea.intensity.translated_name|default:tea.intensity.name|default:_("Не указана") }}<br>
+                      <strong>{% trans "Цвет:" %}</strong> {{ tea.color.translated_name|default:tea.color.name|default:_("Не указан") }}<br>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card tea-feature h-100">
+                <div class="card-body">
+                  <h5 class="info-title">{% trans "Информация о производстве" %}</h5>
+                  <div class="info-body">
+                    <p class="card-text">
+                      <strong>{% trans "Производитель:" %}</strong> {{ tea.producer.translated_name|default:tea.producer.name|default:_("Не указан") }}<br>
+                      <strong>{% trans "Поставщик:" %}</strong> {{ tea.vendor.translated_name|default:tea.vendor.name|default:_("Не указан") }}<br>
+                      <strong>{% trans "Метод заварки:" %}</strong> {{ tea.brewing_method.translated_name|default:tea.brewing_method.name|default:_("Не указан") }}<br>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {% if tea.notes %}
+            <div class="mt-4">
+              <h5 class="info-title">{% trans "Гистограмма нот" %}</h5>
+              <div id="tea-notes-chart" style="width: 100%; height: 200px;"></div>
+              <script id="tea-notes-data" type="application/json">{{ tea_notes_json|safe }}</script>
+            </div>
+          {% endif %}
+
+          {% if supabase_authenticated %}
+            <div class="mt-3">
+              <form id="status-form" method="post" action="{% url 'tea_status' tea.id %}">
+                {% csrf_token %}
+                <button id="btn-want" type="submit" name="status" value="want" class="btn {% if tea.user_status == 'want' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-1">
+                  {% trans "Хочу попробовать" %}
+                </button>
+                <button id="btn-tried" type="submit" name="status" value="tried" class="btn {% if tea.user_status == 'tried' %}btn-success{% else %}btn-outline-success{% endif %} mb-1">
+                  {% trans "Пробовал" %}
+                </button>
+              </form>
+              <div id="status-toast" class="toast align-items-center text-bg-success border-0 mt-2" role="alert" aria-live="assertive" aria-atomic="true" style="display:none;">
+                <div class="d-flex">
+                  <div class="toast-body" id="status-toast-body"></div>
+                  <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="document.getElementById('status-toast').style.display='none';"></button>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card tea-feature mb-4">
+        <div class="card-body">
+          <h5 class="info-title">{% trans "Позиция на колесе вкусов" %}</h5>
+          <div id="tea-diagram" class="mt-3" style="height: 300px;">
+            <!-- Здесь будет диаграмма -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card tea-feature">
+        <div class="card-body">
+          <h5 class="info-title">{% trans "Похожие чаи" %}</h5>
+          <div class="list-group list-group-flush">
+            {% for similar_tea in similar_teas %}
+              <a href="{% url 'tea_detail' similar_tea.id %}" class="list-group-item list-group-item-action">
+                {{ similar_tea.name }}
+              </a>
+            {% empty %}
+              <p class="text-muted">{% trans "Похожие чаи не найдены" %}</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# --- Блок комментариев --- #}
+  <div id="comments-block" class="mt-4">
+    <h5>Комментарии</h5>
+    <div id="comments-list"></div>
+    {% if user_data %}
+      <form id="comment-form" class="mt-3">
+        <textarea name="text" class="form-control" rows="2" placeholder="Ваш комментарий..." required></textarea>
+        <button type="submit" class="btn btn-primary btn-sm mt-2">Оставить комментарий</button>
+      </form>
+    {% else %}
+      <div class="mt-2"><a href="{% url 'users:login' %}?next={{ request.path }}">Войдите</a>, чтобы оставить комментарий.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const diagram = document.getElementById('tea-diagram');
+  if (diagram) {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
+  svg.setAttribute('viewBox', '0 0 300 300');
+
+  // Круги
+  const circles = [
+    { r: 100, fill: '#f9f6f1' },
+    { r: 75, fill: '#ede5d9' },
+    { r: 50, fill: '#e6d5c3' }
+  ];
+  circles.forEach(circle => {
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute('cx', '150');
+    c.setAttribute('cy', '150');
+    c.setAttribute('r', circle.r);
+    c.setAttribute('fill', circle.fill);
+    c.setAttribute('stroke', '#bfa16c');
+    c.setAttribute('stroke-width', '1');
+    svg.appendChild(c);
+  });
+
+  // Радиальные линии
+  for (let i = 0; i < 12; i++) {
+    const angle = (i * 30 - 90) * Math.PI / 180;
+    const x2 = 150 + 100 * Math.cos(angle);
+    const y2 = 150 + 100 * Math.sin(angle);
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute('x1', '150');
+    line.setAttribute('y1', '150');
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2);
+    line.setAttribute('stroke', '#bfa16c');
+    line.setAttribute('stroke-width', '1');
+    line.setAttribute('stroke-dasharray', '3,2');
+    svg.appendChild(line);
+  }
+
+  // Получаем координаты из Django
+  const rawX = "{{ tea.x_coord|default:'0' }}";
+  const rawY = "{{ tea.y_coord|default:'0' }}";
+  
+  console.log('Debug - Raw coordinates:', rawX, rawY);  // Отладочный вывод
+  
+  const x = parseFloat(rawX.replace(',', '.')) || 0;
+  const y = parseFloat(rawY.replace(',', '.')) || 0;
+  
+  console.log('Debug - Parsed coordinates:', x, y);  // Отладочный вывод
+  
+  const r = Math.sqrt(x * x + y * y);
+  console.log('Debug - radius:', r);
+  // cx, cy рассчитываются так, чтобы точка с radius=1 была на внешнем круге, с radius=0.5 — на среднем
+  const cx = 150 + x * 100;
+  const cy = 150 + y * 100;
+  
+  console.log('Debug - Scaled coordinates:', cx, cy);  // Отладочный вывод
+
+  // Точка позиции чая
+  const point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  point.setAttribute('r', '5');
+  point.setAttribute('fill', '#bfa16c');
+  point.setAttribute('cx', cx);
+  point.setAttribute('cy', cy);
+  svg.appendChild(point);
+
+  // Добавляем подпись с углом и радиусом
+  const radius = Math.sqrt(x * x + y * y);
+  const angle = ((Math.atan2(y, x) * 180) / Math.PI + 450) % 360;
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute('x', cx + 10);
+  text.setAttribute('y', cy);
+  text.setAttribute('fill', '#3e2723');
+  text.setAttribute('font-size', '12');
+  text.textContent = `(${angle.toFixed(0)}°, ${radius.toFixed(2)})`;
+  svg.appendChild(text);
+
+  diagram.appendChild(svg);
+  }
+
+  // Код для гистограммы нот
+  const notesChart = document.getElementById('tea-notes-chart');
+  const notesScript = document.getElementById('tea-notes-data');
+
+  if (notesChart && notesScript) {
+    let data = JSON.parse(notesScript.textContent);
+    // Сортировка по интенсивности по убыванию
+    data = data.slice().sort((a, b) => b.intensity - a.intensity);
+    const width = notesChart.clientWidth || 400;
+    const barHeight = 24;
+    const gap = 6;
+    const height = data.length * (barHeight + gap) + gap;
+    const padding = { top: 10, right: 30, bottom: 10, left: 120 };
+    const chartWidth = width - padding.left - padding.right;
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', height);
+
+    const maxIntensity = Math.max(...data.map(note => note.intensity), 1);
+    const xScale = chartWidth / (maxIntensity * 1.05); // небольшой запас
+
+    data.forEach((note, index) => {
+      const y = padding.top + index * (barHeight + gap);
+      let barLen = note.intensity * xScale;
+      if (barLen > chartWidth) barLen = chartWidth; // не выезжать за рамку
+
+      // Бар
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute('x', padding.left);
+      rect.setAttribute('y', y);
+      rect.setAttribute('width', barLen);
+      rect.setAttribute('height', barHeight);
+      rect.setAttribute('fill', '#bfa16c');
+      svg.appendChild(rect);
+
+      // Подпись ноты (слева)
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute('x', padding.left - 10);
+      text.setAttribute('y', y + barHeight / 2 + 5);
+      text.setAttribute('text-anchor', 'end');
+      text.setAttribute('font-size', '15');
+      text.setAttribute('fill', '#3e2723');
+      text.textContent = note.name;
+      svg.appendChild(text);
+
+      // Значение интенсивности (внутри бара)
+      const val = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      val.setAttribute('x', padding.left + barLen - 8);
+      val.setAttribute('y', y + barHeight / 2 + 5);
+      val.setAttribute('text-anchor', 'end');
+      val.setAttribute('font-size', '14');
+      val.setAttribute('fill', '#fff');
+      val.textContent = note.intensity;
+      svg.appendChild(val);
+    });
+
+    notesChart.innerHTML = '';
+    notesChart.appendChild(svg);
+  }
+
+  // AJAX для формы статуса
+  const statusForm = document.getElementById('status-form');
+  if (statusForm) {
+    statusForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(statusForm);
+      // Явно добавляем статус, соответствующий нажатой кнопке
+      const active = document.activeElement;
+      if (active && active.name === 'status') {
+        formData.set('status', active.value);
+      }
+      const status = formData.get('status');
+      fetch(statusForm.action, {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+        },
+        body: formData
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        if (!data.success) throw new Error(data.error || 'Ошибка запроса');
+        // Смена цвета кнопок только если статус изменился
+        const btnWant = document.getElementById('btn-want');
+        const btnTried = document.getElementById('btn-tried');
+        if (data.status === 'want') {
+          btnWant.classList.remove('btn-outline-primary');
+          btnWant.classList.add('btn-primary');
+          btnTried.classList.remove('btn-success');
+          btnTried.classList.add('btn-outline-success');
+        } else {
+          btnTried.classList.remove('btn-outline-success');
+          btnTried.classList.add('btn-success');
+          btnWant.classList.remove('btn-primary');
+          btnWant.classList.add('btn-outline-primary');
+        }
+        // Показываем уведомление
+        const toast = document.getElementById('status-toast');
+        const toastBody = document.getElementById('status-toast-body');
+        if (data.changed) {
+          toastBody.textContent = data.status === 'want' ? 'Добавлено в "Хочу попробовать"' : 'Добавлено в "Пробовал"';
+          toast.className = 'toast align-items-center text-bg-' + (data.status === 'want' ? 'primary' : 'success') + ' border-0 mt-2';
+        } else {
+          toastBody.textContent = 'Статус не изменён';
+          toast.className = 'toast align-items-center text-bg-secondary border-0 mt-2';
+        }
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2000);
+      })
+      .catch(() => {
+        const toast = document.getElementById('status-toast');
+        const toastBody = document.getElementById('status-toast-body');
+        toastBody.textContent = 'Ошибка!';
+        toast.className = 'toast align-items-center text-bg-danger border-0 mt-2';
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2000);
+      });
+    });
+  }
+
+  const commentsList = document.getElementById('comments-list');
+  const form = document.getElementById('comment-form');
+  function loadComments() {
+    fetch('/comments/tea/{{ tea.id }}/list/')
+      .then(r => r.json())
+      .then(data => {
+        commentsList.innerHTML = data.length ? data.map(c => {
+          // Форматируем дату
+          let date = c.created_at;
+          try {
+            const d = new Date(date);
+            date = d.toLocaleString('ru-RU', {
+              year: 'numeric', month: '2-digit', day: '2-digit',
+              hour: '2-digit', minute: '2-digit'
+            });
+          } catch (e) {}
+          return `
+            <div class="comment">
+              <div class="comment-header">
+                <span class="comment-email">${c.email ? c.email : 'Аноним'}</span>
+                <span class="comment-date">${date}</span>
+              </div>
+              <div class="comment-text">${c.text}</div>
+            </div>
+          `;
+        }).join('') : '<div>Комментариев пока нет.</div>';
+      });
+  }
+  loadComments();
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      fetch('/comments/tea/{{ tea.id }}/add/', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({text: form.text.value})
+      })
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP error ' + r.status);
+        return r.json();
+      })
+      .then(data => {
+        if (data.success) {
+          form.text.value = '';
+          loadComments();
+        } else {
+          alert(data.error || 'Ошибка');
+        }
+      })
+      .catch(err => {
+        alert('Ошибка отправки комментария: ' + err.message);
+      });
+    });
+  }
+});
+</script>
+{% endblock %} 
