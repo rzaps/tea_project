@@ -31,6 +31,11 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 .pyre/
+__init__.py
+admin.py
+apps.py
+models.py
+tests.py
 
 # Django specific (если используется)
 *.sqlite3
