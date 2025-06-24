@@ -9,7 +9,11 @@ export interface PointData {
   radius: number;
   label: string;
   color: string;
-  info: string;
+  info?: string;
+  id?: string;
+  type?: string;
+  region?: string;
+  notes?: string[];
 }
 
 export interface AxisLabel {

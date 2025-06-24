@@ -1,26 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Колесо вкусов — Tea Atlas{% endblock %}
+{% block title %}{% trans "Колесо вкусов — Tea Atlas" %}{% endblock %}
 
 {% block extra_head %}
-  {% if debug %}
-    <!-- Vite HMR -->
-    <script type="module" src="http://localhost:5173/@vite/client"></script>
-    <script type="module">
-      import RefreshRuntime from "http://localhost:5173/@react-refresh";
-      RefreshRuntime.injectIntoGlobalHook(window);
-      window.$RefreshReg$ = () => {};
-      window.$RefreshSig$ = () => (type) => type;
-      import("http://localhost:5173/src/main.tsx");
-    </script>
-  {% else %}
-    <script type="module" src="{% static 'assets/main.js' %}"></script>
-  {% endif %}
+  <!-- Vite HMR: всегда подключаем для разработки -->
+  <script type="module" src="http://localhost:5173/@vite/client"></script>
+  <script type="module">
+    import RefreshRuntime from "http://localhost:5173/@react-refresh";
+    RefreshRuntime.injectIntoGlobalHook(window);
+    window.$RefreshReg$ = () => {};
+    window.$RefreshSig$ = () => (type) => type;
+    import("http://localhost:5173/src/main.tsx");
+  </script>
 {% endblock %}
 
 {% block content %}
-  <h1 class="mb-4">Колесо вкусов</h1>
+  <h1 class="mb-4">{% trans "Колесо вкусов" %}</h1>
 
   <div class="card shadow-sm border-0">
     <div class="card-body">

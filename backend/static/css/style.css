@@ -292,3 +292,60 @@ body {
   animation-delay: 1s;
   animation-fill-mode: both;
 }
+
+/* === Комментарии === */
+.comment {
+  background: #fff8f2;
+  border: 1px solid #e6d5c3;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(107, 66, 38, 0.04);
+}
+.comment .comment-header {
+  font-size: 0.97em;
+  color: var(--color-brown-darker);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.comment .comment-email {
+  color: var(--color-brown);
+  font-weight: 500;
+  font-size: 0.97em;
+}
+.comment .comment-date {
+  color: var(--color-muted);
+  font-size: 0.93em;
+}
+.comment .comment-text {
+  margin-top: 2px;
+  font-size: 1.05em;
+  color: #3e2723;
+  word-break: break-word;
+}
+#comments-block h5 {
+  margin-bottom: 18px;
+  color: var(--color-brown-darker);
+  font-weight: 600;
+}
+#comment-form textarea {
+  background: #fff;
+  border: 1px solid #e6d5c3;
+  border-radius: 6px;
+  font-size: 1em;
+  color: #3e2723;
+}
+#comment-form button {
+  background: var(--color-brown);
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 18px;
+  font-size: 1em;
+  margin-top: 6px;
+}
+#comment-form button:hover {
+  background: var(--color-brown-dark);
+}
