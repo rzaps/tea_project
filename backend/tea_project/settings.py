@@ -84,9 +84,8 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'backend/templates',
             BASE_DIR / 'main/templates',
-            BASE_DIR / 'frontend/dist'  # Для React сборки
-        ]
-        ,
+            BASE_DIR / 'backend/static'  # Для React сборки
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -167,7 +166,6 @@ LOCALE_PATHS = [
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'frontend/dist',
     BASE_DIR / 'backend/static',
 ]
 

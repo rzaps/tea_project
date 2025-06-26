@@ -5,5 +5,5 @@ import os
 
 class FrontendAppView(View):
     def get(self, request):
-        index_path = os.path.join(settings.BASE_DIR, 'frontend', 'dist', 'index.html')
+        index_path = os.path.join(settings.BASE_DIR, 'backend', 'static', 'index.html')
         return FileResponse(open(index_path, 'rb')) 
