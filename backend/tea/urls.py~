@@ -1,0 +1,9 @@
+from django.urls import path
+from . import views  # импортируем наши представления из views.py
+
+urlpatterns = [
+    path('', views.home, name='home'),  # Главная страница
+    path('teas/', views.tea_list, name='tea_list'),  # Список чаёв
+    path('api/teas/', views.teas_api, name='teas_api'),
+    path('diagram/', views.diagram_view, name='diagram'),  # Диаграмма
+]

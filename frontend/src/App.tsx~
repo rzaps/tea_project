@@ -1,0 +1,12 @@
+import PolarDiagram from './components/PolarDiagram';
+
+function App() {
+  return (
+    <div>
+      <h1 className="mb-4">Колесо вкусов</h1>
+      <PolarDiagram />
+    </div>
+  );
+}
+
+export default App;

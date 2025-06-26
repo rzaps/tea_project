@@ -1,0 +1,9 @@
+Django>=5.2
+gunicorn>=21.2
+psycopg2-binary>=2.9
+supabase
+python-dotenv
+requests
+django-cors-headers
+django-tinymce
+# Если используешь другие библиотеки, добавь их ниже 

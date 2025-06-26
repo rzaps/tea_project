@@ -1,0 +1,1015 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-27 12:09+0300\n"
+"PO-Revision-Date: 2024-03-19 12:00+0000\n"
+"Last-Translator: Tea Atlas Team\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\articles\templates\articles\article_add.html:5
+#: .\articles\templates\articles\article_add.html:17
+#: .\articles\templates\articles\article_add.html:23
+#: .\articles\templates\articles\article_list.html:14
+msgid "Добавить статью"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:16
+#: .\articles\templates\articles\article_detail.html:15
+#: .\articles\templates\articles\article_list.html:5
+#: .\articles\templates\articles\article_list.html:12
+#: .\templates\components\left_sidebar.html:20
+msgid "Статьи"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:29
+msgid "Заголовок"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:35
+msgid "Краткое описание"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:40
+msgid "Содержание"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:45
+msgid "Обложка статьи"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:47
+msgid ""
+"Загрузите изображение для обложки статьи. Рекомендуемый размер: 1200x630 "
+"пикселей."
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:52
+#: .\articles\templates\articles\article_list.html:25
+msgid "Категория"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:54
+#: .\articles\templates\articles\article_add.html:116
+msgid "Добавить категорию"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:58
+msgid "Выберите категорию"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:67
+msgid "Теги"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:69
+#: .\articles\templates\articles\article_add.html:144
+#, fuzzy
+#| msgid "Добавление сортов"
+msgid "Добавить тег"
+msgstr "Çeşit Ekleme"
+
+#: .\articles\templates\articles\article_add.html:87
+msgid "Связанные чаи"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:103
+#: .\articles\templates\articles\article_add.html:132
+#: .\articles\templates\articles\article_add.html:156
+msgid "Отмена"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:104
+#, fuzzy
+#| msgid "Применить"
+msgid "Сохранить"
+msgstr "Uygula"
+
+#: .\articles\templates\articles\article_add.html:122
+#: .\articles\templates\articles\article_add.html:150
+msgid "Название"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:126
+#: .\tea\templates\tea\tea_detail.html:24
+#: .\tea\templates\tea\tea_manage.html:56
+#: .\tea\templates\tea\tea_manage.html:218
+msgid "Описание"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:133
+#: .\articles\templates\articles\article_add.html:157
+#: .\tea\templates\tea\components\tea_modals.html:19
+#: .\tea\templates\tea\components\tea_modals.html:42
+#: .\tea\templates\tea\components\tea_modals.html:65
+#: .\tea\templates\tea\components\tea_modals.html:88
+#: .\tea\templates\tea\components\tea_modals.html:111
+#: .\tea\templates\tea\components\tea_modals.html:134
+#: .\tea\templates\tea\components\tea_modals.html:157
+#: .\tea\templates\tea\components\tea_modals.html:180
+msgid "Добавить"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:237
+msgid "Ошибка при добавлении категории"
+msgstr ""
+
+#: .\articles\templates\articles\article_add.html:281
+msgid "Ошибка при добавлении тега"
+msgstr ""
+
+#: .\articles\templates\articles\article_detail.html:42
+msgid "Упоминаемые чаи"
+msgstr ""
+
+#: .\articles\templates\articles\article_list.html:21
+#: .\tea\templates\tea\teas_list.html:13
+msgid "Фильтры"
+msgstr "Filtreler"
+
+#: .\articles\templates\articles\article_list.html:27
+msgid "Все категории"
+msgstr ""
+
+#: .\articles\templates\articles\article_list.html:38
+#, fuzzy
+#| msgid "Тип"
+msgid "Тег"
+msgstr "Tür"
+
+#: .\articles\templates\articles\article_list.html:40
+msgid "Все теги"
+msgstr ""
+
+#: .\articles\templates\articles\article_list.html:51
+#: .\tea\templates\tea\teas_list.html:100
+msgid "Применить"
+msgstr "Uygula"
+
+#: .\articles\templates\articles\article_list.html:52
+#: .\tea\templates\tea\teas_list.html:101
+msgid "Сбросить"
+msgstr "Sıfırla"
+
+#: .\articles\templates\articles\article_list.html:81
+#: .\tea\templates\tea\teas_list.html:122
+msgid "Подробнее"
+msgstr ""
+
+#: .\articles\templates\articles\article_list.html:88
+msgid "Статей пока нет."
+msgstr ""
+
+#: .\diagram\templates\diagram\diagram.html:5
+msgid "Колесо вкусов — Tea Atlas"
+msgstr "Lezzet Çarkı — Tea Atlas"
+
+#: .\diagram\templates\diagram\diagram.html:20
+msgid "Колесо вкусов"
+msgstr "Lezzet Çarkı"
+
+#: .\main\templates\main\about.html:4
+msgid "О проекте — Tea Atlas"
+msgstr "Proje Hakkında — Tea Atlas"
+
+#: .\main\templates\main\about.html:8
+msgid "О проекте"
+msgstr "Proje Hakkında"
+
+#: .\main\templates\main\about.html:9
+msgid ""
+"Tea Atlas — это интерактивная карта вкусов чая, которая помогает "
+"ориентироваться в огромном мире сортов, ароматов и оттенков."
+msgstr ""
+"Tea Atlas, çay çeşitleri, aromaları ve tonlarının geniş dünyasında "
+"gezinmenize yardımcı olan interaktif bir çay lezzet haritasıdır."
+
+#: .\main\templates\main\about.html:10
+msgid ""
+"Мы превращаем дегустацию в игру, а выбор чая — в осознанный и увлекательный "
+"процесс."
+msgstr ""
+"Tadımı bir oyuna, çay seçimini ise bilinçli ve eğlenceli bir sürece "
+"dönüştürüyoruz."
+
+#: .\main\templates\main\about.html:12
+msgid ""
+"Проект родился из желания сделать чай ближе, понятнее и доступнее — как "
+"новичкам, так и опытным ценителям."
+msgstr ""
+"Proje, çayı hem yeni başlayanlar hem de deneyimli meraklılar için daha "
+"yakın, anlaşılır ve erişilebilir kılma arzusundan doğdu."
+
+#: .\main\templates\main\about.html:13
+msgid ""
+"С помощью визуальной карты и цифровых инструментов мы делаем то, что раньше "
+"было доступно только экспертам: помогаем «увидеть вкус»."
+msgstr ""
+"Görsel harita ve dijital araçlarla, daha önce sadece uzmanların erişebildiği "
+"şeyi yapıyoruz: «lezzeti görmenize» yardımcı oluyoruz."
+
+#: .\main\templates\main\about.html:15
+msgid "Что мы создаём?"
+msgstr "Ne Yaratıyoruz?"
+
+#: .\main\templates\main\about.html:17
+msgid ""
+"Цифровую вкусовую карту, где каждый сорт чая имеет своё визуальное место"
+msgstr ""
+"Her çay çeşidinin kendi görsel yerine sahip olduğu dijital bir lezzet "
+"haritası"
+
+#: .\main\templates\main\about.html:18
+msgid ""
+"Личный дневник и профиль вкусов, который помогает фиксировать впечатления и "
+"находить новые предпочтения"
+msgstr ""
+"İzlenimleri kaydetmenize ve yeni tercihler bulmanıza yardımcı olan kişisel "
+"günlük ve lezzet profili"
+
+#: .\main\templates\main\about.html:19
+msgid ""
+"Поиск и фильтрацию чаёв по вкусу, региону, насыщенности, терпкости и другим "
+"параметрам"
+msgstr ""
+"Lezzet, bölge, yoğunluk, burukluk ve diğer parametrelere göre çay arama ve "
+"filtreleme"
+
+#: .\main\templates\main\about.html:20
+msgid ""
+"Интеграции для магазинов и поставщиков, чтобы рекомендовать чаи клиентам и "
+"повышать продажи"
+msgstr ""
+"Müşterilere çay önermek ve satışları artırmak için mağazalar ve tedarikçiler "
+"için entegrasyonlar"
+
+#: .\main\templates\main\about.html:21
+msgid ""
+"Платформу для экспертов, где можно делиться опытом, вести обзоры и собирать "
+"свою аудиторию"
+msgstr ""
+"Uzmanların deneyimlerini paylaşabileceği, incelemeler yazabileceği ve kendi "
+"kitlelerini oluşturabileceği bir platform"
+
+#: .\main\templates\main\about.html:24
+msgid "Почему это важно?"
+msgstr "Neden Önemli?"
+
+#: .\main\templates\main\about.html:25
+msgid ""
+"Мир чая богат и разнообразен — но именно это и пугает. Мы хотим убрать "
+"барьеры: между новичками и экспертизой, между продуктом и вкусом, между "
+"интересом и действием."
+msgstr ""
+"Çay dünyası zengin ve çeşitlidir — ama tam da bu korkutucu. Engelleri "
+"kaldırmak istiyoruz: yeni başlayanlar ve uzmanlık arasında, ürün ve lezzet "
+"arasında, ilgi ve eylem arasında."
+
+#: .\main\templates\main\about.html:26
+msgid "Tea Atlas делает вкус наглядным, а выбор — интуитивным."
+msgstr "Tea Atlas lezzeti görünür, seçimi ise sezgisel kılar."
+
+#: .\main\templates\main\about.html:28
+msgid "Для кого мы это делаем?"
+msgstr "Bunu Kimin İçin Yapıyoruz?"
+
+#: .\main\templates\main\about.html:30
+msgid "Для тех, кто только начинает и не знает, с чего начать"
+msgstr "Yeni başlayan ve nereden başlayacağını bilmeyenler için"
+
+#: .\main\templates\main\about.html:31
+msgid "Для тех, кто хочет понимать, а не угадывать, почему чай понравился"
+msgstr "Çayın neden beğenildiğini tahmin etmek yerine anlamak isteyenler için"
+
+#: .\main\templates\main\about.html:32
+msgid "Для экспертов и брендов, которым нужно говорить о вкусе просто и точно"
+msgstr ""
+"Lezzet hakkında basit ve doğru konuşması gereken uzmanlar ve markalar için"
+
+#: .\main\templates\main\about.html:33
+msgid ""
+"Для поставщиков и магазинов, которым важна лояльность и вовлечённость "
+"клиентов"
+msgstr ""
+"Müşteri sadakati ve katılımını önemseyen tedarikçiler ve mağazalar için"
+
+#: .\main\templates\main\about.html:36
+msgid ""
+"Tea Atlas — это не просто проект о чае. Это инструмент понимания вкусов, "
+"платформа для общения и шаг к более осознанному потреблению."
+msgstr ""
+"Tea Atlas sadece bir çay projesi değil. Bu, lezzetleri anlamanın bir aracı, "
+"iletişim için bir platform ve daha bilinçli tüketime doğru bir adımdır."
+
+#: .\main\templates\main\about.html:38
+msgid ""
+"Присоединяйтесь к нашему путешествию — в нём главное не только то, что вы "
+"пьёте, но и как вы это ощущаете."
+msgstr ""
+"Yolculuğumuza katılın — burada önemli olan sadece ne içtiğiniz değil, aynı "
+"zamanda nasıl hissettiğinizdir."
+
+#: .\main\templates\main\index.html:5
+msgid "Главная — Tea Atlas"
+msgstr "Ana Sayfa — Tea Atlas"
+
+#: .\main\templates\main\index.html:9
+msgid "🌍 Чай объединяет миллионы"
+msgstr "🌍 Çay Milyonları Birleştirir"
+
+#: .\main\templates\main\index.html:11
+msgid "В мире более"
+msgstr "Dünyada"
+
+#: .\main\templates\main\index.html:11
+msgid "3 миллиардов чашек чая"
+msgstr "3 milyar fincan çay"
+
+#: .\main\templates\main\index.html:11
+msgid "выпивается каждый день,"
+msgstr "her gün içiliyor,"
+
+#: .\main\templates\main\index.html:11
+msgid "25 000 сортов чая"
+msgstr "25,000 çay çeşidi"
+
+#: .\main\templates\main\index.html:11
+msgid "произведено в разных уголках планеты,"
+msgstr "dünyanın farklı köşelerinde üretiliyor,"
+
+#: .\main\templates\main\index.html:11
+msgid "и миллионы любителей объединены одной страстью — чаем."
+msgstr "ve milyonlarca meraklı tek bir tutkuyla — çayla — birleşiyor."
+
+#: .\main\templates\main\index.html:14 .\templates\components\head.html:6
+#: .\templates\components\left_sidebar.html:5
+#: .\templates\components\mobile_menu.html:5
+msgid "Tea Atlas"
+msgstr "Tea Atlas"
+
+#: .\main\templates\main\index.html:14
+msgid ""
+"создан, чтобы объединить всех — ценителей, экспертов, магазины, бренды и "
+"производителей — на одной карте вкуса."
+msgstr ""
+"herkesi — meraklıları, uzmanları, mağazaları, markaları ve üreticileri — tek "
+"bir lezzet haritasında birleştirmek için yaratıldı."
+
+#: .\main\templates\main\index.html:18
+msgid "Добро пожаловать в Tea Atlas"
+msgstr "Tea Atlas'a Hoş Geldiniz"
+
+#: .\main\templates\main\index.html:23
+msgid "Чайная композиция"
+msgstr "Çay Kompozisyonu"
+
+#: .\main\templates\main\index.html:25
+msgid "Исследуйте мир чая"
+msgstr "Çay Dünyasını Keşfedin"
+
+#: .\main\templates\main\index.html:26
+msgid ""
+"Tea Atlas — это эстетика вкуса, визуальная карта и ваш гид в чайной культуре."
+msgstr ""
+"Tea Atlas, lezzetin estetiği, görsel bir harita ve çay kültüründe "
+"rehberinizdir."
+
+#: .\main\templates\main\index.html:32 .\main\templates\main\index.html:34
+msgid "Визуализация вкусов"
+msgstr "Lezzetlerin Görselleştirilmesi"
+
+#: .\main\templates\main\index.html:35
+msgid ""
+"Каждая точка и сектор на карте отражает вкусовой профиль чая — от лёгкого до "
+"насыщенного."
+msgstr ""
+"Haritadaki her nokta ve sektör, çayın lezzet profilini yansıtır — hafiften "
+"yoğuna."
+
+#: .\main\templates\main\index.html:41
+msgid "Что вы найдёте здесь?"
+msgstr "Burada Ne Bulacaksınız?"
+
+#: .\main\templates\main\index.html:47
+msgid "Диаграмма вкусов"
+msgstr "Lezzet Diyagramı"
+
+#: .\main\templates\main\index.html:48
+msgid "Типы, ароматы и оттенки чая в одном месте."
+msgstr "Çayın türleri, aromaları ve tonları tek bir yerde."
+
+#: .\main\templates\main\index.html:57
+msgid "Добавление сортов"
+msgstr "Çeşit Ekleme"
+
+#: .\main\templates\main\index.html:58
+msgid "Фиксируйте любимые чаи и делитесь ими с сообществом."
+msgstr "Favori çaylarınızı kaydedin ve toplulukla paylaşın."
+
+#: .\main\templates\main\index.html:67
+msgid "Поиск вкусов"
+msgstr "Lezzet Arama"
+
+#: .\main\templates\main\index.html:68
+msgid "Находите похожие или контрастные вкусы быстро."
+msgstr "Benzer veya kontrast lezzetleri hızlıca bulun."
+
+#: .\main\templates\main\index.html:77
+msgid "Дегустационный дневник"
+msgstr "Tadım Günlüğü"
+
+#: .\main\templates\main\index.html:78
+msgid "Храните впечатления от чаев — для себя или друзей."
+msgstr ""
+"Çaylarla ilgili izlenimlerinizi saklayın — kendiniz veya arkadaşlarınız için."
+
+#: .\main\templates\main\index.html:87
+msgid "Чайное сообщество"
+msgstr "Çay Topluluğu"
+
+#: .\main\templates\main\index.html:88
+msgid "Общайтесь, задавайте вопросы и находите единомышленников."
+msgstr "İletişim kurun, sorular sorun ve benzer düşünen insanlarla tanışın."
+
+#: .\main\templates\main\index.html:97
+msgid "И это только начало"
+msgstr "Ve bu sadece başlangıç"
+
+#: .\main\templates\main\index.html:98
+msgid ""
+"Tea Atlas развивается вместе с вами. Предлагайте идеи и следите за "
+"обновлениями."
+msgstr ""
+"Tea Atlas sizinle birlikte gelişiyor. Fikirler önerin ve güncellemeleri "
+"takip edin."
+
+#: .\main\templates\main\index.html:104
+msgid "Кому и чем полезен Tea Atlas?"
+msgstr "Tea Atlas kimlere ve nasıl faydalıdır?"
+
+#: .\main\templates\main\index.html:109
+msgid "Для пользователей"
+msgstr "Kullanıcılar için"
+
+#: .\main\templates\main\index.html:110
+msgid ""
+"Tea Atlas помогает найти любимые сорта, вести дегустационный дневник и "
+"открывать новые вкусы через игру и визуализацию."
+msgstr ""
+"Tea Atlas, favori çeşitlerinizi bulmanıza, tadım günlüğü tutmanıza ve oyun "
+"ve görselleştirme yoluyla yeni tatlar keşfetmenize yardımcı olur."
+
+#: .\main\templates\main\index.html:117
+msgid "Для магазинов"
+msgstr "Mağazalar için"
+
+#: .\main\templates\main\index.html:118
+msgid ""
+"Интеграция карты в каталог помогает предлагать чаи по вкусовому профилю "
+"покупателя и повышать конверсию."
+msgstr ""
+"Haritanın kataloğa entegrasyonu, müşterinin tat profiline göre çay "
+"önermenize ve dönüşümü artırmanıza yardımcı olur."
+
+#: .\main\templates\main\index.html:125
+msgid "Для поставщиков"
+msgstr "Tedarikçiler için"
+
+#: .\main\templates\main\index.html:126
+msgid ""
+"Цифровая карта делает абстрактные вкусы понятными и наглядными, помогая "
+"выделиться на рынке."
+msgstr ""
+"Dijital harita, soyut tatları anlaşılır ve görsel hale getirerek pazarda öne "
+"çıkmanıza yardımcı olur."
+
+#: .\main\templates\main\index.html:133
+msgid "Для экспертов и сомелье"
+msgstr "Uzmanlar ve sommelierler için"
+
+#: .\main\templates\main\index.html:134
+msgid ""
+"Визуальное сопровождение дегустаций, обучение клиентов, построение "
+"экспертного профиля и сообщества."
+msgstr ""
+"Tadımların görsel eşliği, müşteri eğitimi, uzman profili ve topluluk "
+"oluşturma."
+
+#: .\main\templates\main\index.html:141
+msgid "Для инвесторов"
+msgstr "Yatırımcılar için"
+
+#: .\main\templates\main\index.html:142
+msgid ""
+"Tea Atlas — это мост между культурой, e-commerce и персонализацией. "
+"Возможность монетизации через B2C, B2B, партнёрства и white-label решения."
+msgstr ""
+"Tea Atlas, kültür, e-ticaret ve kişiselleştirme arasında bir köprüdür. B2C, "
+"B2B, ortaklıklar ve white-label çözümleri aracılığıyla gelir elde etme "
+"imkanı."
+
+#: .\main\templates\main\index.html:149
+msgid "Для медиа и культуры"
+msgstr "Medya ve kültür için"
+
+#: .\main\templates\main\index.html:150
+msgid ""
+"Чай как часть гастрономической, культурной и визуальной среды. Пространство "
+"для рассказов и коллабораций."
+msgstr ""
+"Çay, gastronomik, kültürel ve görsel ortamın bir parçası olarak. Hikayeler "
+"ve işbirlikleri için alan."
+
+#: .\main\templates\main\index.html:155
+msgid "Кто и как может помочь Tea Atlas"
+msgstr "Tea Atlas'a kim ve nasıl yardımcı olabilir"
+
+#: .\main\templates\main\index.html:160
+msgid "Пользователи"
+msgstr "Kullanıcılar"
+
+#: .\main\templates\main\index.html:161
+msgid ""
+"Пробуйте, делитесь, комментируйте. Ваши вкусы и отзывы помогают нам расти и "
+"улучшаться."
+msgstr ""
+"Deneyin, paylaşın, yorum yapın. Zevkleriniz ve geri bildirimleriniz "
+"büyümemize ve gelişmemize yardımcı olur."
+
+#: .\main\templates\main\index.html:162
+msgid "📌 Отзывы • Тестирование • Распространение"
+msgstr "📌 Yorumlar • Test • Yaygınlaştırma"
+
+#: .\main\templates\main\index.html:169
+msgid "Эксперты и сомелье"
+msgstr "Uzmanlar ve sommelierler"
+
+#: .\main\templates\main\index.html:170
+msgid ""
+"Делитесь знаниями, описывайте вкусы, помогайте другим разбираться в чае."
+msgstr ""
+"Bilgilerinizi paylaşın, tatları tanımlayın, başkalarının çayı anlamasına "
+"yardımcı olun."
+
+#: .\main\templates\main\index.html:171
+msgid "📌 Контент • Образование • Поддержка стандартов"
+msgstr "📌 İçerik • Eğitim • Standart desteği"
+
+#: .\main\templates\main\index.html:178
+msgid "Магазины и бренды"
+msgstr "Mağazalar ve markalar"
+
+#: .\main\templates\main\index.html:179
+msgid ""
+"Интеграция карты в каталог, партнёрские акции, улучшение подбора чаёв для "
+"клиентов."
+msgstr ""
+"Kataloğa harita entegrasyonu, ortaklık kampanyaları, müşteriler için çay "
+"seçiminin iyileştirilmesi."
+
+#: .\main\templates\main\index.html:180
+msgid "📌 Интеграции • Рекомендации • Совместные акции"
+msgstr "📌 Entegrasyonlar • Öneriler • Ortak kampanyalar"
+
+#: .\main\templates\main\index.html:187
+msgid "Поставщики"
+msgstr "Tedarikçiler"
+
+#: .\main\templates\main\index.html:188
+msgid ""
+"Помогите визуально отразить вкус ваших чаёв и донести их до подходящей "
+"аудитории."
+msgstr ""
+"Çaylarınızın tadını görsel olarak yansıtmanıza ve uygun kitleye "
+"ulaştırmanıza yardımcı olun."
+
+#: .\main\templates\main\index.html:189
+msgid "📌 Данные • Профили вкуса • Представление продукции"
+msgstr "📌 Veriler • Tat profilleri • Ürün sunumu"
+
+#: .\main\templates\main\index.html:196
+msgid "Инвесторы"
+msgstr "Yatırımcılar"
+
+#: .\main\templates\main\index.html:197
+msgid ""
+"Вложитесь в технологичный продукт на стыке вкуса, культуры и персонализации."
+msgstr ""
+"Tat, kültür ve kişiselleştirmenin kesişiminde teknolojik bir ürüne yatırım "
+"yapın."
+
+#: .\main\templates\main\index.html:198
+msgid "📌 Финансирование • Стратегия • Масштабирование"
+msgstr "📌 Finansman • Strateji • Ölçeklendirme"
+
+#: .\main\templates\main\index.html:205
+msgid "Присоединяйтесь!"
+msgstr "Katılın!"
+
+#: .\main\templates\main\index.html:206
+msgid "Tea Atlas открыт для всех, кто хочет развивать чайную культуру."
+msgstr "Tea Atlas, çay kültürünü geliştirmek isteyen herkese açıktır."
+
+#: .\main\templates\main\index.html:207
+msgid "📌 Идеи • Сотрудничество • Поддержка"
+msgstr "📌 Fikirler • İşbirliği • Destek"
+
+#: .\main\templates\main\index.html:213
+msgid "🤝 Вместе — сильнее"
+msgstr "🤝 Birlikte — daha güçlüyüz"
+
+#: .\main\templates\main\index.html:214
+msgid ""
+"Мы открыты к диалогу, коллаборациям и всем, кто хочет, чтобы культура чая "
+"развивалась в новом формате."
+msgstr ""
+"Diyaloğa, işbirliklerine ve çay kültürünün yeni bir formatta gelişmesini "
+"isteyen herkese açığız."
+
+#: .\main\templates\main\index.html:215
+msgid "Присоединяйтесь — Tea Atlas строится вами и для вас."
+msgstr "Katılın — Tea Atlas sizin tarafınızdan ve sizin için inşa ediliyor."
+
+#: .\main\templates\main\index.html:216
+msgid "Хочу участвовать"
+msgstr "Katılmak istiyorum"
+
+#: .\tea\templates\tea\components\tea_modals.html:11
+msgid "Добавить тип чая"
+msgstr ""
+
+#: .\tea\templates\tea\components\tea_modals.html:16
+msgid "Название типа"
+msgstr ""
+
+#: .\tea\templates\tea\components\tea_modals.html:34
+#, fuzzy
+#| msgid "Поиск вкусов"
+msgid "Добавить вкус"
+msgstr "Lezzet Arama"
+
+#: .\tea\templates\tea\components\tea_modals.html:39
+#, fuzzy
+#| msgid "Диаграмма вкусов"
+msgid "Название вкуса"
+msgstr "Lezzet Diyagramı"
+
+#: .\tea\templates\tea\components\tea_modals.html:57
+#, fuzzy
+#| msgid "Добавление сортов"
+msgid "Добавить регион"
+msgstr "Çeşit Ekleme"
+
+#: .\tea\templates\tea\components\tea_modals.html:62
+msgid "Название региона"
+msgstr ""
+
+#: .\tea\templates\tea\components\tea_modals.html:80
+msgid "Добавить цвет"
+msgstr ""
+
+#: .\tea\templates\tea\components\tea_modals.html:85
+#, fuzzy
+#| msgid "Добавление сортов"
+msgid "Название цвета"
+msgstr "Çeşit Ekleme"
+
+#: .\tea\templates\tea\components\tea_modals.html:103
+#, fuzzy
+#| msgid "Интенсивность"
+msgid "Добавить интенсивность"
+msgstr "Yoğunluk"
+
+#: .\tea\templates\tea\components\tea_modals.html:108
+#, fuzzy
+#| msgid "Интенсивность"
+msgid "Название интенсивности"
+msgstr "Yoğunluk"
+
+#: .\tea\templates\tea\components\tea_modals.html:126
+#, fuzzy
+#| msgid "Производитель"
+msgid "Добавить производителя"
+msgstr "Üretici"
+
+#: .\tea\templates\tea\components\tea_modals.html:131
+#, fuzzy
+#| msgid "Производитель"
+msgid "Название производителя"
+msgstr "Üretici"
+
+#: .\tea\templates\tea\components\tea_modals.html:149
+#, fuzzy
+#| msgid "Для поставщиков"
+msgid "Добавить поставщика"
+msgstr "Tedarikçiler için"
+
+#: .\tea\templates\tea\components\tea_modals.html:154
+#, fuzzy
+#| msgid "Для поставщиков"
+msgid "Название поставщика"
+msgstr "Tedarikçiler için"
+
+#: .\tea\templates\tea\components\tea_modals.html:172
+#, fuzzy
+#| msgid "Метод заварки"
+msgid "Добавить метод заварки"
+msgstr "Demleme yöntemi"
+
+#: .\tea\templates\tea\components\tea_modals.html:177
+#, fuzzy
+#| msgid "Добавление сортов"
+msgid "Название метода"
+msgstr "Çeşit Ekleme"
+
+#: .\tea\templates\tea\tea_detail.html:11 .\tea\templates\tea\teas_list.html:8
+msgid "Каталог чаёв"
+msgstr "Çay Kataloğu"
+
+#: .\tea\templates\tea\tea_detail.html:33
+msgid "Основные характеристики"
+msgstr ""
+
+#: .\tea\templates\tea\tea_detail.html:36
+#: .\tea\templates\tea\teas_list.html:115
+msgid "Тип:"
+msgstr ""
+
+#: .\tea\templates\tea\tea_detail.html:36
+#: .\tea\templates\tea\tea_detail.html:37
+#: .\tea\templates\tea\tea_detail.html:38
+#: .\tea\templates\tea\tea_detail.html:40
+#: .\tea\templates\tea\tea_detail.html:53
+#: .\tea\templates\tea\tea_detail.html:54
+#: .\tea\templates\tea\tea_detail.html:55
+#: .\tea\templates\tea\tea_manage.html:170
+#: .\tea\templates\tea\tea_manage.html:171
+#: .\tea\templates\tea\tea_manage.html:173
+#: .\tea\templates\tea\tea_manage.html:174
+#: .\tea\templates\tea\tea_manage.html:175
+#: .\tea\templates\tea\tea_manage.html:176
+#: .\tea\templates\tea\teas_list.html:115
+#: .\tea\templates\tea\teas_list.html:116
+#: .\tea\templates\tea\teas_list.html:117
+#: .\tea\templates\tea\teas_list.html:119
+#: .\tea\templates\tea\teas_list.html:120
+msgid "Не указан"
+msgstr "Belirtilmemiş"
+
+#: .\tea\templates\tea\tea_detail.html:37
+#: .\tea\templates\tea\tea_manage.html:170
+#: .\tea\templates\tea\teas_list.html:116
+msgid "Регион:"
+msgstr "Bölge:"
+
+#: .\tea\templates\tea\tea_detail.html:38
+#: .\tea\templates\tea\tea_manage.html:171
+#: .\tea\templates\tea\teas_list.html:117
+msgid "Вкус:"
+msgstr "Tat:"
+
+#: .\tea\templates\tea\tea_detail.html:39
+#: .\tea\templates\tea\tea_manage.html:172
+#: .\tea\templates\tea\teas_list.html:118
+msgid "Интенсивность:"
+msgstr "Yoğunluk:"
+
+#: .\tea\templates\tea\tea_detail.html:39
+#: .\tea\templates\tea\tea_manage.html:172
+#: .\tea\templates\tea\teas_list.html:118
+msgid "Не указана"
+msgstr "Belirtilmemiş"
+
+#: .\tea\templates\tea\tea_detail.html:40
+#: .\tea\templates\tea\tea_manage.html:173
+msgid "Цвет:"
+msgstr "Renk:"
+
+#: .\tea\templates\tea\tea_detail.html:50
+msgid "Информация о производстве"
+msgstr ""
+
+#: .\tea\templates\tea\tea_detail.html:53
+#: .\tea\templates\tea\tea_manage.html:174
+#: .\tea\templates\tea\teas_list.html:119
+msgid "Производитель:"
+msgstr "Üretici:"
+
+#: .\tea\templates\tea\tea_detail.html:54
+#: .\tea\templates\tea\tea_manage.html:175
+msgid "Поставщик:"
+msgstr "Tedarikçi:"
+
+#: .\tea\templates\tea\tea_detail.html:55
+#: .\tea\templates\tea\tea_manage.html:176
+#: .\tea\templates\tea\teas_list.html:120
+msgid "Метод заварки:"
+msgstr "Demleme yöntemi:"
+
+#: .\tea\templates\tea\tea_detail.html:71
+#: .\tea\templates\tea\tea_manage.html:19
+#: .\tea\templates\tea\tea_manage.html:222
+msgid "Позиция на диаграмме"
+msgstr ""
+
+#: .\tea\templates\tea\tea_detail.html:80
+msgid "Похожие чаи"
+msgstr ""
+
+#: .\tea\templates\tea\tea_detail.html:87
+msgid "Похожие чаи не найдены"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:4
+#, fuzzy
+#| msgid "Каталог чаёв — Tea Atlas"
+msgid "Управление чаями — Tea Atlas"
+msgstr "Çay Kataloğu — Tea Atlas"
+
+#: .\tea\templates\tea\tea_manage.html:7
+#: .\templates\components\left_sidebar.html:17
+#: .\templates\components\mobile_menu.html:17
+#, fuzzy
+#| msgid "Добавление сортов"
+msgid "Управление чаями"
+msgstr "Çeşit Ekleme"
+
+#: .\tea\templates\tea\tea_manage.html:20
+msgid "Выберите угол и радиус — чай появится в соответствующем секторе"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:23
+#: .\tea\templates\tea\tea_manage.html:225
+msgid "Угол"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:32
+#: .\tea\templates\tea\tea_manage.html:234
+msgid "Радиус"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:52
+#: .\tea\templates\tea\tea_manage.html:214
+msgid "Название чая"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:60
+#: .\tea\templates\tea\tea_manage.html:247
+#: .\tea\templates\tea\teas_list.html:20
+msgid "Тип"
+msgstr "Tür"
+
+#: .\tea\templates\tea\tea_manage.html:71
+#: .\tea\templates\tea\tea_manage.html:255
+#: .\tea\templates\tea\teas_list.html:40
+msgid "Вкус"
+msgstr "Tat"
+
+#: .\tea\templates\tea\tea_manage.html:82
+#: .\tea\templates\tea\tea_manage.html:263
+#: .\tea\templates\tea\teas_list.html:30
+msgid "Регион"
+msgstr "Bölge"
+
+#: .\tea\templates\tea\tea_manage.html:93
+#: .\tea\templates\tea\tea_manage.html:271
+#: .\tea\templates\tea\teas_list.html:60
+msgid "Цвет"
+msgstr "Renk"
+
+#: .\tea\templates\tea\tea_manage.html:104
+#: .\tea\templates\tea\tea_manage.html:279
+#: .\tea\templates\tea\teas_list.html:50
+msgid "Интенсивность"
+msgstr "Yoğunluk"
+
+#: .\tea\templates\tea\tea_manage.html:115
+#: .\tea\templates\tea\tea_manage.html:287
+#: .\tea\templates\tea\teas_list.html:70
+msgid "Производитель"
+msgstr "Üretici"
+
+#: .\tea\templates\tea\tea_manage.html:126
+#: .\tea\templates\tea\tea_manage.html:295
+#: .\tea\templates\tea\teas_list.html:80
+msgid "Поставщик"
+msgstr "Tedarikçi"
+
+#: .\tea\templates\tea\tea_manage.html:137
+#: .\tea\templates\tea\tea_manage.html:303
+#: .\tea\templates\tea\teas_list.html:90
+msgid "Метод заварки"
+msgstr "Demleme yöntemi"
+
+#: .\tea\templates\tea\tea_manage.html:148
+#, fuzzy
+#| msgid "Добавление сортов"
+msgid "Добавить чай"
+msgstr "Çeşit Ekleme"
+
+#: .\tea\templates\tea\tea_manage.html:162
+#, fuzzy
+#| msgid "Каталог чаёв"
+msgid "Список чаёв"
+msgstr "Çay Kataloğu"
+
+#: .\tea\templates\tea\tea_manage.html:193
+msgid "Редактировать"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:194
+msgid "Удалить"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:209
+msgid "Редактировать чай"
+msgstr ""
+
+#: .\tea\templates\tea\tea_manage.html:312
+msgid "Сохранить изменения"
+msgstr ""
+
+#: .\tea\templates\tea\teas_list.html:5
+msgid "Каталог чаёв — Tea Atlas"
+msgstr "Çay Kataloğu — Tea Atlas"
+
+#: .\tea\templates\tea\teas_list.html:22 .\tea\templates\tea\teas_list.html:32
+#: .\tea\templates\tea\teas_list.html:42 .\tea\templates\tea\teas_list.html:52
+#: .\tea\templates\tea\teas_list.html:62 .\tea\templates\tea\teas_list.html:72
+#: .\tea\templates\tea\teas_list.html:82 .\tea\templates\tea\teas_list.html:92
+msgid "Все"
+msgstr "Tümü"
+
+#: .\templates\components\footer.html:4
+msgid "Tea Atlas — Заварено с душой"
+msgstr "Tea Atlas — Tutkuyla Demlenmiş"
+
+#: .\templates\components\left_sidebar.html:8
+#: .\templates\components\mobile_menu.html:14
+msgid "Главная"
+msgstr "Ana Sayfa"
+
+#: .\templates\components\left_sidebar.html:11
+#: .\templates\components\mobile_menu.html:15
+msgid "Диаграмма"
+msgstr "Diyagram"
+
+#: .\templates\components\left_sidebar.html:14
+#: .\templates\components\mobile_menu.html:16
+msgid "Каталог"
+msgstr "Katalog"
+
+#: .\templates\components\right_sidebar.html:5
+msgid "Цитата дня"
+msgstr "Günün Sözü"
+
+#: .\templates\components\right_sidebar.html:6
+msgid "Чай — это не просто напиток, это состояние ума."
+msgstr "Çay sadece bir içecek değil, bir zihin durumudur."
+
+#: .\templates\components\right_sidebar.html:9
+msgid "Совет"
+msgstr "İpucu"
+
+#: .\templates\components\right_sidebar.html:10
+msgid "Белый чай: 70–80°C, 2–3 мин."
+msgstr "Beyaz çay: 70–80°C, 2–3 dk."
+
+#: .\templates\components\right_sidebar.html:13
+msgid "Чай дня"
+msgstr "Günün Çayı"
+
+#: .\templates\components\right_sidebar.html:14
+msgid "Да Хун Пао"
+msgstr "Da Hong Pao"
+
+#: .\templates\components\right_sidebar.html:14
+msgid "улун с Уишаньских гор."
+msgstr "Wuyi dağlarından oolong."
+
+#: .\templates\components\right_sidebar.html:17
+msgid "Полезное"
+msgstr "Faydalı"
+
+#: .\templates\components\right_sidebar.html:19
+msgid "Редкие белые сорта"
+msgstr "Nadir beyaz çeşitler"
+
+#: .\templates\components\right_sidebar.html:20
+msgid "Лучшие пуэры 2024"
+msgstr "En İyi Pu-erh'ler 2024"
+
+#: .\templates\components\right_sidebar.html:21
+msgid "Чайный гид"
+msgstr "Çay Rehberi"

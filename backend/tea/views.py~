@@ -1,0 +1,107 @@
+from django.shortcuts import render
+from django.http import HttpRequest, JsonResponse
+from supabase_client import supabase
+from django.views.decorators.http import require_GET
+
+
+
+
+@require_GET
+def tea_list(request: HttpRequest):
+    # Получаем параметры из GET-запроса
+    filters = {
+        'type': request.GET.get('type'),
+        'region': request.GET.get('region'),
+        'taste': request.GET.get('taste'),
+        'intensity': request.GET.get('intensity'),
+        'color': request.GET.get('color'),
+        'producer': request.GET.get('producer'),
+        'vendor': request.GET.get('vendor'),
+        'brewing_method': request.GET.get('brewing_method'),
+    }
+
+    # Загружаем справочные данные
+    types = supabase.table('tea_types').select('id, name').execute().data
+    regions = supabase.table('regions').select('id, name').execute().data
+    tastes = supabase.table('tastes').select('id, name').execute().data
+    intensities = supabase.table('intensities').select('id, name').execute().data
+    colors = supabase.table('colors').select('id, name').execute().data
+    producers = supabase.table('producers').select('id, name').execute().data
+    vendors = supabase.table('vendors').select('id, name').execute().data
+    brewing_methods = supabase.table('brewing_methods').select('id, name').execute().data
+
+    # Строим запрос к таблице чаёв
+    query = supabase.table('teas').select(
+        'id, name, description, '
+        'type:type_id(name), '
+        'region:region_id(name), '
+        'taste:taste_id(name), '
+        'intensity:intensity_id(name), '
+        'color:color_id(name), '
+        'producer:producer_id(name), '
+        'vendor:vendor_id(name), '
+        'brewing_method:brewing_method_id(name)'
+    )
+
+    # Преобразуем имя → ID для фильтрации
+    def name_to_id(name, table):
+        for row in table:
+            if row['name'] == name:
+                return row['id']
+        return None
+
+    if filters['type']:
+        type_id = name_to_id(filters['type'], types)
+        if type_id:
+            query = query.eq('type_id', type_id)
+
+    if filters['region']:
+        region_id = name_to_id(filters['region'], regions)
+        if region_id:
+            query = query.eq('region_id', region_id)
+
+    if filters['taste']:
+        taste_id = name_to_id(filters['taste'], tastes)
+        if taste_id:
+            query = query.eq('taste_id', taste_id)
+
+    if filters['intensity']:
+        intensity_id = name_to_id(filters['intensity'], intensities)
+        if intensity_id:
+            query = query.eq('intensity_id', intensity_id)
+
+    if filters['color']:
+        color_id = name_to_id(filters['color'], colors)
+        if color_id:
+            query = query.eq('color_id', color_id)
+
+    if filters['producer']:
+        producer_id = name_to_id(filters['producer'], producers)
+        if producer_id:
+            query = query.eq('producer_id', producer_id)
+
+    if filters['vendor']:
+        vendor_id = name_to_id(filters['vendor'], vendors)
+        if vendor_id:
+            query = query.eq('vendor_id', vendor_id)
+
+    if filters['brewing_method']:
+        method_id = name_to_id(filters['brewing_method'], brewing_methods)
+        if method_id:
+            query = query.eq('brewing_method_id', method_id)
+
+    # Получаем список чаёв
+    teas = query.execute().data
+
+    return render(request, 'tea/teas_list.html', {
+        'teas': teas,
+        'types': [t['name'] for t in types],
+        'regions': [r['name'] for r in regions],
+        'tastes': [t['name'] for t in tastes],
+        'intensities': [i['name'] for i in intensities],
+        'colors': [c['name'] for c in colors],
+        'producers': [p['name'] for p in producers],
+        'vendors': [v['name'] for v in vendors],
+        'brewing_methods': [b['name'] for b in brewing_methods],
+        **filters
+    })

@@ -1,0 +1,31 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig(({ mode }) => ({
+  plugins: [
+    react({
+      jsxRuntime: "automatic", // Автоматический режим JSX
+    }),
+  ],
+  base: mode === "production" ? "/static/" : "/",
+  build: {
+    tsconfig: "tsconfig.app.json",
+    outDir: "../backend/static",
+    emptyOutDir: true,
+    manifest: true,
+    rollupOptions: {
+      input: "/src/main.tsx",
+      output: {
+        entryFileNames: "assets/[name].[hash].js",
+        chunkFileNames: "assets/[name].[hash].js",
+        assetFileNames: "assets/[name].[hash].[ext]",
+      },
+    },
+  },
+  server: {
+    host: "localhost",
+    port: 5173,
+    strictPort: true,
+    cors: true,
+  },
+}));

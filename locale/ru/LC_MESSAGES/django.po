@@ -1,0 +1,1189 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-26 13:35+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\backend\articles\templates\articles\article_add.html:5
+#: .\backend\articles\templates\articles\article_add.html:17
+#: .\backend\articles\templates\articles\article_add.html:23
+#: .\backend\articles\templates\articles\article_list.html:14
+msgid "Добавить статью"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:16
+#: .\backend\articles\templates\articles\article_detail.html:15
+#: .\backend\articles\templates\articles\article_list.html:5
+#: .\backend\articles\templates\articles\article_list.html:12
+#: .\backend\templates\components\left_sidebar.html:53
+msgid "Статьи"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:29
+msgid "Заголовок"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:35
+msgid "Краткое описание"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:40
+msgid "Содержание"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:45
+msgid "Обложка статьи"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:47
+msgid ""
+"Загрузите изображение для обложки статьи. Рекомендуемый размер: 1200x630 "
+"пикселей."
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:52
+#: .\backend\articles\templates\articles\article_list.html:25
+msgid "Категория"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:54
+#: .\backend\articles\templates\articles\article_add.html:116
+msgid "Добавить категорию"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:58
+msgid "Выберите категорию"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:67
+msgid "Теги"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:69
+#: .\backend\articles\templates\articles\article_add.html:144
+msgid "Добавить тег"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:87
+msgid "Связанные чаи"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:103
+#: .\backend\articles\templates\articles\article_add.html:132
+#: .\backend\articles\templates\articles\article_add.html:156
+msgid "Отмена"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:104
+msgid "Сохранить"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:122
+#: .\backend\articles\templates\articles\article_add.html:150
+msgid "Название"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:126
+#: .\backend\tea\templates\tea\tea_detail.html:24
+#: .\backend\tea\templates\tea\tea_manage.html:56
+#: .\backend\tea\templates\tea\tea_manage.html:277
+msgid "Описание"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:133
+#: .\backend\articles\templates\articles\article_add.html:157
+#: .\backend\tea\templates\tea\components\tea_modals.html:19
+#: .\backend\tea\templates\tea\components\tea_modals.html:42
+#: .\backend\tea\templates\tea\components\tea_modals.html:65
+#: .\backend\tea\templates\tea\components\tea_modals.html:88
+#: .\backend\tea\templates\tea\components\tea_modals.html:111
+#: .\backend\tea\templates\tea\components\tea_modals.html:134
+#: .\backend\tea\templates\tea\components\tea_modals.html:157
+#: .\backend\tea\templates\tea\components\tea_modals.html:180
+#: .\backend\tea\templates\tea\components\tea_modals.html:203
+msgid "Добавить"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:237
+msgid "Ошибка при добавлении категории"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_add.html:281
+msgid "Ошибка при добавлении тега"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_detail.html:42
+msgid "Упоминаемые чаи"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:21
+#: .\backend\tea\templates\tea\teas_list.html:13
+msgid "Фильтры"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:27
+msgid "Все категории"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:38
+msgid "Тег"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:40
+msgid "Все теги"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:51
+#: .\backend\tea\templates\tea\teas_list.html:100
+msgid "Применить"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:52
+#: .\backend\tea\templates\tea\teas_list.html:101
+msgid "Сбросить"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:81
+#: .\backend\tea\templates\tea\teas_list.html:142
+msgid "Подробнее"
+msgstr ""
+
+#: .\backend\articles\templates\articles\article_list.html:88
+msgid "Статей пока нет."
+msgstr ""
+
+#: .\backend\diagram\templates\diagram\diagram.html:5
+msgid "Колесо вкусов — Tea Atlas"
+msgstr ""
+
+#: .\backend\diagram\templates\diagram\diagram.html:20
+msgid "Колесо вкусов"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:4
+msgid "О проекте — Tea Atlas"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:8
+msgid "О проекте"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:9
+msgid ""
+"Tea Atlas — это интерактивная карта вкусов чая, которая помогает "
+"ориентироваться в огромном мире сортов, ароматов и оттенков."
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:10
+msgid ""
+"Мы превращаем дегустацию в игру, а выбор чая — в осознанный и увлекательный "
+"процесс."
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:12
+msgid ""
+"Проект родился из желания сделать чай ближе, понятнее и доступнее — как "
+"новичкам, так и опытным ценителям."
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:13
+msgid ""
+"С помощью визуальной карты и цифровых инструментов мы делаем то, что раньше "
+"было доступно только экспертам: помогаем «увидеть вкус»."
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:15
+msgid "Что мы создаём?"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:17
+msgid ""
+"Цифровую вкусовую карту, где каждый сорт чая имеет своё визуальное место"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:18
+msgid ""
+"Личный дневник и профиль вкусов, который помогает фиксировать впечатления и "
+"находить новые предпочтения"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:19
+msgid ""
+"Поиск и фильтрацию чаёв по вкусу, региону, насыщенности, терпкости и другим "
+"параметрам"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:20
+msgid ""
+"Интеграции для магазинов и поставщиков, чтобы рекомендовать чаи клиентам и "
+"повышать продажи"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:21
+msgid ""
+"Платформу для экспертов, где можно делиться опытом, вести обзоры и собирать "
+"свою аудиторию"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:24
+msgid "Почему это важно?"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:25
+msgid ""
+"Мир чая богат и разнообразен — но именно это и пугает. Мы хотим убрать "
+"барьеры: между новичками и экспертизой, между продуктом и вкусом, между "
+"интересом и действием."
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:26
+msgid "Tea Atlas делает вкус наглядным, а выбор — интуитивным."
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:28
+msgid "Для кого мы это делаем?"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:30
+msgid "Для тех, кто только начинает и не знает, с чего начать"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:31
+msgid "Для тех, кто хочет понимать, а не угадывать, почему чай понравился"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:32
+msgid "Для экспертов и брендов, которым нужно говорить о вкусе просто и точно"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:33
+msgid ""
+"Для поставщиков и магазинов, которым важна лояльность и вовлечённость "
+"клиентов"
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:36
+msgid ""
+"Tea Atlas — это не просто проект о чае. Это инструмент понимания вкусов, "
+"платформа для общения и шаг к более осознанному потреблению."
+msgstr ""
+
+#: .\backend\main\templates\main\about.html:38
+msgid ""
+"Присоединяйтесь к нашему путешествию — в нём главное не только то, что вы "
+"пьёте, но и как вы это ощущаете."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:5
+msgid "Главная — Tea Atlas"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:9
+msgid "🌍 Чай объединяет миллионы"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:11
+msgid "В мире более"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:11
+msgid "3 миллиардов чашек чая"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:11
+msgid "выпивается каждый день,"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:11
+msgid "25 000 сортов чая"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:11
+msgid "произведено в разных уголках планеты,"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:11
+msgid "и миллионы любителей объединены одной страстью — чаем."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:14
+#: .\backend\templates\components\head.html:6
+#: .\backend\templates\components\left_sidebar.html:38
+#: .\backend\templates\components\mobile_menu.html:5
+msgid "Tea Atlas"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:14
+msgid ""
+"создан, чтобы объединить всех — ценителей, экспертов, магазины, бренды и "
+"производителей — на одной карте вкуса."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:18
+msgid "Добро пожаловать в Tea Atlas"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:23
+msgid "Чайная композиция"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:25
+msgid "Исследуйте мир чая"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:26
+msgid ""
+"Tea Atlas — это эстетика вкуса, визуальная карта и ваш гид в чайной культуре."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:32
+#: .\backend\main\templates\main\index.html:34
+msgid "Визуализация вкусов"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:35
+msgid ""
+"Каждая точка и сектор на карте отражает вкусовой профиль чая — от лёгкого до "
+"насыщенного."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:41
+msgid "Что вы найдёте здесь?"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:47
+msgid "Диаграмма вкусов"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:48
+msgid "Типы, ароматы и оттенки чая в одном месте."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:57
+msgid "Добавление сортов"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:58
+msgid "Фиксируйте любимые чаи и делитесь ими с сообществом."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:67
+msgid "Поиск вкусов"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:68
+msgid "Находите похожие или контрастные вкусы быстро."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:77
+msgid "Дегустационный дневник"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:78
+msgid "Храните впечатления от чаев — для себя или друзей."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:87
+msgid "Чайное сообщество"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:88
+msgid "Общайтесь, задавайте вопросы и находите единомышленников."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:97
+msgid "И это только начало"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:98
+msgid ""
+"Tea Atlas развивается вместе с вами. Предлагайте идеи и следите за "
+"обновлениями."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:104
+msgid "Кому и чем полезен Tea Atlas?"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:109
+msgid "Для пользователей"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:110
+msgid ""
+"Tea Atlas помогает найти любимые сорта, вести дегустационный дневник и "
+"открывать новые вкусы через игру и визуализацию."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:117
+msgid "Для магазинов"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:118
+msgid ""
+"Интеграция карты в каталог помогает предлагать чаи по вкусовому профилю "
+"покупателя и повышать конверсию."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:125
+msgid "Для поставщиков"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:126
+msgid ""
+"Цифровая карта делает абстрактные вкусы понятными и наглядными, помогая "
+"выделиться на рынке."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:133
+msgid "Для экспертов и сомелье"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:134
+msgid ""
+"Визуальное сопровождение дегустаций, обучение клиентов, построение "
+"экспертного профиля и сообщества."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:141
+msgid "Для инвесторов"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:142
+msgid ""
+"Tea Atlas — это мост между культурой, e-commerce и персонализацией. "
+"Возможность монетизации через B2C, B2B, партнёрства и white-label решения."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:149
+msgid "Для медиа и культуры"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:150
+msgid ""
+"Чай как часть гастрономической, культурной и визуальной среды. Пространство "
+"для рассказов и коллабораций."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:155
+msgid "Кто и как может помочь Tea Atlas"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:160
+msgid "Пользователи"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:161
+msgid ""
+"Пробуйте, делитесь, комментируйте. Ваши вкусы и отзывы помогают нам расти и "
+"улучшаться."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:162
+msgid "📌 Отзывы • Тестирование • Распространение"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:169
+msgid "Эксперты и сомелье"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:170
+msgid ""
+"Делитесь знаниями, описывайте вкусы, помогайте другим разбираться в чае."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:171
+msgid "📌 Контент • Образование • Поддержка стандартов"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:178
+msgid "Магазины и бренды"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:179
+msgid ""
+"Интеграция карты в каталог, партнёрские акции, улучшение подбора чаёв для "
+"клиентов."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:180
+msgid "📌 Интеграции • Рекомендации • Совместные акции"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:187
+msgid "Поставщики"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:188
+msgid ""
+"Помогите визуально отразить вкус ваших чаёв и донести их до подходящей "
+"аудитории."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:189
+msgid "📌 Данные • Профили вкуса • Представление продукции"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:196
+msgid "Инвесторы"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:197
+msgid ""
+"Вложитесь в технологичный продукт на стыке вкуса, культуры и персонализации."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:198
+msgid "📌 Финансирование • Стратегия • Масштабирование"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:205
+msgid "Присоединяйтесь!"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:206
+msgid "Tea Atlas открыт для всех, кто хочет развивать чайную культуру."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:207
+msgid "📌 Идеи • Сотрудничество • Поддержка"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:213
+msgid "🤝 Вместе — сильнее"
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:214
+msgid ""
+"Мы открыты к диалогу, коллаборациям и всем, кто хочет, чтобы культура чая "
+"развивалась в новом формате."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:215
+msgid "Присоединяйтесь — Tea Atlas строится вами и для вас."
+msgstr ""
+
+#: .\backend\main\templates\main\index.html:216
+msgid "Хочу участвовать"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:11
+msgid "Добавить тип чая"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:16
+msgid "Название типа"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:34
+msgid "Добавить вкус"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:39
+msgid "Название вкуса"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:57
+msgid "Добавить регион"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:62
+msgid "Название региона"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:80
+msgid "Добавить цвет"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:85
+msgid "Название цвета"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:103
+msgid "Добавить интенсивность"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:108
+msgid "Название интенсивности"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:126
+msgid "Добавить производителя"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:131
+msgid "Название производителя"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:149
+msgid "Добавить поставщика"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:154
+msgid "Название поставщика"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:172
+msgid "Добавить метод заварки"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:177
+msgid "Название метода"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:195
+#: .\backend\tea\templates\tea\tea_manage.html:158
+#: .\backend\tea\templates\tea\tea_manage.html:379
+msgid "Добавить ноту"
+msgstr ""
+
+#: .\backend\tea\templates\tea\components\tea_modals.html:200
+msgid "Название ноты"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:11
+#: .\backend\tea\templates\tea\teas_list.html:8
+msgid "Каталог чаёв"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:33
+msgid "Основные характеристики"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:36
+#: .\backend\tea\templates\tea\teas_list.html:115
+msgid "Тип:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:36
+#: .\backend\tea\templates\tea\tea_detail.html:37
+#: .\backend\tea\templates\tea\tea_detail.html:38
+#: .\backend\tea\templates\tea\tea_detail.html:40
+#: .\backend\tea\templates\tea\tea_detail.html:53
+#: .\backend\tea\templates\tea\tea_detail.html:54
+#: .\backend\tea\templates\tea\tea_detail.html:55
+#: .\backend\tea\templates\tea\tea_manage.html:191
+#: .\backend\tea\templates\tea\tea_manage.html:198
+#: .\backend\tea\templates\tea\tea_manage.html:212
+#: .\backend\tea\templates\tea\tea_manage.html:219
+#: .\backend\tea\templates\tea\tea_manage.html:226
+#: .\backend\tea\templates\tea\tea_manage.html:233
+#: .\backend\tea\templates\tea\teas_list.html:115
+#: .\backend\tea\templates\tea\teas_list.html:116
+#: .\backend\tea\templates\tea\teas_list.html:131
+#: .\backend\tea\templates\tea\teas_list.html:139
+msgid "Не указан"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:37
+#: .\backend\tea\templates\tea\tea_manage.html:187
+#: .\backend\tea\templates\tea\teas_list.html:116
+msgid "Регион:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:38
+#: .\backend\tea\templates\tea\tea_manage.html:194
+msgid "Вкус:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:39
+#: .\backend\tea\templates\tea\tea_manage.html:201
+#: .\backend\tea\templates\tea\teas_list.html:117
+msgid "Интенсивность:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:39
+#: .\backend\tea\templates\tea\tea_manage.html:205
+#: .\backend\tea\templates\tea\teas_list.html:123
+msgid "Не указана"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:40
+#: .\backend\tea\templates\tea\tea_manage.html:208
+msgid "Цвет:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:50
+msgid "Информация о производстве"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:53
+#: .\backend\tea\templates\tea\tea_manage.html:215
+#: .\backend\tea\templates\tea\teas_list.html:125
+msgid "Производитель:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:54
+#: .\backend\tea\templates\tea\tea_manage.html:222
+msgid "Поставщик:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:55
+#: .\backend\tea\templates\tea\tea_manage.html:229
+#: .\backend\tea\templates\tea\teas_list.html:133
+msgid "Метод заварки:"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:66
+msgid "Гистограмма нот"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:77
+#: .\backend\users\templates\users\profile.html:26
+msgid "Хочу попробовать"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:80
+#: .\backend\users\templates\users\profile.html:45
+msgid "Пробовал"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:99
+msgid "Позиция на колесе вкусов"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:108
+msgid "Похожие чаи"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_detail.html:115
+msgid "Похожие чаи не найдены"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:4
+msgid "Управление чаями — Tea Atlas"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:7
+#: .\backend\templates\components\left_sidebar.html:50
+#: .\backend\templates\components\mobile_menu.html:17
+msgid "Управление чаями"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:19
+#: .\backend\tea\templates\tea\tea_manage.html:281
+msgid "Позиция на диаграмме"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:20
+msgid "Выберите угол и радиус — чай появится в соответствующем секторе"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:23
+#: .\backend\tea\templates\tea\tea_manage.html:284
+msgid "Угол"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:32
+#: .\backend\tea\templates\tea\tea_manage.html:293
+msgid "Радиус"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:52
+#: .\backend\tea\templates\tea\tea_manage.html:273
+msgid "Название чая"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:60
+#: .\backend\tea\templates\tea\tea_manage.html:306
+#: .\backend\tea\templates\tea\teas_list.html:20
+msgid "Тип"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:71
+#: .\backend\tea\templates\tea\tea_manage.html:314
+#: .\backend\tea\templates\tea\teas_list.html:40
+msgid "Вкус"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:82
+#: .\backend\tea\templates\tea\tea_manage.html:322
+#: .\backend\tea\templates\tea\teas_list.html:30
+msgid "Регион"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:93
+#: .\backend\tea\templates\tea\tea_manage.html:330
+#: .\backend\tea\templates\tea\teas_list.html:60
+msgid "Цвет"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:104
+#: .\backend\tea\templates\tea\tea_manage.html:338
+#: .\backend\tea\templates\tea\teas_list.html:50
+msgid "Интенсивность"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:115
+#: .\backend\tea\templates\tea\tea_manage.html:346
+#: .\backend\tea\templates\tea\teas_list.html:70
+msgid "Производитель"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:126
+#: .\backend\tea\templates\tea\tea_manage.html:354
+#: .\backend\tea\templates\tea\teas_list.html:80
+msgid "Поставщик"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:137
+#: .\backend\tea\templates\tea\tea_manage.html:362
+#: .\backend\tea\templates\tea\teas_list.html:90
+msgid "Метод заварки"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:149
+#: .\backend\tea\templates\tea\tea_manage.html:370
+msgid "Ноты"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:152
+#: .\backend\tea\templates\tea\tea_manage.html:373
+msgid "Выберите ноту"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:165
+msgid "Добавить чай"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:179
+msgid "Список чаёв"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:252
+#: .\backend\users\templates\users\profile.html:14
+msgid "Редактировать"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:253
+msgid "Удалить"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:268
+msgid "Редактировать чай"
+msgstr ""
+
+#: .\backend\tea\templates\tea\tea_manage.html:387
+#: .\backend\users\templates\users\profile_edit.html:30
+msgid "Сохранить изменения"
+msgstr ""
+
+#: .\backend\tea\templates\tea\teas_list.html:5
+msgid "Каталог чаёв — Tea Atlas"
+msgstr ""
+
+#: .\backend\tea\templates\tea\teas_list.html:22
+#: .\backend\tea\templates\tea\teas_list.html:32
+#: .\backend\tea\templates\tea\teas_list.html:42
+#: .\backend\tea\templates\tea\teas_list.html:52
+#: .\backend\tea\templates\tea\teas_list.html:62
+#: .\backend\tea\templates\tea\teas_list.html:72
+#: .\backend\tea\templates\tea\teas_list.html:82
+#: .\backend\tea\templates\tea\teas_list.html:92
+msgid "Все"
+msgstr ""
+
+#: .\backend\templates\components\footer.html:4
+msgid "Tea Atlas — Заварено с душой"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:41
+#: .\backend\templates\components\mobile_menu.html:14
+msgid "Главная"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:44
+#: .\backend\templates\components\mobile_menu.html:15
+msgid "Диаграмма"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:47
+#: .\backend\templates\components\mobile_menu.html:16
+msgid "Каталог"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:62
+#: .\backend\templates\components\mobile_menu.html:28
+#: .\backend\users\templates\users\profile.html:13
+msgid "Личный кабинет"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:65
+#: .\backend\templates\components\mobile_menu.html:31
+msgid "Выход"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:71
+#: .\backend\templates\components\mobile_menu.html:35
+msgid "Вход / Регистрация"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:88
+msgid "Платформу можно использовать для других напитков:"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:92
+msgid "Кофе"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:95
+msgid "Вино"
+msgstr ""
+
+#: .\backend\templates\components\left_sidebar.html:98
+msgid "Пиво"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:5
+msgid "Цитата дня"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:6
+msgid "Чай — это не просто напиток, это состояние ума."
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:9
+msgid "Совет"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:10
+msgid "Белый чай: 70–80°C, 2–3 мин."
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:13
+msgid "Чай дня"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:14
+msgid "Да Хун Пао"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:14
+msgid "улун с Уишаньских гор."
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:17
+msgid "Полезное"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:19
+msgid "Редкие белые сорта"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:20
+msgid "Лучшие пуэры 2024"
+msgstr ""
+
+#: .\backend\templates\components\right_sidebar.html:21
+msgid "Чайный гид"
+msgstr ""
+
+#: .\backend\translate\venv\Lib\site-packages\_pytest\config\argparsing.py:474
+#, python-format
+msgid "ambiguous option: %(option)s could match %(matches)s"
+msgstr ""
+
+#: .\backend\users\templates\users\login.html:4
+msgid "Вход — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\login.html:12
+msgid "Вход"
+msgstr ""
+
+#: .\backend\users\templates\users\login.html:23
+#: .\backend\users\templates\users\register.html:23
+msgid "Email"
+msgstr ""
+
+#: .\backend\users\templates\users\login.html:27
+#: .\backend\users\templates\users\register.html:27
+msgid "Пароль"
+msgstr ""
+
+#: .\backend\users\templates\users\login.html:31
+#: .\backend\users\templates\users\password_reset_complete.html:16
+#: .\backend\users\templates\users\password_reset_request.html:30
+#: .\backend\users\templates\users\profile.html:68
+msgid "Войти"
+msgstr ""
+
+#: .\backend\users\templates\users\login.html:37
+msgid "Нет аккаунта? Зарегистрироваться"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_complete.html:4
+msgid "Пароль успешно сброшен — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_complete.html:12
+msgid "Пароль успешно сброшен"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_complete.html:14
+msgid ""
+"Ваш пароль успешно изменен. Теперь вы можете войти с использованием нового "
+"пароля."
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_confirm.html:4
+msgid "Введите новый пароль — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_confirm.html:12
+msgid "Введите новый пароль"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_confirm.html:24
+msgid "Новый пароль"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_confirm.html:28
+msgid "Подтвердите пароль"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_confirm.html:31
+msgid "Сбросить пароль"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_done.html:4
+msgid "Письмо для сброса отправлено — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_done.html:12
+msgid "Письмо отправлено"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_done.html:14
+msgid ""
+"Мы отправили инструкцию для сброса пароля на ваш Email адрес, если такой "
+"аккаунт существует."
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_done.html:15
+msgid "Пожалуйста, проверьте вашу почту."
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_done.html:17
+msgid "Вернуться к входу"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_request.html:4
+msgid "Запрос сброса пароля — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_request.html:12
+msgid "Запрос сброса пароля"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_request.html:20
+msgid "Введите ваш Email адрес, и мы вышлем вам инструкцию для сброса пароля."
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_request.html:25
+#: .\backend\users\templates\users\profile_edit.html:25
+msgid "Email адрес"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_request.html:28
+msgid "Отправить инструкцию"
+msgstr ""
+
+#: .\backend\users\templates\users\password_reset_request.html:30
+msgid "Вспомнили пароль?"
+msgstr ""
+
+#: .\backend\users\templates\users\profile.html:4
+msgid "Личный кабинет — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\profile.html:18
+msgid "Email:"
+msgstr ""
+
+#: .\backend\users\templates\users\profile.html:37
+#: .\backend\users\templates\users\profile.html:56
+msgid "Нет чаёв"
+msgstr ""
+
+#: .\backend\users\templates\users\profile.html:64
+msgid "Выйти"
+msgstr ""
+
+#: .\backend\users\templates\users\profile.html:67
+msgid "Данные пользователя не найдены или вы не авторизованы."
+msgstr ""
+
+#: .\backend\users\templates\users\profile_edit.html:4
+msgid "Редактирование профиля — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\profile_edit.html:12
+msgid "Редактирование профиля"
+msgstr ""
+
+#: .\backend\users\templates\users\profile_edit.html:33
+msgid "Смена пароля:"
+msgstr ""
+
+#: .\backend\users\templates\users\profile_edit.html:34
+msgid "Чтобы сменить пароль, воспользуйтесь функцией сброса пароля."
+msgstr ""
+
+#: .\backend\users\templates\users\profile_edit.html:38
+msgid "Вернуться в личный кабинет"
+msgstr ""
+
+#: .\backend\users\templates\users\register.html:4
+msgid "Регистрация — Tea Atlas"
+msgstr ""
+
+#: .\backend\users\templates\users\register.html:12
+msgid "Регистрация"
+msgstr ""
+
+#: .\backend\users\templates\users\register.html:29
+msgid "Минимум 6 символов"
+msgstr ""
+
+#: .\backend\users\templates\users\register.html:32
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: .\backend\users\templates\users\register.html:38
+msgid "Уже есть аккаунт? Войти"
+msgstr ""
+
+#: .\backend\users\templates\users\register_success.html:10
+msgid "Регистрация успешна!"
+msgstr ""
+
+#: .\backend\users\templates\users\register_success.html:12
+msgid "Спасибо за регистрацию! Мы отправили письмо с подтверждением на"
+msgstr ""
+
+#: .\backend\users\templates\users\register_success.html:15
+msgid ""
+"Пожалуйста, проверьте вашу почту и перейдите по ссылке для подтверждения "
+"email."
+msgstr ""
+
+#: .\backend\users\templates\users\register_success.html:19
+msgid "Перейти на страницу входа"
+msgstr ""

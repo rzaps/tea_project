@@ -1,0 +1,99 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% trans "Tea Atlas" %}{% endblock %}</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Topbar (мобильная) -->
+  <header class="topbar d-xl-none d-flex justify-content-between align-items-center px-3 py-2 shadow-sm">
+    <div class="fw-bold">🍵 {% trans "Tea Atlas" %}</div>
+    <button id="burger-toggle" class="burger-menu-btn d-xl-none">
+      <span class="burger-icon"></span>
+    </button>
+  </header>
+
+  <!-- Mobile меню -->
+  <nav id="mobile-sidebar" class="mobile-sidebar d-xl-none">
+    <ul class="nav flex-column p-3">
+      <li><a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">🏠 {% trans "Главная" %}</a></li>
+      <li><a href="{% url 'diagram' %}" class="nav-link {% if request.path == '/diagram/' %}active{% endif %}">📊 {% trans "Диаграмма" %}</a></li>
+      <li><a href="{% url 'tea_list' %}" class="nav-link {% if request.path == '/teas/' %}active{% endif %}">📋 {% trans "Каталог" %}</a></li>
+    </ul>
+  </nav>
+
+  <div class="d-flex flex-grow-1 main-layout flex-wrap flex-xl-nowrap">
+
+    <!-- Левый сайдбар -->
+    <aside class="sidebar-left d-none d-xl-flex flex-column">
+      <div class="sidebar-inner">
+        <h4 class="text-center">🍵 {% trans "Tea Atlas" %}</h4>
+        <ul class="nav flex-column mt-4">
+          <li class="nav-item mb-2">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">🏠 {% trans "Главная" %}</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a class="nav-link {% if request.path == '/diagram/' %}active{% endif %}" href="{% url 'diagram' %}">📊 {% trans "Диаграмма" %}</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a class="nav-link {% if request.path == '/teas/' %}active{% endif %}" href="{% url 'tea_list' %}">📋 {% trans "Каталог" %}</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Контент -->
+    <main class="flex-grow-1 d-flex flex-column align-items-center">
+      <section class="content-block px-3 py-4">
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+
+    <!-- Правый сайдбар -->
+    <aside class="sidebar-right d-none d-xl-block">
+      <div class="box">
+        <h5>💬 {% trans "Цитата дня" %}</h5>
+        <p>{% trans "Чай — это не просто напиток, это состояние ума." %}</p>
+      </div>
+      <div class="box">
+        <h5>🫖 {% trans "Совет" %}</h5>
+        <p>{% trans "Белый чай: 70–80°C, 2–3 мин." %}</p>
+      </div>
+      <div class="box">
+        <h5>🌟 {% trans "Чай дня" %}</h5>
+        <p><strong>{% trans "Да Хун Пао" %}</strong> — {% trans "улун с Уишаньских гор." %}</p>
+      </div>
+      <div class="box">
+        <h5>🔗 {% trans "Полезное" %}</h5>
+        <ul class="list-unstyled">
+          <li><a href="#">{% trans "Редкие белые сорта" %}</a></li>
+          <li><a href="#">{% trans "Лучшие пуэры 2024" %}</a></li>
+          <li><a href="#">{% trans "Чайный гид" %}</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="text-center footer mt-auto py-3">
+    <small>&copy; 2025 {% trans "Tea Atlas — Заварено с душой" %} ☕</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('burger-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-sidebar').classList.toggle('show');
+    });
+  </script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
