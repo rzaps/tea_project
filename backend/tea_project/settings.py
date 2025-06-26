@@ -68,12 +68,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://localhost:5173",
     "http://localhost:8000",
+    "https://tea-project-0buv.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173"
+    "http://127.0.0.1:5173",
     "http://localhost:8000",
+    "https://tea-project-0buv.onrender.com",
 ]
 
 ROOT_URLCONF = 'backend.tea_project.urls'
@@ -183,6 +185,14 @@ if not DEBUG:
     
     # Настройки для статических файлов
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    WHITENOISE_MIMETYPES = {
+        '.css': 'text/css',
+        '.js': 'application/javascript',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.png': 'image/png',
+        '.gif': 'image/gif',
+    }
     
     # Дополнительные заголовки для правильной обработки MIME-типов
     SECURE_HSTS_SECONDS = 31536000
