@@ -177,24 +177,19 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-# Настройки WhiteNoise
-WHITENOISE_MIMETYPES = {
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.jpg': 'image/jpeg',
-    '.jpeg': 'image/jpeg',
-    '.png': 'image/png',
-    '.gif': 'image/gif',
-}
-
 # Настройки для production
 if not DEBUG:
     # Настройки безопасности
     SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = False  # Отключаем строгую проверку MIME-типов
+    SECURE_CONTENT_TYPE_NOSNIFF = False
     
     # Настройки для статических файлов
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    
+    # Настройки WhiteNoise
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = True
+    WHITENOISE_CHECK_GZIP = True
     
     # Дополнительные заголовки безопасности
     SECURE_HSTS_SECONDS = 31536000
