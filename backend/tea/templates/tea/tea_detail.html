@@ -348,26 +348,9 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/comments/tea/{{ tea.id }}/list/')
       .then(r => r.json())
       .then(data => {
-        commentsList.innerHTML = data.length ? data.map(c => {
-          // Форматируем дату
-          let date = c.created_at;
-          try {
-            const d = new Date(date);
-            date = d.toLocaleString('ru-RU', {
-              year: 'numeric', month: '2-digit', day: '2-digit',
-              hour: '2-digit', minute: '2-digit'
-            });
-          } catch (e) {}
-          return `
-            <div class="comment">
-              <div class="comment-header">
-                <span class="comment-email">${c.email ? c.email : 'Аноним'}</span>
-                <span class="comment-date">${date}</span>
-              </div>
-              <div class="comment-text">${c.text}</div>
-            </div>
-          `;
-        }).join('') : '<div>Комментариев пока нет.</div>';
+        commentsList.innerHTML = data.length ? data.map(c =>
+          `<div class="comment mb-2"><strong>Пользователь</strong> <small>${c.created_at}</small><br>${c.text}</div>`
+        ).join('') : '<div>Комментариев пока нет.</div>';
       });
   }
   loadComments();
@@ -376,7 +359,6 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       fetch('/comments/tea/{{ tea.id }}/add/', {
         method: 'POST',
-        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRFToken': '{{ csrf_token }}'

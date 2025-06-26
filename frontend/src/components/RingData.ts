@@ -10,10 +10,12 @@ export interface PointData {
   label: string;
   color: string;
   info?: string;
-  id?: string;
+  id?: string | number;
   type?: string;
   region?: string;
   notes?: string[];
+  x_coord?: number;
+  y_coord?: number;
 }
 
 export interface AxisLabel {

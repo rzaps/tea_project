@@ -5,19 +5,8 @@ import {
   middleRing,
   outerRing,
   axisLabels,
-  PointData,
-  RingData,
+  PointData
 } from "./RingData";
-
-interface TeaData {
-  x_coord: number;
-  y_coord: number;
-  name?: string;
-  color?: string;
-  type?: string;
-  taste?: string;
-  region?: string;
-}
 
 interface TeaType {
   id: string;
@@ -28,7 +17,6 @@ const PolarDiagram: React.FC = () => {
   const [pointsData, setPointsData] = useState<PointData[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [selectedPoint, setSelectedPoint] = useState<PointData | null>(null);
-  const [selectedSector, setSelectedSector] = useState<RingData | null>(null);
   const [typeFilter, setTypeFilter] = useState<string>("");
   const [typeFilterDraft, setTypeFilterDraft] = useState<string>("");
   const [teaTypes, setTeaTypes] = useState<TeaType[]>([]);
@@ -56,11 +44,6 @@ const PolarDiagram: React.FC = () => {
       if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
       const data: any[] = await res.json();
 
-      const maxDistance = Math.max(
-        ...data.map((tea) => Math.sqrt(tea.x_coord ** 2 + tea.y_coord ** 2)),
-        1
-      );
-
       const transformed = data.map((tea): PointData => ({
         angle: ((Math.atan2(tea.y_coord, tea.x_coord) * 180) / Math.PI + 450) % 360,
         radius: Math.sqrt(tea.x_coord ** 2 + tea.y_coord ** 2),
@@ -70,6 +53,8 @@ const PolarDiagram: React.FC = () => {
         type: tea.type?.translated_name || tea.type?.name || "—",
         region: tea.region?.translated_name || tea.region?.name || "—",
         notes: Array.isArray(tea.notes) ? tea.notes.map((n: any) => n.name || n.translated_name).filter(Boolean) : [],
+        x_coord: tea.x_coord,
+        y_coord: tea.y_coord,
       }));
 
       setPointsData(prev =>
@@ -89,38 +74,10 @@ const PolarDiagram: React.FC = () => {
 
   const handlePointClick = (point: PointData) => {
     setSelectedPoint(point);
-    setSelectedSector(null);
   };
 
-  const handleSectorClick = (sector: RingData) => {
-    setSelectedSector(sector);
-    setSelectedPoint(null);
-  };
-
-  const handleAddPoint = async (point: PointData) => {
-    try {
-      const csrfToken = (document.querySelector("[name=csrfmiddlewaretoken]") as HTMLInputElement)?.value;
-
-      const res = await fetch("http://127.0.0.1:8000/teas/api/teas/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": csrfToken,
-        },
-        body: JSON.stringify({
-          x_coord: Math.cos((point.angle - 90) * (Math.PI / 180)) * point.radius,
-          y_coord: Math.sin((point.angle - 90) * (Math.PI / 180)) * point.radius,
-          ...point
-        }),
-      });
-
-      if (!res.ok) throw new Error("Ошибка сохранения");
-      setPointsData(prev => [...prev, point]);
-    } catch (err) {
-      setError("Ошибка при сохранении точки");
-      console.error("Save error:", err);
-    }
-  };
+  // Заглушка для onSectorClick, если обработчик не нужен
+  const handleSectorClick = () => {};
 
   const handleApplyFilter = () => {
     setTypeFilter(typeFilterDraft);

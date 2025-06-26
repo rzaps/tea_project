@@ -1,10 +1,11 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import set_language
 from backend.main.views import home
+from backend.frontend.views import FrontendAppView
 
 BASE_DIR = settings.BASE_DIR
 
@@ -48,4 +49,8 @@ if settings.DEBUG:
 urlpatterns += [
     path('i18n/', include('django.conf.urls.i18n')),
     path('users/', include('backend.users.urls')),
+]
+
+urlpatterns += [
+    re_path(r'^(?!admin|api|static|media|tinymce|users|comments|diagram|main|teas|coffee|articles|wine|beer|i18n).*$', FrontendAppView.as_view()),
 ]
