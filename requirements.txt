@@ -4,7 +4,7 @@ whitenoise==6.5.0
 Django==4.2.7
 django-cors-headers==4.3.0
 django-tinymce==3.6.1
-Pillow==9.4.0 --only-binary Pillow
+Pillow==11.2.1 --only-binary Pillow
 python-dotenv==1.0.0
 requests==2.31.0
 supabase==2.0.3

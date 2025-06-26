@@ -13,7 +13,7 @@ dependencies = [
     "Django==4.2.7",
     "django-cors-headers==4.3.0",
     "django-tinymce==3.6.1",
-    "Pillow==9.4.0",
+    "Pillow==11.2.1",
     "python-dotenv==1.0.0",
     "requests==2.31.0",
     "supabase==2.0.3",
