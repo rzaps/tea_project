@@ -184,15 +184,7 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     
     # Настройки для статических файлов
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    WHITENOISE_MIMETYPES = {
-        '.css': 'text/css',
-        '.js': 'application/javascript',
-        '.jpg': 'image/jpeg',
-        '.jpeg': 'image/jpeg',
-        '.png': 'image/png',
-        '.gif': 'image/gif',
-    }
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
     
     # Дополнительные заголовки для правильной обработки MIME-типов
     SECURE_HSTS_SECONDS = 31536000
