@@ -7,4 +7,4 @@ def home(request):
     })
 
 def diagram(request):
-    return render(request, 'diagram/diagram.html', {'debug': True})
+    return render(request, 'diagram/diagram.html', {'debug': settings.DEBUG})
