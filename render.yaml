@@ -27,6 +27,9 @@ services:
       - path: /static/*.css
         name: Content-Type
         value: text/css
+      - path: /static/*
+        name: Cache-Control
+        value: no-cache
     autoDeploy: false
     pythonVersion: 3.11.8
     staticPublishPath: ./staticfiles
