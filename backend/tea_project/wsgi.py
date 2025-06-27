@@ -21,7 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 application = WhiteNoise(
     application,
     root=str(BASE_DIR / 'staticfiles'),
-    prefix='static/',
     allow_all_origins=True,
-    max_age=31536000
+    max_age=31536000,
+    autorefresh=True,
+    use_finders=True,
+    manifest_strict=False
 )
