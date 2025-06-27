@@ -233,16 +233,23 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # WhiteNoise Configuration
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-WHITENOISE_USE_FINDERS = True
-WHITENOISE_ROOT = STATIC_ROOT
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-# Cache settings
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
+# Добавляем явные типы файлов для WhiteNoise
+WHITENOISE_MIMETYPES = {
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+    '.jpg': 'image/jpeg',
+    '.png': 'image/png',
+    '.ico': 'image/x-icon',
 }
+
+# Отключаем сжатие для CSS файлов
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['css']
+
+# Включаем отладку для WhiteNoise
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_USE_FINDERS = True
 
 # Debug logging for static files
 logger = logging.getLogger('django')
