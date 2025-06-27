@@ -187,20 +187,9 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
 
     # Настройки для статических файлов
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-    WHITENOISE_MAX_AGE = 31536000
-    
-    # Добавляем MIME типы для WhiteNoise
-    WHITENOISE_MIMETYPES = {
-        '.css': 'text/css',
-        '.js': 'application/javascript',
-        '.html': 'text/html',
-        '.txt': 'text/plain',
-        '.jpg': 'image/jpeg',
-        '.png': 'image/png',
-        '.ico': 'image/x-icon',
-        '.svg': 'image/svg+xml',
-    }
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    WHITENOISE_MANIFEST_STRICT = False
+    WHITENOISE_USE_FINDERS = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
