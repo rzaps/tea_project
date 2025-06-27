@@ -235,12 +235,12 @@ STATICFILES_FINDERS = [
 
 # WhiteNoise Configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-WHITENOISE_ROOT = None
+WHITENOISE_ROOT = STATIC_ROOT
 WHITENOISE_INDEX_FILE = True
-WHITENOISE_MANIFEST_STRICT = False  # Don't fail if some files are missing from the manifest
-WHITENOISE_USE_FINDERS = True  # Allow WhiteNoise to find files via the finders
-WHITENOISE_AUTOREFRESH = True  # Refresh files when they change
-WHITENOISE_MAX_AGE = 31536000  # 1 year
+WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_MAX_AGE = 31536000
 WHITENOISE_MIMETYPES = {
     '.css': 'text/css',
     '.js': 'application/javascript',
@@ -260,10 +260,6 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-
-    # Настройки для статических файлов
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-    WHITENOISE_MAX_AGE = 31536000
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
