@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import set_language
-from backend.main.views import home
+from backend.main.views import index
 
 # Базовые URL-паттерны (без языкового префикса)
 urlpatterns = [
@@ -27,7 +27,7 @@ urlpatterns = [
 # Применение i18n_patterns для многоязычных URL
 urlpatterns += i18n_patterns(
     # Основной маршрут
-    path('', home, name='home'),  # Главная страница из main
+    path('', index, name='index'),  # Главная страница из main
     
     # Подключение маршрутов для других приложений
     path('diagram/', include('backend.diagram.urls')),  # Диаграммы

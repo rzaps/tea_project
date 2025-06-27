@@ -1,1 +1,73 @@
-/* club.css: основной файл для пользовательских стилей. */ 
+/* club.css: основной файл для пользовательских стилей. */
+
+/* Стили из left_sidebar.html */
+.sidebar-left {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.sidebar-bottom-block {
+  background: #f9f6f1;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #bfa16c22;
+  padding: 1em 1.2em;
+  margin: 0 auto 1em auto;
+  max-width: 220px;
+  width: 100%;
+  margin-top: auto;
+}
+.sidebar-similar-title {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-align: center;
+  word-break: break-word;
+  font-size: 1.08em;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sidebar-bottom-block .nav-link {
+  font-size: 1.08em;
+  color: #6b3e26;
+  padding-left: 0;
+}
+
+/* Стили из language_selector.html */
+.language-option {
+  display: flex;
+  align-items: center;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.language-option:hover {
+  background: #f3f3f3;
+}
+.language-option img {
+  width: 22px;
+  height: 15px;
+  margin-right: 10px;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  border: 1px solid #e0e0e0;
+}
+.btn.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.btn.language-btn img {
+  width: 22px;
+  height: 15px;
+  border-radius: 3px;
+  margin-right: 6px;
+  border: 1px solid #e0e0e0;
+} 
