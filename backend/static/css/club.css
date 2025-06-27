@@ -471,4 +471,102 @@ input:focus, select:focus {
 .list-group-item:hover {
   background: #ede5d9;
   color: #8d6e3f;
+}
+
+/* === Стили для клубной страницы === */
+.club-header {
+    background-color: var(--color-brown);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+
+.club-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.club-description {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* === Карточки участников === */
+.member-card {
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.member-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.member-info {
+    padding: 1.5rem;
+}
+
+.member-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-brown);
+    margin-bottom: 0.5rem;
+}
+
+.member-role {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* === Преимущества клуба === */
+.benefits-section {
+    background-color: var(--color-box-bg);
+    padding: 3rem 0;
+    margin: 2rem 0;
+}
+
+.benefit-item {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    color: var(--color-brown);
+    margin-bottom: 1rem;
+}
+
+.benefit-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* === Форма присоединения === */
+.join-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.join-form .form-control {
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.join-form .btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
 } 

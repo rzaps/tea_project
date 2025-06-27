@@ -5,7 +5,7 @@ services:
     region: frankfurt
     runtime: python
     buildCommand: ./build.sh
-    startCommand: gunicorn backend.wsgi:application
+    startCommand: gunicorn backend.tea_project.wsgi:application
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.8
