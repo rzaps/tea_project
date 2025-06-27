@@ -228,17 +228,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # WhiteNoise Configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_MIMETYPES = {
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.html': 'text/html',
-    '.txt': 'text/plain',
-    '.jpg': 'image/jpeg',
-    '.png': 'image/png',
-    '.ico': 'image/x-icon',
-    '.svg': 'image/svg+xml',
-}
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Настройки для production
 if not DEBUG:
