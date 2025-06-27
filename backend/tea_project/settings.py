@@ -35,6 +35,11 @@ LOGGING = {
         },
     },
     'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         'django.request': {
             'handlers': ['console'],
             'level': 'DEBUG',
@@ -45,7 +50,17 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'django.contrib.staticfiles': {
+        'django.template': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.security': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
@@ -228,22 +243,8 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
 
     # Настройки для статических файлов
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    WHITENOISE_AUTOREFRESH = True
-    WHITENOISE_USE_FINDERS = True
-    WHITENOISE_ROOT = STATIC_ROOT
-    
-    # Добавляем MIME типы для WhiteNoise
-    WHITENOISE_MIMETYPES = {
-        '.css': 'text/css',
-        '.js': 'application/javascript',
-        '.html': 'text/html',
-        '.txt': 'text/plain',
-        '.jpg': 'image/jpeg',
-        '.png': 'image/png',
-        '.ico': 'image/x-icon',
-        '.svg': 'image/svg+xml',
-    }
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+    WHITENOISE_MAX_AGE = 31536000
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

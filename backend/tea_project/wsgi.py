@@ -20,6 +20,8 @@ application = get_wsgi_application()
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 application = WhiteNoise(
     application,
-    root=BASE_DIR / 'staticfiles',
-    prefix='static/'
+    root=str(BASE_DIR / 'staticfiles'),
+    prefix='static/',
+    allow_all_origins=True,
+    max_age=31536000
 )
