@@ -167,6 +167,7 @@ LOCALE_PATHS = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'backend/static',
+    BASE_DIR / 'frontend/dist/assets',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
