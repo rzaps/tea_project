@@ -23,6 +23,10 @@ services:
         value: /static/
       - key: DEBUG
         value: "False"
+    headers:
+      - path: /static/*.css
+        name: Content-Type
+        value: text/css
     autoDeploy: false
     pythonVersion: 3.11.8
     staticPublishPath: ./staticfiles
