@@ -145,7 +145,7 @@ TEMPLATES = [
             BASE_DIR / 'main/templates',
             BASE_DIR / 'backend/static'
         ],
-        'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -154,9 +154,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
             ],
             'loaders': [
-                ('django.template.loaders.filesystem.Loader', [
-                    BASE_DIR / 'backend/templates',
-                ]),
+                'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
             ],
         },
