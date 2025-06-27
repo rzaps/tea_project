@@ -227,20 +227,8 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Настройки для статических файлов
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
-
 # WhiteNoise Configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-WHITENOISE_ROOT = STATIC_ROOT
-WHITENOISE_INDEX_FILE = True
-WHITENOISE_MANIFEST_STRICT = False
-WHITENOISE_USE_FINDERS = True
-WHITENOISE_AUTOREFRESH = True
-WHITENOISE_MAX_AGE = 31536000
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WHITENOISE_MIMETYPES = {
     '.css': 'text/css',
     '.js': 'application/javascript',

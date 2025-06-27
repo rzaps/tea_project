@@ -4,8 +4,10 @@ services:
     env: python
     region: frankfurt
     runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn backend.wsgi:application
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput --clear
+    startCommand: gunicorn backend.tea_project.wsgi:application
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.0
@@ -19,8 +21,9 @@ services:
         value: backend.tea_project.settings
       - key: STATIC_URL
         value: /static/
+      - key: DEBUG
+        value: "False"
     autoDeploy: false
     pythonVersion: 3.11.8
     staticPublishPath: ./staticfiles
-    staticBuildCommand: python manage.py collectstatic --noinput --clear
     staticUrlPrefix: /static 
