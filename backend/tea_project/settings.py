@@ -143,7 +143,7 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'backend/templates',
             BASE_DIR / 'main/templates',
-            BASE_DIR / 'backend/static'  # Для React сборки
+            BASE_DIR / 'backend/static'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -152,6 +152,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.debug',
+            ],
+            'loaders': [
+                ('django.template.loaders.filesystem.Loader', [
+                    BASE_DIR / 'backend/templates',
+                ]),
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },
@@ -232,6 +238,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_ROOT = STATIC_ROOT
+
+# Cache settings
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
 
 # Debug logging for static files
 logger = logging.getLogger('django')
