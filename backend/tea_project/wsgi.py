@@ -22,8 +22,5 @@ application = WhiteNoise(
     application,
     root=str(BASE_DIR / 'staticfiles'),
     allow_all_origins=True,
-    max_age=31536000,
-    autorefresh=True,
-    use_finders=True,
-    manifest_strict=False
+    max_age=31536000
 )
