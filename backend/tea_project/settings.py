@@ -224,6 +224,7 @@ LOCALE_PATHS = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'backend/static',
+    BASE_DIR / 'backend/static/main',  # Add this to ensure main directory is collected
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
