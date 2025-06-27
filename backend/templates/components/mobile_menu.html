@@ -23,7 +23,7 @@
   </ul>
 
   <ul class="nav flex-column p-3 mt-auto">
-    {% if request.session.supabase_user_id %}
+    {% if 'supabase_user_id' in request.session %}
       <li class="nav-item mb-2">
         <a class="nav-link" href="{% url 'users:profile' %}">👤 {% trans "Личный кабинет" %}</a>
       </li>

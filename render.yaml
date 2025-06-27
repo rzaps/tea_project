@@ -4,11 +4,11 @@ services:
     env: python
     region: frankfurt
     runtime: python
-    buildCommand: ./build.sh
-    startCommand: gunicorn backend.tea_project.wsgi:application
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.wsgi:application
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.8
+        value: 3.12.0
       - key: DATABASE_URL
         value: sqlite:///db.sqlite3
       - key: DJANGO_SECRET_KEY
@@ -16,4 +16,6 @@ services:
       - key: WEB_CONCURRENCY
         value: 4
     autoDeploy: false
-    pythonVersion: 3.11.8 
+    pythonVersion: 3.11.8
+    staticPublishPath: ./staticfiles
+    staticBuildCommand: python manage.py collectstatic --noinput 

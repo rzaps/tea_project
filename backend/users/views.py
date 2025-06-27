@@ -27,6 +27,12 @@ def get_user_friendly_error(error_message):
     # Если ошибка не найдена в словаре, возвращаем общее сообщение
     return 'Произошла ошибка. Пожалуйста, попробуйте еще раз'
 
+def get_supabase_user_id(request):
+    return request.session.get('supabase_user_id')
+
+def set_supabase_user_id(request, user_id):
+    request.session['supabase_user_id'] = user_id
+
 def register_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -63,7 +69,7 @@ def register_view(request):
                             
                             if logged_in_user and session:
                                 # Вход успешен, устанавливаем сессию Django
-                                request.session['supabase_user_id'] = logged_in_user.id
+                                set_supabase_user_id(request, logged_in_user.id)
                                 request.session['supabase_access_token'] = session.access_token
                                 return redirect('users:profile')
                             else:
@@ -135,7 +141,7 @@ def login_view(request):
             session = response.session
 
             if user and session:
-                request.session['supabase_user_id'] = user.id
+                set_supabase_user_id(request, user.id)
                 request.session['supabase_access_token'] = session.access_token
                 return redirect('users:profile')
             else:
@@ -170,7 +176,7 @@ def logout_view(request):
 
 def profile_view(request):
     # Проверяем, авторизован ли пользователь через Supabase (проверяем наличие user_id в сессии)
-    supabase_user_id = request.session.get('supabase_user_id')
+    supabase_user_id = get_supabase_user_id(request)
     
     if not supabase_user_id:
         # Если user_id нет в сессии, пользователь не авторизован -> перенаправляем на страницу входа

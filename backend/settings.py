@@ -94,10 +94,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'backend/static'),
 ]
 
-# Настройки WhiteNoise для правильной обработки статических файлов
+# WhiteNoise Configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Добавляем правильные MIME типы
+WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
 WHITENOISE_MIMETYPES = {
     '.css': 'text/css',
     '.js': 'application/javascript',
@@ -108,6 +109,12 @@ WHITENOISE_MIMETYPES = {
     '.ico': 'image/x-icon',
     '.svg': 'image/svg+xml',
 }
+
+# Отключаем строгую проверку манифеста в режиме отладки
+if DEBUG:
+    WHITENOISE_MANIFEST_STRICT = False
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = True
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
