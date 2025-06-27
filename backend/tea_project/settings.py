@@ -233,6 +233,25 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
+# WhiteNoise Configuration
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+WHITENOISE_ROOT = None
+WHITENOISE_INDEX_FILE = True
+WHITENOISE_MANIFEST_STRICT = False  # Don't fail if some files are missing from the manifest
+WHITENOISE_USE_FINDERS = True  # Allow WhiteNoise to find files via the finders
+WHITENOISE_AUTOREFRESH = True  # Refresh files when they change
+WHITENOISE_MAX_AGE = 31536000  # 1 year
+WHITENOISE_MIMETYPES = {
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+    '.html': 'text/html',
+    '.txt': 'text/plain',
+    '.jpg': 'image/jpeg',
+    '.png': 'image/png',
+    '.ico': 'image/x-icon',
+    '.svg': 'image/svg+xml',
+}
+
 # Настройки для production
 if not DEBUG:
     # Настройки безопасности

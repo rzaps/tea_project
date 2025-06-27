@@ -16,11 +16,11 @@ services:
       - key: WEB_CONCURRENCY
         value: 4
       - key: DJANGO_SETTINGS_MODULE
-        value: backend.settings
+        value: backend.tea_project.settings
       - key: STATIC_URL
-        value: static/
+        value: /static/
     autoDeploy: false
     pythonVersion: 3.11.8
     staticPublishPath: ./staticfiles
     staticBuildCommand: python manage.py collectstatic --noinput --clear
-    staticUrlPrefix: static 
+    staticUrlPrefix: /static 
