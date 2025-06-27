@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
 """
 
 import os
+import logging
 from django.core.wsgi import get_wsgi_application
 from whitenoise import WhiteNoise
 from pathlib import Path
@@ -18,4 +19,14 @@ application = get_wsgi_application()
 
 # Настройка WhiteNoise
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-application = WhiteNoise(application, root=str(BASE_DIR / 'staticfiles'))
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+logger = logging.getLogger('django')
+logger.info(f"WSGI BASE_DIR: {BASE_DIR}")
+logger.info(f"WSGI STATIC_ROOT: {STATIC_ROOT}")
+logger.info(f"WSGI STATIC_ROOT exists: {STATIC_ROOT.exists()}")
+if STATIC_ROOT.exists():
+    logger.info(f"WSGI STATIC_ROOT contents: {list(STATIC_ROOT.glob('**/*'))}")
+
+application = WhiteNoise(application, root=str(STATIC_ROOT))
+logger.info("WhiteNoise initialized")

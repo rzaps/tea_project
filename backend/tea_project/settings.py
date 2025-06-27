@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+import logging
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -229,6 +230,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # WhiteNoise Configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+# Debug logging for static files
+logger = logging.getLogger('django')
+logger.info(f"BASE_DIR: {BASE_DIR}")
+logger.info(f"STATIC_ROOT: {STATIC_ROOT}")
+logger.info(f"STATICFILES_DIRS: {STATICFILES_DIRS}")
+logger.info(f"STATIC_URL: {STATIC_URL}")
 
 # Настройки для production
 if not DEBUG:
