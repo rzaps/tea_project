@@ -239,22 +239,21 @@ logger.info(f"STATICFILES_DIRS: {STATICFILES_DIRS}")
 logger.info(f"STATIC_URL: {STATIC_URL}")
 
 # Добавляем отладочное логирование для collectstatic
-import sys
 from django.contrib.staticfiles.management.commands.collectstatic import Command as CollectStaticCommand
+from django.core.management import commands
 
 class DebugCollectStaticCommand(CollectStaticCommand):
-    def collect(self):
+    def handle(self, **options):
         logger.info("Starting collectstatic...")
         logger.info(f"Looking in dirs: {self.source_storage.directories_to_list}")
         for path in self.source_storage.listdir(''):
             logger.info(f"Found static file: {path}")
-        result = super().collect()
+        result = super().handle(**options)
         logger.info("Finished collectstatic")
         return result
 
-if 'collectstatic' in sys.argv:
-    from django.core.management.commands import collectstatic
-    collectstatic.Command = DebugCollectStaticCommand
+if not hasattr(commands, 'collectstatic'):
+    commands.collectstatic = DebugCollectStaticCommand
 
 # Настройки для production
 if not DEBUG:
