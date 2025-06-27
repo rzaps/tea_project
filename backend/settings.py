@@ -88,7 +88,7 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'  # Убираем начальный слеш
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'backend/static'),
@@ -96,14 +96,12 @@ STATICFILES_DIRS = [
 
 # WhiteNoise Configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-WHITENOISE_MAX_AGE = 31536000  # 1 год в секундах
+WHITENOISE_ROOT = None
+WHITENOISE_INDEX_FILE = True
 
-# Отключаем строгую проверку манифеста в режиме отладки
 if DEBUG:
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 else:
     WHITENOISE_USE_FINDERS = False
     WHITENOISE_AUTOREFRESH = False
