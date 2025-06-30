@@ -10,8 +10,8 @@
   {% if debug %}
     <script type="module" src="http://localhost:5173/src/main.tsx"></script>
   {% else %}
-    <script type="module" src="https://tea-project-static.onrender.com/assets/main.CfApD-Us.js"></script>
-    <link rel="stylesheet" href="https://tea-project-static.onrender.com/assets/main.B2gGK-0F.css">
+    <script type="module" src="{% static 'assets/main.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'assets/main.css' %}">
   {% endif %}
 {% endblock %}
 

@@ -1,11 +1,11 @@
 {
   "src/main.tsx": {
-    "file": "assets/main.CfApD-Us.js",
+    "file": "assets/main.js",
     "name": "main",
     "src": "src/main.tsx",
     "isEntry": true,
     "css": [
-      "assets/main.B2gGK-0F.css"
+      "assets/main.css"
     ]
   }
 }
