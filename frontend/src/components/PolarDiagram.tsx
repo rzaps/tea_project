@@ -13,6 +13,10 @@ interface TeaType {
   name: string;
 }
 
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? '/teas/api'
+  : 'http://127.0.0.1:8000/teas/api';
+
 const PolarDiagram: React.FC = () => {
   const [pointsData, setPointsData] = useState<PointData[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -25,17 +29,17 @@ const PolarDiagram: React.FC = () => {
   const [notes, setNotes] = useState<{id: string, name: string}[]>([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/teas/api/tea_types/")
+    fetch(`${API_BASE_URL}/tea_types/`)
       .then(res => res.json())
       .then(data => setTeaTypes(data));
-    fetch("http://127.0.0.1:8000/teas/api/notes/")
+    fetch(`${API_BASE_URL}/notes/`)
       .then(res => res.json())
       .then(data => setNotes(data));
   }, []);
 
   const fetchTeas = async () => {
     try {
-      let url = "http://127.0.0.1:8000/teas/api/teas/";
+      let url = `${API_BASE_URL}/teas/`;
       const params = [];
       if (typeFilter) params.push(`type=${encodeURIComponent(typeFilter)}`);
       if (noteFilter) params.push(`note=${encodeURIComponent(noteFilter)}`);
