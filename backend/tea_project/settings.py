@@ -241,17 +241,30 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_MIMETYPES = {
     '.css': 'text/css',
     '.js': 'application/javascript',
+    '.mjs': 'application/javascript',
     '.jpg': 'image/jpeg',
     '.png': 'image/png',
     '.ico': 'image/x-icon',
+    '.map': 'application/json',
+    '.txt': 'text/plain',
+    '.html': 'text/html',
 }
 
-# Отключаем сжатие для CSS файлов
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['css']
+# Отключаем сжатие для определенных типов файлов
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['css', 'js', 'mjs']
 
 # Включаем отладку для WhiteNoise
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
+WHITENOISE_INDEX_FILE = True  # Добавляем эту настройку для обработки индексных файлов
+
+# Добавляем заголовки безопасности
+WHITENOISE_ADD_HEADERS_FUNCTION = lambda headers, path, url: {
+    **headers,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+}
 
 # Debug logging for static files
 logger = logging.getLogger('django')
