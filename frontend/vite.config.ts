@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
       jsxRuntime: "automatic",
     }),
   ],
-  base: mode === "production" ? "/static/" : "/",
+  base: mode === "production" ? "https://tea-project-static.onrender.com/" : "/",
   build: {
     outDir: "../backend/static",
     emptyOutDir: true,
