@@ -1,24 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load vite_static %}
 
 {% block title %}{% trans "Колесо вкусов — Tea Atlas" %}{% endblock %}
 
 {% block extra_head %}
-  {% if debug %}
-    <!-- Vite HMR: только для разработки -->
-    <script type="module" src="http://localhost:5173/@vite/client"></script>
-    <script type="module">
-      import RefreshRuntime from "http://localhost:5173/@react-refresh";
-      RefreshRuntime.injectIntoGlobalHook(window);
-      window.$RefreshReg$ = () => {};
-      window.$RefreshSig$ = () => (type) => type;
-      import("http://localhost:5173/src/main.tsx");
-    </script>
-  {% else %}
-    <!-- Продакшен версия -->
-    <script type="module" src="{% static 'assets/main.js' %}"></script>
-  {% endif %}
+  <script type="module" src="{% vite_asset 'src/main.tsx' %}"></script>
 {% endblock %}
 
 {% block content %}
