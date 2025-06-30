@@ -110,7 +110,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -234,38 +233,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise Configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# Добавляем явные типы файлов для WhiteNoise
-WHITENOISE_MIMETYPES = {
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.mjs': 'application/javascript',
-    '.jpg': 'image/jpeg',
-    '.png': 'image/png',
-    '.ico': 'image/x-icon',
-    '.map': 'application/json',
-    '.txt': 'text/plain',
-    '.html': 'text/html',
-}
-
-# Отключаем сжатие для определенных типов файлов
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['css', 'js', 'mjs']
-
-# Включаем отладку для WhiteNoise
-WHITENOISE_AUTOREFRESH = True
-WHITENOISE_USE_FINDERS = True
-WHITENOISE_INDEX_FILE = True  # Добавляем эту настройку для обработки индексных файлов
-
-# Добавляем заголовки безопасности
-WHITENOISE_ADD_HEADERS_FUNCTION = lambda headers, path, url: {
-    **headers,
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-}
-
 # Debug logging for static files
 logger = logging.getLogger('django')
 logger.info(f"BASE_DIR: {BASE_DIR}")
@@ -273,38 +240,7 @@ logger.info(f"STATIC_ROOT: {STATIC_ROOT}")
 logger.info(f"STATICFILES_DIRS: {STATICFILES_DIRS}")
 logger.info(f"STATIC_URL: {STATIC_URL}")
 
-# Добавляем отладочное логирование для collectstatic
-from django.contrib.staticfiles.management.commands.collectstatic import Command as CollectStaticCommand
-from django.core.management import commands
-
-class DebugCollectStaticCommand(CollectStaticCommand):
-    def handle(self, **options):
-        logger.info("Starting collectstatic...")
-        logger.info(f"Looking in dirs: {self.source_storage.directories_to_list}")
-        for path in self.source_storage.listdir(''):
-            logger.info(f"Found static file: {path}")
-        result = super().handle(**options)
-        logger.info("Finished collectstatic")
-        return result
-
-if not hasattr(commands, 'collectstatic'):
-    commands.collectstatic = DebugCollectStaticCommand
-
-# Настройки для production
-if not DEBUG:
-    # Настройки безопасности
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # TinyMCE settings
