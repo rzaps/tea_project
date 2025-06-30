@@ -2,21 +2,34 @@ import json
 import os
 from django import template
 from django.conf import settings
+from django.templatetags.static import static
 
 register = template.Library()
 
-MANIFEST_PATH = os.path.join(settings.BASE_DIR, "backend", "static", ".vite", "manifest.json")
-_manifest_cache = None
+@register.simple_tag
+def vite_asset(path):
+    """
+    Resolve the asset path using Vite's manifest.json
+    """
+    if settings.DEBUG:
+        return f"http://localhost:5173/{path}"
 
-def get_manifest():
-    global _manifest_cache
-    if _manifest_cache is None:
-        with open(MANIFEST_PATH, encoding="utf-8") as f:
-            _manifest_cache = json.load(f)
-    return _manifest_cache
+    manifest_path = os.path.join(settings.STATIC_ROOT, '.vite', 'manifest.json')
+    try:
+        with open(manifest_path) as f:
+            manifest = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return static(path)
+
+    if path in manifest:
+        return static(manifest[path]['file'])
+    return static(path)
 
 @register.simple_tag
-def vite_asset(asset_name):
-    manifest = get_manifest()
-    file_path = manifest[asset_name]["file"]
-    return f"https://tea-project-static.onrender.com/{file_path}" 
+def vite_hmr():
+    """
+    Include Vite HMR script in development
+    """
+    if settings.DEBUG:
+        return '@vite/client'
+    return '' 
