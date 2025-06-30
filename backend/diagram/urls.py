@@ -19,7 +19,6 @@ from django.urls import path
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('diagram/', views.diagram, name='diagram'),
+    path('', views.diagram, name='diagram'),  # Главная страница диаграммы
 ]
 
