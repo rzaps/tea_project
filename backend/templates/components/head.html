@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load vite_static %}
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,9 @@
 <link rel="stylesheet" href="{% static 'style.css' %}?v=1" type="text/css" media="all">
 <link rel="stylesheet" href="{% static 'club.css' %}?v=1" type="text/css" media="all">
 
-<!-- Vite built assets -->
-{% if vite_assets %}
-<link rel="stylesheet" href="{% static 'assets/main.B2gGK-0F.css' %}" type="text/css">
+<!-- Vite HMR script -->
+{% if debug %}
+<script type="module" src="{% vite_hmr %}"></script>
 {% endif %}
 
 {% block extra_head %}{% endblock %} 

@@ -151,6 +151,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.debug',
+                'backend.diagram.context_processors.vite_config',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
