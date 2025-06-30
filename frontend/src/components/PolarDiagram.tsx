@@ -17,8 +17,8 @@ const API_BASE_URL = import.meta.env.PROD
   ? 'https://tea-project-0buv.onrender.com/teas/api'
   : 'http://127.0.0.1:8000/teas/api';
 
-console.log('API_BASE_URL:', API_BASE_URL);
-console.log('Environment:', import.meta.env);
+console.log('[PolarDiagram] API_BASE_URL:', API_BASE_URL);
+console.log('[PolarDiagram] Environment:', import.meta.env);
 
 const PolarDiagram: React.FC = () => {
   const [pointsData, setPointsData] = useState<PointData[]>([]);
@@ -32,12 +32,27 @@ const PolarDiagram: React.FC = () => {
   const [notes, setNotes] = useState<{id: string, name: string}[]>([]);
 
   useEffect(() => {
+    console.log('[PolarDiagram] Монтирование компонента');
     fetch(`${API_BASE_URL}/tea_types/`)
-      .then(res => res.json())
-      .then(data => setTeaTypes(data));
+      .then(res => {
+        console.log('[PolarDiagram] tea_types status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('[PolarDiagram] tea_types data:', data);
+        setTeaTypes(data);
+      })
+      .catch(e => console.error('[PolarDiagram] tea_types error:', e));
     fetch(`${API_BASE_URL}/notes/`)
-      .then(res => res.json())
-      .then(data => setNotes(data));
+      .then(res => {
+        console.log('[PolarDiagram] notes status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('[PolarDiagram] notes data:', data);
+        setNotes(data);
+      })
+      .catch(e => console.error('[PolarDiagram] notes error:', e));
   }, []);
 
   const fetchTeas = async () => {
@@ -48,13 +63,12 @@ const PolarDiagram: React.FC = () => {
       if (noteFilter) params.push(`note=${encodeURIComponent(noteFilter)}`);
       if (params.length) url += `?${params.join("&")}`;
       
-      console.log('Fetching from URL:', url);
+      console.log('[PolarDiagram] Fetching teas from URL:', url);
       const res = await fetch(url);
-      console.log('Response status:', res.status);
-      
+      console.log('[PolarDiagram] teas response status:', res.status);
       if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
       const data: any[] = await res.json();
-      console.log('Received data:', data);
+      console.log('[PolarDiagram] teas data:', data);
 
       const transformed = data.map((tea): PointData => ({
         angle: ((Math.atan2(tea.y_coord, tea.x_coord) * 180) / Math.PI + 450) % 360,
@@ -74,7 +88,7 @@ const PolarDiagram: React.FC = () => {
       );
     } catch (err) {
       setError("Ошибка загрузки данных. Обновите страницу.");
-      console.error("Fetch error:", err);
+      console.error("[PolarDiagram] Fetch error:", err);
     }
   };
 
@@ -96,6 +110,11 @@ const PolarDiagram: React.FC = () => {
     setNoteFilter(noteFilterDraft);
   };
 
+  // Для теста: выводим, сколько точек загружено
+  useEffect(() => {
+    console.log('[PolarDiagram] pointsData:', pointsData);
+  }, [pointsData]);
+
   return (
     <div className="polar-container">
       <h2 className="polar-title d-md-none mb-4">Чайная карта</h2>
@@ -109,6 +128,13 @@ const PolarDiagram: React.FC = () => {
           >
             ×
           </button>
+        </div>
+      )}
+
+      {/* Для теста: если данных нет, выводим сообщение */}
+      {pointsData.length === 0 && (
+        <div style={{color: 'red', margin: 16}}>
+          [PolarDiagram] Нет данных для отображения (pointsData пустой)
         </div>
       )}
 
