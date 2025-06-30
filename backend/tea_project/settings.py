@@ -106,7 +106,6 @@ INSTALLED_APPS = [
     'backend.wine',
     'backend.beer',
     'backend.comments',
-    'backend.templatetags',
 ]
 
 MIDDLEWARE = [
@@ -146,7 +145,7 @@ TEMPLATES = [
             BASE_DIR / 'main/templates',
             BASE_DIR / 'backend/static'
         ],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
