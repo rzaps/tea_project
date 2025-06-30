@@ -13,9 +13,12 @@ interface TeaType {
   name: string;
 }
 
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
+const API_BASE_URL = import.meta.env.PROD
   ? 'https://tea-project-0buv.onrender.com/teas/api'
   : 'http://127.0.0.1:8000/teas/api';
+
+console.log('API_BASE_URL:', API_BASE_URL);
+console.log('Environment:', import.meta.env);
 
 const PolarDiagram: React.FC = () => {
   const [pointsData, setPointsData] = useState<PointData[]>([]);
@@ -44,9 +47,14 @@ const PolarDiagram: React.FC = () => {
       if (typeFilter) params.push(`type=${encodeURIComponent(typeFilter)}`);
       if (noteFilter) params.push(`note=${encodeURIComponent(noteFilter)}`);
       if (params.length) url += `?${params.join("&")}`;
+      
+      console.log('Fetching from URL:', url);
       const res = await fetch(url);
+      console.log('Response status:', res.status);
+      
       if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
       const data: any[] = await res.json();
+      console.log('Received data:', data);
 
       const transformed = data.map((tea): PointData => ({
         angle: ((Math.atan2(tea.y_coord, tea.x_coord) * 180) / Math.PI + 450) % 360,
