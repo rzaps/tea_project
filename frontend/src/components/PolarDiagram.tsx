@@ -14,7 +14,7 @@ interface TeaType {
 }
 
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '/teas/api'
+  ? 'https://tea-project-0buv.onrender.com/teas/api'
   : 'http://127.0.0.1:8000/teas/api';
 
 const PolarDiagram: React.FC = () => {
