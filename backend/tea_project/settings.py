@@ -106,6 +106,7 @@ INSTALLED_APPS = [
     'backend.wine',
     'backend.beer',
     'backend.comments',
+    'backend.templatetags',
 ]
 
 MIDDLEWARE = [
