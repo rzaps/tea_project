@@ -6,10 +6,11 @@
 {% block title %}{% trans "Колесо вкусов — Tea Atlas" %}{% endblock %}
 
 {% block extra_head %}
+  <script>console.log('EXTRA_HEAD WORKS');</script>
   {% if debug %}
     <script type="module" src="http://localhost:5173/src/main.tsx"></script>
   {% else %}
-    <script type="module" src="https://tea-project-static.onrender.com/assets/main.BPc9fT9t.js"></script>
+    <script type="module" src="https://tea-project-static.onrender.com/assets/main.CfApD-Us.js"></script>
     <link rel="stylesheet" href="https://tea-project-static.onrender.com/assets/main.B2gGK-0F.css">
   {% endif %}
 {% endblock %}
