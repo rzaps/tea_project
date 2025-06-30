@@ -6,7 +6,11 @@
 {% block title %}{% trans "Колесо вкусов — Tea Atlas" %}{% endblock %}
 
 {% block extra_head %}
-  <script type="module" src="{% vite_asset vite_assets.main %}"></script>
+  {% if debug %}
+    <script type="module" src="http://localhost:5173/src/main.tsx"></script>
+  {% else %}
+    <script type="module" src="{% static 'assets/main.js' %}"></script>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
