@@ -172,7 +172,7 @@ def logout_view(request):
     logout(request) # Используем стандартную функцию выхода Django для очистки сессии
     
     # Перенаправляем на главную страницу или страницу входа
-    return redirect('home') # Перенаправляем на главную страницу (используя name='home' из urls.py)
+    return redirect('index') # Перенаправляем на главную страницу (используя name='index' из urls.py)
 
 def profile_view(request):
     # Проверяем, авторизован ли пользователь через Supabase (проверяем наличие user_id в сессии)

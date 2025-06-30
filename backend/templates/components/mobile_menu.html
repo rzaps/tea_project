@@ -11,7 +11,7 @@
 <!-- Mobile меню -->
 <nav id="mobile-sidebar" class="mobile-sidebar d-xl-none">
   <ul class="nav flex-column p-3">
-    <li><a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">🏠 {% trans "Главная" %}</a></li>
+    <li><a href="{% url 'index' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">🏠 {% trans "Главная" %}</a></li>
     <li><a href="{% url 'diagram' %}" class="nav-link {% if request.path == '/diagram/' %}active{% endif %}">📊 {% trans "Диаграмма" %}</a></li>
     <li><a href="{% url 'tea_list' %}" class="nav-link {% if request.path == '/teas/' %}active{% endif %}">📋 {% trans "Каталог" %}</a></li>
     <li><a href="{% url 'tea_manage' %}" class="nav-link {% if request.path == '/manage/' %}active{% endif %}">🛠️ {% trans "Управление чаями" %}</a></li>
