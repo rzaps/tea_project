@@ -5,7 +5,7 @@
     <h4 class="text-center">🍵 {% trans "Tea Atlas" %}</h4>
     <ul class="nav flex-column mt-4">
       <li class="nav-item mb-2">
-        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">🏠 {% trans "Главная" %}</a>
+        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'index' %}">🏠 {% trans "Главная" %}</a>
       </li>
       <li class="nav-item mb-2">
         <a class="nav-link {% if request.path == '/diagram/' %}active{% endif %}" href="{% url 'diagram' %}">📊 {% trans "Диаграмма" %}</a>
