@@ -293,4 +293,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'convert_urls': True,
 }
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
