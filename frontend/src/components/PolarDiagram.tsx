@@ -19,6 +19,8 @@ const API_BASE_URL = import.meta.env.PROD
 
 console.log('[PolarDiagram] API_BASE_URL:', API_BASE_URL);
 console.log('[PolarDiagram] Environment:', import.meta.env);
+console.log('[PolarDiagram] Production mode:', import.meta.env.PROD);
+console.log('[PolarDiagram] Development mode:', import.meta.env.DEV);
 
 const PolarDiagram: React.FC = () => {
   const [pointsData, setPointsData] = useState<PointData[]>([]);
@@ -33,26 +35,37 @@ const PolarDiagram: React.FC = () => {
 
   useEffect(() => {
     console.log('[PolarDiagram] Монтирование компонента');
+    console.log('[PolarDiagram] Загрузка типов чая...');
     fetch(`${API_BASE_URL}/tea_types/`)
       .then(res => {
         console.log('[PolarDiagram] tea_types status:', res.status);
+        console.log('[PolarDiagram] tea_types headers:', Object.fromEntries(res.headers.entries()));
         return res.json();
       })
       .then(data => {
         console.log('[PolarDiagram] tea_types data:', data);
         setTeaTypes(data);
       })
-      .catch(e => console.error('[PolarDiagram] tea_types error:', e));
+      .catch(e => {
+        console.error('[PolarDiagram] tea_types error:', e);
+        setError(`Ошибка загрузки типов чая: ${e.message}`);
+      });
+
+    console.log('[PolarDiagram] Загрузка нот...');
     fetch(`${API_BASE_URL}/notes/`)
       .then(res => {
         console.log('[PolarDiagram] notes status:', res.status);
+        console.log('[PolarDiagram] notes headers:', Object.fromEntries(res.headers.entries()));
         return res.json();
       })
       .then(data => {
         console.log('[PolarDiagram] notes data:', data);
         setNotes(data);
       })
-      .catch(e => console.error('[PolarDiagram] notes error:', e));
+      .catch(e => {
+        console.error('[PolarDiagram] notes error:', e);
+        setError(`Ошибка загрузки нот: ${e.message}`);
+      });
   }, []);
 
   const fetchTeas = async () => {
@@ -66,53 +79,71 @@ const PolarDiagram: React.FC = () => {
       console.log('[PolarDiagram] Fetching teas from URL:', url);
       const res = await fetch(url);
       console.log('[PolarDiagram] teas response status:', res.status);
+      console.log('[PolarDiagram] teas response headers:', Object.fromEntries(res.headers.entries()));
+      
       if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
       const data: any[] = await res.json();
       console.log('[PolarDiagram] teas data:', data);
 
-      const transformed = data.map((tea): PointData => ({
-        angle: ((Math.atan2(tea.y_coord, tea.x_coord) * 180) / Math.PI + 450) % 360,
-        radius: Math.sqrt(tea.x_coord ** 2 + tea.y_coord ** 2),
-        label: tea.translated_name || tea.name || "Чай",
-        color: tea.color || "#8D6E63",
-        id: tea.id,
-        type: tea.type?.translated_name || tea.type?.name || "—",
-        region: tea.region?.translated_name || tea.region?.name || "—",
-        notes: Array.isArray(tea.notes) ? tea.notes.map((n: any) => n.name || n.translated_name).filter(Boolean) : [],
-        x_coord: tea.x_coord,
-        y_coord: tea.y_coord,
-      }));
+      const transformed = data.map((tea): PointData => {
+        const point = {
+          angle: ((Math.atan2(tea.y_coord, tea.x_coord) * 180) / Math.PI + 450) % 360,
+          radius: Math.sqrt(tea.x_coord ** 2 + tea.y_coord ** 2),
+          label: tea.translated_name || tea.name || "Чай",
+          color: tea.color || "#8D6E63",
+          id: tea.id,
+          type: tea.type?.translated_name || tea.type?.name || "—",
+          region: tea.region?.translated_name || tea.region?.name || "—",
+          notes: Array.isArray(tea.notes) ? tea.notes.map((n: any) => n.name || n.translated_name).filter(Boolean) : [],
+          x_coord: tea.x_coord,
+          y_coord: tea.y_coord,
+        };
+        console.log('[PolarDiagram] Transformed point:', point);
+        return point;
+      });
 
+      console.log('[PolarDiagram] All transformed points:', transformed);
       setPointsData(prev =>
         JSON.stringify(prev) === JSON.stringify(transformed) ? prev : transformed
       );
     } catch (err) {
-      setError("Ошибка загрузки данных. Обновите страницу.");
+      const errorMsg = "Ошибка загрузки данных. Обновите страницу.";
+      setError(errorMsg);
       console.error("[PolarDiagram] Fetch error:", err);
+      console.error("[PolarDiagram] Error details:", {
+        message: err instanceof Error ? err.message : String(err),
+        stack: err instanceof Error ? err.stack : undefined,
+      });
     }
   };
 
   useEffect(() => {
+    console.log('[PolarDiagram] Starting fetch interval');
     fetchTeas();
     const interval = setInterval(fetchTeas, 5000);
-    return () => clearInterval(interval);
+    return () => {
+      console.log('[PolarDiagram] Cleaning up fetch interval');
+      clearInterval(interval);
+    };
   }, [typeFilter, noteFilter]);
 
   const handlePointClick = (point: PointData) => {
+    console.log('[PolarDiagram] Point clicked:', point);
     setSelectedPoint(point);
   };
 
-  // Заглушка для onSectorClick, если обработчик не нужен
-  const handleSectorClick = () => {};
+  const handleSectorClick = () => {
+    console.log('[PolarDiagram] Sector clicked');
+  };
 
   const handleApplyFilter = () => {
+    console.log('[PolarDiagram] Applying filters:', { typeFilterDraft, noteFilterDraft });
     setTypeFilter(typeFilterDraft);
     setNoteFilter(noteFilterDraft);
   };
 
-  // Для теста: выводим, сколько точек загружено
   useEffect(() => {
-    console.log('[PolarDiagram] pointsData:', pointsData);
+    console.log('[PolarDiagram] pointsData updated:', pointsData);
   }, [pointsData]);
 
   return (
@@ -131,7 +162,6 @@ const PolarDiagram: React.FC = () => {
         </div>
       )}
 
-      {/* Для теста: если данных нет, выводим сообщение */}
       {pointsData.length === 0 && (
         <div style={{color: 'red', margin: 16}}>
           [PolarDiagram] Нет данных для отображения (pointsData пустой)
