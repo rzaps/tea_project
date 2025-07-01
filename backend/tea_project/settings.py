@@ -226,7 +226,7 @@ LOCALE_PATHS = [
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = os.environ.get('STATIC_URL', 'https://tea-project-static.onrender.com/')
+STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 STATICFILES_DIRS = [
     BASE_DIR / 'backend/static',
 ]
