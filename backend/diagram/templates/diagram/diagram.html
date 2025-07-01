@@ -10,16 +10,8 @@
   {% if debug %}
     <script type="module" src="{{ vite_dev_server }}/src/main.tsx"></script>
   {% else %}
-    {% with entry="src/main.tsx" %}
-      {% if entry in vite_manifest %}
-        <script type="module" src="{% static vite_manifest|get_item:entry|get_item:'file' %}"></script>
-        <link rel="stylesheet" href="https://tea-project-static.onrender.com/assets/main.B2gGK-0F.css">
-      {% else %}
-        <div style="color: red; padding: 1em;">
-          [Error] Entry point "{{ entry }}" not found in Vite manifest
-        </div>
-      {% endif %}
-    {% endwith %}
+    <script type="module" src="/static/assets/main.BvYAvfhn.js"></script>
+    <link rel="stylesheet" href="https://tea-project-static.onrender.com/assets/main.B2gGK-0F.css">
   {% endif %}
 {% endblock %}
 
