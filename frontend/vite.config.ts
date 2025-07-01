@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
   ],
   base: mode === "production" ? "https://tea-project-static.onrender.com/" : "/",
   build: {
-    outDir: "../backend/static",
+    outDir: "../staticfiles",
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
