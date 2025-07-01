@@ -8,9 +8,9 @@ export default defineConfig(({ mode }) => ({
       jsxRuntime: "automatic",
     }),
   ],
-  base: mode === "production" ? "https://tea-project-static.onrender.com/" : "/",
+  base: mode === "production" ? "/static/" : "/",
   build: {
-    outDir: "../backend/static",
+    outDir: "../staticfiles",
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
