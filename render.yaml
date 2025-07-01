@@ -12,8 +12,6 @@ services:
       cd ..
       python manage.py collectstatic --noinput
     startCommand: |
-      cp nginx.conf /etc/nginx/conf.d/default.conf
-      nginx
       gunicorn backend.tea_project.wsgi:application
     envVars:
       - key: PYTHON_VERSION
