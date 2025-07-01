@@ -42,6 +42,18 @@ services:
       - path: /static/*
         name: Cache-Control
         value: no-cache
+      - path: /assets/*
+        name: Access-Control-Allow-Origin
+        value: "*"
+      - path: /assets/*
+        name: Access-Control-Allow-Methods
+        value: "GET, OPTIONS"
+      - path: /assets/*
+        name: Access-Control-Allow-Headers
+        value: "*"
+      - path: /assets/*
+        name: Cache-Control
+        value: no-cache
     autoDeploy: false
     pythonVersion: 3.11.8
     staticPublishPath: ./staticfiles
