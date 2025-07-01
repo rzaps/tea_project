@@ -32,4 +32,13 @@ def vite_hmr():
     """
     if settings.DEBUG:
         return '@vite/client'
-    return '' 
+    return ''
+
+@register.filter
+def get_item(dictionary, key):
+    """
+    Get an item from a dictionary using key
+    """
+    if not dictionary:
+        return None
+    return dictionary.get(key) 

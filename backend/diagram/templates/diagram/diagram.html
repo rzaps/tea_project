@@ -8,9 +8,20 @@
 {% block extra_head %}
   <script>console.log('EXTRA_HEAD WORKS');</script>
   {% if debug %}
-    <script type="module" src="http://localhost:5173/src/main.tsx"></script>
+    <script type="module" src="{{ vite_dev_server }}/src/main.tsx"></script>
   {% else %}
-    <script type="module" src="{% vite_asset 'src/main.tsx' %}"></script>
+    {% with entry="src/main.tsx" %}
+      {% if entry in vite_manifest %}
+        <script type="module" src="{% static vite_manifest|get_item:entry|get_item:'file' %}"></script>
+        {% for css in vite_manifest|get_item:entry|get_item:'css' %}
+          <link rel="stylesheet" href="{% static css %}">
+        {% endfor %}
+      {% else %}
+        <div style="color: red; padding: 1em;">
+          [Error] Entry point "{{ entry }}" not found in Vite manifest
+        </div>
+      {% endif %}
+    {% endwith %}
   {% endif %}
 {% endblock %}
 
