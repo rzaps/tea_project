@@ -8,9 +8,9 @@ export default defineConfig(({ mode }) => ({
       jsxRuntime: "automatic",
     }),
   ],
-  base: "/static/",
+  base: mode === "production" ? "https://tea-project-static.onrender.com/" : "/",
   build: {
-    outDir: "../staticfiles",
+    outDir: "../backend/static",
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
@@ -27,16 +27,7 @@ export default defineConfig(({ mode }) => ({
     host: "localhost",
     port: 5173,
     strictPort: true,
-    cors: {
-      origin: "*",
-      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-      credentials: true
-    },
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
-    }
+    cors: true,
+    origin: "http://localhost:5173",
   },
 }));

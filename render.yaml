@@ -6,7 +6,6 @@ services:
     runtime: python
     buildCommand: |
       pip install -r requirements.txt
-      cd frontend && npm install && npm run build && cd ..
       python manage.py collectstatic --noinput --clear
     startCommand: gunicorn backend.tea_project.wsgi:application
     envVars:
@@ -25,13 +24,13 @@ services:
       - key: DEBUG
         value: "False"
     headers:
-      - path: /*
+      - path: /static/*
         name: Access-Control-Allow-Origin
         value: "*"
-      - path: /*
+      - path: /static/*
         name: Access-Control-Allow-Methods
         value: "GET, OPTIONS"
-      - path: /*
+      - path: /static/*
         name: Access-Control-Allow-Headers
         value: "*"
       - path: /static/*.css
