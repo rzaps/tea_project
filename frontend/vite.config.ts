@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
       jsxRuntime: "automatic",
     }),
   ],
-  base: mode === "production" ? "/static/" : "/",
+  base: mode === "production" ? "/" : "/",
   build: {
     outDir: "../staticfiles",
     emptyOutDir: true,

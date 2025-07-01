@@ -243,7 +243,7 @@ LOCALE_PATHS = [
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = os.environ.get('STATIC_URL', 'https://tea-project-static.onrender.com/')
+STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 STATICFILES_DIRS = [
     BASE_DIR / 'backend/static',
 ]
@@ -293,4 +293,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'convert_urls': True,
 }
 
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
