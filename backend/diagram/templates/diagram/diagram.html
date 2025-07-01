@@ -10,8 +10,7 @@
   {% if debug %}
     <script type="module" src="http://localhost:5173/src/main.tsx"></script>
   {% else %}
-    <script type="module" src="{% static 'assets/main.CD-h2EUG.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'assets/main.B2gGK-0F.css' %}">
+    <script type="module" src="{% vite_asset 'src/main.tsx' %}"></script>
   {% endif %}
 {% endblock %}
 
