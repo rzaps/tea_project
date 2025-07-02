@@ -8,11 +8,39 @@
 }
 
 .sidebar-left {
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  width: 280px;
+  min-width: 280px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar-right {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-inner {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.sidebar-bottom-block {
+  margin-top: auto;
+  padding: 1rem;
+  background-color: #f1f3f5;
+  border-radius: 8px;
+}
+
+.sidebar-similar-title {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
 }
 
 /* Основной контейнер */
@@ -38,6 +66,14 @@
   .app-container {
     grid-template-columns: 250px 1fr 250px;
   }
+  
+  .sidebar-left {
+    display: none;
+  }
+  
+  .content-block {
+    margin: 1rem;
+  }
 }
 
 @media (max-width: 992px) {
@@ -52,22 +88,23 @@
 
 /* Стили для навигации */
 .nav-link {
-  color: rgba(255, 255, 255, 0.8);
+  color: #495057;
   text-decoration: none;
   padding: 0.5rem 1rem;
   display: block;
   border-radius: 6px;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background-color: #e9ecef;
+  color: #212529;
 }
 
 .nav-link.active {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background-color: #e9ecef;
+  color: #212529;
+  font-weight: 500;
 }
 
 /* Стили для логотипа и заголовка */
@@ -82,4 +119,73 @@
 
 .site-title:hover {
   color: rgba(255, 255, 255, 0.9);
+}
+
+/* Стили для языкового селектора */
+.language-selector {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Основной контейнер */
+.main-layout {
+  min-height: calc(100vh - 60px);
+  background-color: #f8f9fa;
+}
+
+/* Контентная область */
+.content-block {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .sidebar-left {
+    background-color: #212529;
+    border-right-color: #343a40;
+  }
+  
+  .sidebar-inner,
+  .language-selector {
+    background-color: #343a40;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .sidebar-bottom-block {
+    background-color: #2b3035;
+  }
+  
+  .nav-link {
+    color: #adb5bd;
+  }
+  
+  .nav-link:hover {
+    background-color: #495057;
+    color: #f8f9fa;
+  }
+  
+  .nav-link.active {
+    background-color: #495057;
+    color: #f8f9fa;
+  }
+  
+  .main-layout {
+    background-color: #343a40;
+  }
+  
+  .content-block {
+    background-color: #212529;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .sidebar-similar-title {
+    color: #adb5bd;
+  }
 } 
