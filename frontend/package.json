@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:prod": "tsc -b && vite build --mode production",
+    "postbuild": "xcopy /E /I /Y dist\\* ..\\backend\\static\\",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "if exist dist rmdir /S /Q dist && if exist ..\\backend\\static\\assets rmdir /S /Q ..\\backend\\static\\assets"
   },
   "dependencies": {
     "d3": "^7.9.0",

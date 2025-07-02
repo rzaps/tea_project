@@ -3,9 +3,8 @@ import os
 import json
 
 def get_vite_manifest():
-    manifest_path = os.path.join(settings.STATIC_ROOT, '.vite', 'manifest.json')
     try:
-        with open(manifest_path) as f:
+        with open(settings.VITE_MANIFEST_PATH) as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
@@ -18,6 +17,6 @@ def vite_config(request):
     return {
         'vite_manifest': manifest,
         'debug': settings.DEBUG,
-        'vite_dev_server': 'http://localhost:5173' if settings.DEBUG else None,
-        'vite_static_url': settings.STATIC_URL
+        'vite_dev_server': settings.VITE_DEV_SERVER if settings.DEBUG else None,
+        'vite_static_url': settings.VITE_STATIC_URL
     } 

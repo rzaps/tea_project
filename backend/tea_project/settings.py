@@ -243,12 +243,12 @@ LOCALE_PATHS = [
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = os.environ.get('STATIC_URL', '/static/')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    BASE_DIR / 'backend/static',
+    os.path.join(BASE_DIR, 'frontend', 'dist'),
+    os.path.join(BASE_DIR, 'backend', 'static'),
 ]
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Debug logging for static files
 logger = logging.getLogger('django')
@@ -293,4 +293,11 @@ TINYMCE_DEFAULT_CONFIG = {
     'convert_urls': True,
 }
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Whitenoise settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'frontend', 'dist')
+
+# Vite settings
+VITE_DEV_SERVER = "http://localhost:5173"
+VITE_MANIFEST_PATH = os.path.join(BASE_DIR, 'frontend', 'dist', '.vite', 'manifest.json')
+VITE_STATIC_URL = '/static/'

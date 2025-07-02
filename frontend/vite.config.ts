@@ -8,13 +8,15 @@ export default defineConfig(({ mode }) => ({
       jsxRuntime: "automatic",
     }),
   ],
-  base: mode === "production" ? "/" : "/",
+  base: mode === "production" ? "/static/" : "/",
   build: {
-    outDir: "../staticfiles",
+    outDir: "dist",
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
-      input: path.resolve(__dirname, "src/main.tsx"),
+      input: {
+        main: path.resolve(__dirname, "src/main.tsx"),
+      },
       output: {
         format: 'es',
         entryFileNames: "assets/[name].[hash].js",

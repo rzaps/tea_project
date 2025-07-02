@@ -1,0 +1,85 @@
+/* Стили для сайдбаров */
+.sidebar {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-left {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-right {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Основной контейнер */
+.app-container {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: 100vh;
+  background: #1a1a1a;
+}
+
+/* Центральная область */
+.main-content {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .app-container {
+    grid-template-columns: 250px 1fr 250px;
+  }
+}
+
+@media (max-width: 992px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    margin: 1rem 0;
+  }
+}
+
+/* Стили для навигации */
+.nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* Стили для логотипа и заголовка */
+.site-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.site-title:hover {
+  color: rgba(255, 255, 255, 0.9);
+} 

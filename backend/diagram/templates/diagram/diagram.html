@@ -8,9 +8,9 @@
 {% block extra_head %}
   <script>console.log('EXTRA_HEAD WORKS');</script>
   {% if debug %}
-    <script type="module" src="{{ vite_dev_server }}/src/main.tsx"></script>
+    <script type="module" src="{% vite_asset 'src/main.tsx' %}"></script>
   {% else %}
-    <script type="module" src="https://tea-project-0buv.onrender.com/static/assets/main.CD-h2EUG.js"></script>
+    <script type="module" src="{% vite_asset 'src/main.tsx' %}"></script>
     <link rel="stylesheet" href="https://tea-project-static.onrender.com/assets/main.B2gGK-0F.css">
   {% endif %}
 {% endblock %}
