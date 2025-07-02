@@ -1,3 +1,23 @@
+/* Основные переменные и цвета */
+:root {
+  --tea-primary: #bfa16c;
+  --tea-primary-dark: #8d6e3f;
+  --tea-primary-light: #ede5d9;
+  --tea-bg: #f5f3ee;
+  --tea-text: #3e2723;
+  --tea-text-light: #6d4c41;
+  --tea-border: #d7ccc8;
+  --tea-shadow: rgba(62, 39, 35, 0.08);
+  --tea-shadow-hover: rgba(191, 161, 108, 0.13);
+}
+
+body {
+  background: var(--tea-bg);
+  color: var(--tea-text);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.6;
+}
+
 /* Стили для сайдбаров */
 .sidebar {
   background: rgba(0, 0, 0, 0.2);
@@ -10,12 +30,18 @@
 .sidebar-left {
   width: 280px;
   min-width: 280px;
-  background-color: #f8f9fa;
-  border-right: 1px solid #dee2e6;
+  background-color: #fff;
+  border-right: 1px solid var(--tea-border);
   padding: 1.5rem;
   height: 100%;
   display: flex;
   flex-direction: column;
+  box-shadow: 4px 0 20px var(--tea-shadow);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .sidebar-right {
@@ -24,23 +50,30 @@
 
 .sidebar-inner {
   margin-bottom: 2rem;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 1.2rem;
+  background-color: var(--tea-primary-light);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--tea-shadow);
+  transition: all 0.3s ease;
+}
+
+.sidebar-inner:hover {
+  box-shadow: 0 4px 12px var(--tea-shadow-hover);
 }
 
 .sidebar-bottom-block {
   margin-top: auto;
-  padding: 1rem;
-  background-color: #f1f3f5;
-  border-radius: 8px;
+  padding: 1.2rem;
+  background-color: var(--tea-primary-light);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--tea-shadow);
 }
 
 .sidebar-similar-title {
   font-size: 0.9rem;
-  color: #6c757d;
-  margin-bottom: 0.5rem;
+  color: var(--tea-text-light);
+  margin-bottom: 1rem;
+  font-style: italic;
 }
 
 /* Основной контейнер */
@@ -88,23 +121,25 @@
 
 /* Стили для навигации */
 .nav-link {
-  color: #495057;
+  color: var(--tea-text);
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   display: block;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 .nav-link:hover {
-  background-color: #e9ecef;
-  color: #212529;
+  background-color: var(--tea-primary-light);
+  color: var(--tea-primary-dark);
 }
 
 .nav-link.active {
-  background-color: #e9ecef;
-  color: #212529;
-  font-weight: 500;
+  background-color: var(--tea-primary);
+  color: #fff;
+  font-weight: 600;
 }
 
 /* Стили для логотипа и заголовка */
@@ -123,16 +158,17 @@
 
 /* Стили для языкового селектора */
 .language-selector {
-  padding: 1rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 1.2rem;
+  background-color: var(--tea-primary-light);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--tea-shadow);
+  margin: 1rem 0;
 }
 
 /* Основной контейнер */
 .main-layout {
   min-height: calc(100vh - 60px);
-  background-color: #f8f9fa;
+  background-color: var(--tea-bg);
 }
 
 /* Контентная область */
@@ -140,52 +176,115 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--tea-shadow);
+  padding: 2rem;
+}
+
+/* Заголовки */
+h1, h2, h5, .card-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  color: var(--tea-text);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--tea-primary);
+}
+
+/* Карточки */
+.card {
+  background: #f9f6f1;
+  color: var(--tea-text);
+  border-radius: 12px;
+  border: 1.5px solid var(--tea-primary);
+  box-shadow: 0 2px 8px var(--tea-shadow);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px var(--tea-shadow-hover);
+}
+
+.card-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.3rem;
+  color: var(--tea-text);
+  letter-spacing: 0.5px;
+}
+
+/* Кнопки */
+.btn-success {
+  background: linear-gradient(90deg, var(--tea-primary) 0%, var(--tea-primary-dark) 100%);
+  border: none;
+  color: #fff;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px var(--tea-shadow);
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background: linear-gradient(90deg, var(--tea-primary-dark) 0%, var(--tea-primary) 100%);
+  color: #fff;
 }
 
 /* Темная тема */
 @media (prefers-color-scheme: dark) {
+  :root {
+    --tea-bg: #1a1a1a;
+    --tea-text: #f5f3ee;
+    --tea-text-light: #d7ccc8;
+    --tea-border: #3e2723;
+    --tea-shadow: rgba(0, 0, 0, 0.2);
+    --tea-shadow-hover: rgba(191, 161, 108, 0.2);
+  }
+
   .sidebar-left {
     background-color: #212529;
-    border-right-color: #343a40;
+    border-right-color: var(--tea-border);
   }
   
   .sidebar-inner,
-  .language-selector {
-    background-color: #343a40;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-  
+  .language-selector,
   .sidebar-bottom-block {
     background-color: #2b3035;
   }
   
   .nav-link {
-    color: #adb5bd;
+    color: var(--tea-text);
   }
   
   .nav-link:hover {
     background-color: #495057;
-    color: #f8f9fa;
+    color: var(--tea-primary);
   }
   
   .nav-link.active {
-    background-color: #495057;
-    color: #f8f9fa;
-  }
-  
-  .main-layout {
-    background-color: #343a40;
+    background-color: var(--tea-primary);
+    color: #fff;
   }
   
   .content-block {
     background-color: #212529;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
   
-  .sidebar-similar-title {
-    color: #adb5bd;
+  .card {
+    background-color: #2b3035;
   }
 } 
