@@ -9,7 +9,7 @@
   --tea-border: #d7ccc8;
   --tea-shadow: rgba(62, 39, 35, 0.08);
   --tea-shadow-hover: rgba(191, 161, 108, 0.13);
-  
+
   --color-brown: #6B4226;
   --color-brown-dark: #4a2d1a;
   --color-brown-darker: #3a1f12;
@@ -25,26 +25,31 @@ body {
   line-height: 1.6;
 }
 
-/* === Сайдбар === */
+/* === Сайдбар с минимальными отступами и без скроллбара === */
 .sidebar-left {
   width: var(--sidebar-width);
   min-width: var(--sidebar-width);
-  background-color: #fff;
-  padding: 2rem 1.5rem;
+  background-color: #fff; /* можно заменить на var(--tea-bg) */
+  padding: 1rem 1rem;
   height: 100vh;
   position: sticky;
   top: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   overflow-y: auto;
-  border-right: 2px solid var(--tea-primary);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.sidebar-left::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .sidebar-inner {
   background: #fff;
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 0.8rem;
   box-shadow: 0 2px 8px var(--tea-shadow);
   transition: all 0.3s ease;
 }
@@ -57,27 +62,28 @@ body {
   margin-top: auto;
   background: #fff;
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 0.8rem;
   box-shadow: 0 2px 8px var(--tea-shadow);
 }
 
 .sidebar-similar-title {
   font-size: 0.9rem;
   color: var(--tea-text-light);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   font-style: italic;
 }
 
-/* === Навигация === */
+/* === Навигация компактнее === */
 .nav-link {
   color: var(--tea-text);
   text-decoration: none;
-  padding: 0.8rem 1rem;
+  padding: 0.6rem 0.9rem;
   display: block;
   border-radius: 8px;
   transition: all 0.3s ease;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 500;
+  font-size: 0.95rem;
   font-family: 'Georgia', serif;
 }
 
@@ -96,11 +102,11 @@ body {
 .language-selector {
   background: #fff;
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 1rem;
   box-shadow: 0 2px 8px var(--tea-shadow);
 }
 
-/* === Карточки === */
+/* === Карточки и иконки === */
 .card {
   background: #f9f6f1;
   color: var(--tea-text);
@@ -114,22 +120,30 @@ body {
 
 .card:hover {
   box-shadow: 0 4px 12px var(--tea-shadow-hover);
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.card img.icon,
+.card-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+}
+
+.card-body {
+  padding: 1rem;
+  text-align: center;
 }
 
 .card-title {
   font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: 1.3rem;
-  color: var(--tea-text);
+  font-size: 1.25rem;
+  color: var(--color-brown);
   letter-spacing: 0.5px;
-  padding: 1rem;
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 /* === Кнопки === */
@@ -171,6 +185,21 @@ body {
   position: relative;
 }
 
+.diagram-sector {
+  fill: rgba(191,161,108,0.1);
+  stroke: var(--tea-primary);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.diagram-sector:hover {
+  fill: rgba(191,161,108,0.2);
+}
+
+.diagram-sector.selected {
+  fill: rgba(191,161,108,0.3);
+}
+
 /* === Комментарии === */
 .comment {
   background: #fff8f2;
@@ -209,22 +238,18 @@ body {
 }
 
 @media (max-width: 768px) {
-  .card img {
-    height: 150px;
-  }
-
-  .sidebar-left {
-    width: 100%;
-    padding: 1rem;
+  .card img.icon {
+    height: 36px;
+    width: 36px;
   }
 
   .btn-success {
-    font-size: 1.1rem;
-    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
   }
 
   .nav-link {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -247,10 +272,6 @@ body {
   .language-selector,
   .sidebar-bottom-block {
     background-color: #2b3035;
-  }
-
-  .nav-link {
-    color: var(--tea-text);
   }
 
   .nav-link:hover {
